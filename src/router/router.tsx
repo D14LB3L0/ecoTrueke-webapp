@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { EcoTrueke } from "../EcoTrueke";
 import { Home } from "../modules/home/pages/Home";
+import { lazy, Suspense } from "react";
+
+const AuthLayout = lazy(() => import('@/modules/auth/layout/AuthLayout'));
 
 export const router = createBrowserRouter([
     {
@@ -11,6 +14,14 @@ export const router = createBrowserRouter([
                 path: '/home',
                 element: (
                     <Home />
+                )
+            },
+            {
+                path: 'auth/*',
+                element: (
+                    <Suspense fallback={<></>}>
+                        <AuthLayout />
+                    </Suspense>
                 )
             }
         ]
