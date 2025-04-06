@@ -3,6 +3,9 @@ import { LoginForm } from "../components/LoginForm"
 
 export const LoginPage = () => {
   return (
-    <AuthLayout formComponent={<LoginForm />}></AuthLayout>
+    <AuthLayout
+      formComponent={<LoginForm />}
+      image={{ src: "/auth/logo-vertical.webp", alt: "EcoTrueke logo vertical" }}>
+    </AuthLayout>
   )
 }
