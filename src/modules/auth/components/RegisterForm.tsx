@@ -12,8 +12,8 @@ export const RegisterForm = () => {
   return (
     <div className="space-y-2 flex flex-col justify-between gap-5">
 
-      <div>
-        <img src="/auth/logo-horizontal.png" alt="Ecotrueke logo horizontal" className="w-[150px]" />
+      <div className="mb-0 md:hidden">
+        <img src="/auth/logo-horizontal.webp" alt="Ecotrueke logo horizontal" className="w-[100px]" />
       </div>
 
       <div>
