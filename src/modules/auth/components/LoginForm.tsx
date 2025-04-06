@@ -23,7 +23,7 @@ export const LoginForm = () => {
             </div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)}>
-                    <div className="flex flex-col gap-2 md:min-w-[400px]">
+                    <div className="flex flex-col gap-2 md:min-w-[570px]">
                         <FormField
                             control={form.control}
                             name="email"
