@@ -3,11 +3,13 @@ import { useRegisterForm } from "../hooks/useRegisterForm"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { SubscriptionPlans } from "@/components/SubscriptionPlans";
+import { RequiredLabel } from "@/utils/requiredLabel";
 // import { Spinner } from "@/components/ui/spinner";
 
 export const RegisterForm = () => {
 
-  const { form, handleSubmit } = useRegisterForm();
+  const { form, handleSubmit, openSubscriptionPLans, setOpenSubscriptionPLans } = useRegisterForm();
 
   return (
     <div className="space-y-2 flex flex-col justify-between gap-5">
@@ -31,7 +33,7 @@ export const RegisterForm = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-semibold">Nombre</FormLabel>
+                    <FormLabel className="font-semibold"><RequiredLabel>Nombre</RequiredLabel> </FormLabel>
                     <FormControl>
                       <Input placeholder="Nombre" {...field} />
                     </FormControl>
@@ -47,7 +49,7 @@ export const RegisterForm = () => {
                 name="paternalSurname"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="font-semibold">Apellido Paterno</FormLabel>
+                    <FormLabel className="font-semibold"><RequiredLabel>Apellido Paterno</RequiredLabel></FormLabel>
                     <FormControl>
                       <Input placeholder="Apellido Paterno" {...field} />
                     </FormControl>
@@ -61,7 +63,7 @@ export const RegisterForm = () => {
                 name="maternalSurname"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="font-semibold">Apellido Materno</FormLabel>
+                    <FormLabel className="font-semibold"><RequiredLabel>Apellido Materno</RequiredLabel></FormLabel>
                     <FormControl>
                       <Input placeholder="Apellido Materno" {...field} />
                     </FormControl>
@@ -77,7 +79,7 @@ export const RegisterForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold">Correo Electrónico</FormLabel>
+                  <FormLabel className="font-semibold"><RequiredLabel>Correo Electrónico</RequiredLabel></FormLabel>
                   <FormControl>
                     <Input placeholder="Correo Electrónico" {...field} />
                   </FormControl>
@@ -91,7 +93,7 @@ export const RegisterForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold">Contraseña</FormLabel>
+                  <FormLabel className="font-semibold"><RequiredLabel>Contraseña</RequiredLabel></FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="Contraseña" {...field} />
                   </FormControl>
@@ -104,7 +106,7 @@ export const RegisterForm = () => {
               name="reEnterPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold">Confirmar Contraseña</FormLabel>
+                  <FormLabel className="font-semibold"><RequiredLabel>Confirmar Contraseña</RequiredLabel></FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="Confirmar Contraseña" {...field} />
                   </FormControl>
@@ -118,6 +120,7 @@ export const RegisterForm = () => {
           </div>
         </form>
       </Form>
+      <SubscriptionPlans open={openSubscriptionPLans} setOpen={setOpenSubscriptionPLans} />
     </div>
   )
 }

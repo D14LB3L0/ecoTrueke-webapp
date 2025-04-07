@@ -1,8 +1,12 @@
 import { useForm } from "react-hook-form"
 import { registerFormSchema, registerFormValues } from "../schemas/registerForm.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
 
 export const useRegisterForm = () => {
+
+    // open subscription plans dialog
+    const [openSubscriptionPLans, setOpenSubscriptionPLans] = useState<boolean>(false);
 
     const form = useForm<registerFormValues>({
         resolver: zodResolver(registerFormSchema),
@@ -16,12 +20,16 @@ export const useRegisterForm = () => {
         }
     })
 
+    // register user but doesn't enter the platform until choise a plan
     const handleSubmit = (data: registerFormValues) => {
-        console.log(data)
+        console.log(data) 
+        setOpenSubscriptionPLans(true)
     }
 
     return {
         form,
-        handleSubmit
+        handleSubmit,
+        openSubscriptionPLans,
+        setOpenSubscriptionPLans
     }
 }
