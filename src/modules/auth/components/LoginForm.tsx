@@ -50,8 +50,9 @@ export const LoginForm = () => {
                                 </FormItem>
                             )}
                         />
-
-                        <Button type="button" className="flex justify-start p-0 text-xs" variant={"link"}>Olvidé mi contraseña</Button>
+                        <Link to={'/auth/reset-password'}>
+                            <Button type="button" className="flex justify-start p-0 text-xs" variant={"link"}>Olvidé mi contraseña</Button>
+                        </Link>
                         <Button type="submit">{isLoading && <Spinner size="sm" />} Ingresar  </Button>
                     </div>
                 </form>

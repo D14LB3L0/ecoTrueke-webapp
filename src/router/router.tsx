@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { EcoTrueke } from "../EcoTrueke";
 import { Home } from "../modules/home/pages/Home";
 import { lazy, Suspense } from "react";
@@ -23,6 +23,10 @@ export const router = createBrowserRouter([
                         <AuthLayout />
                     </Suspense>
                 )
+            },
+            {
+                path: '*',
+                element: <Navigate to="/auth/login" replace />
             }
         ]
     }

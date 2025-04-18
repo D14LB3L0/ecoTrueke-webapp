@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom"
 
 export const useRegisterForm = () => {
 
-    // open subscription plans dialog
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const navigate = useNavigate();
 
