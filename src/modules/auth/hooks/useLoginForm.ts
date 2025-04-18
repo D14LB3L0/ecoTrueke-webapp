@@ -36,10 +36,12 @@ export const useLoginForm = () => {
 
             // request API
             const response = await LoginUserService.login(loginRequest);
-            if (response)
+            if (response) {
                 setUser({ ...user, token: response.data.token, id: response.data.id, email: response.data.email });
+            }
 
         } catch (error: any) {
+            toast.dismiss();
             toast.warning(error?.response.data.message ?? Error.UNEXPECTED_ERROR)
         } finally {
             setIsLoading(false)

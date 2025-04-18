@@ -11,9 +11,6 @@ export const ResetPasswordForm = () => {
 
     return (
         <div className="space-y-2 flex flex-col justify-between gap-5">
-            <div className="mb-0 md:hidden">
-                <img src="/auth/logo-horizontal.webp" alt="Ecotrueke logo horizontal" className="w-[100px]" />
-            </div>
 
             <div>
                 <h1 className="text-2xl font-bold block">Recuperar Contraseña</h1>

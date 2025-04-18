@@ -43,11 +43,13 @@ export const useRegisterForm = () => {
             // request API
             const response = await RegisterUserService.register(registerRequest);
             if (response){
+                toast.dismiss();
                 toast.success(response.message ?? Success.GENERIC)
                 navigate("/auth/login")
             }
 
         } catch (error: any) {
+            toast.dismiss();
             toast.warning(error?.response.data.message ?? Error.UNEXPECTED_ERROR)
         } finally {
             setIsLoading(false);
