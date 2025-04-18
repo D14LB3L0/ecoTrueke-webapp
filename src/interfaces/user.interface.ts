@@ -3,7 +3,7 @@ export interface IUser {
   id: string;
   personId: string;
   email: string;
-  accountStatus: 'active' | 'suspended';
+  accountStatus: '' | 'active' | 'suspended';
   updatedAt: string;
   createdAt: string;
   isDeleted: boolean;

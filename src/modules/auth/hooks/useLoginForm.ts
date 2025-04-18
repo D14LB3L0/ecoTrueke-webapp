@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react";
 import { LoginUserService } from "../services/login.service";
 import { useStore } from "@/stores/useStore";
+import { toast } from "sonner";
+import { Error } from "@/utils/constants/Error";
 
 export const useLoginForm = () => {
 
@@ -21,10 +23,11 @@ export const useLoginForm = () => {
         }
     });
 
-
+    // login user
     const handleSubmit = async (values: loginFormValues) => {
         try {
             setIsLoading(true)
+
             // build request
             const loginRequest = {
                 email: values.email,
@@ -33,11 +36,11 @@ export const useLoginForm = () => {
 
             // request API
             const response = await LoginUserService.login(loginRequest);
-            console.log(response)
             if (response)
-                setUser({ ...user, token: response.data.token, id: response.data.id, email: response.data.token });
+                setUser({ ...user, token: response.data.token, id: response.data.id, email: response.data.email });
+
         } catch (error: any) {
-            console.log(error?.response.data.message);
+            toast.warning(error?.response.data.message ?? Error.UNEXPECTED_ERROR)
         } finally {
             setIsLoading(false)
         }

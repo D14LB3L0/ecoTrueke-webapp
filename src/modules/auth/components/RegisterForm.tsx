@@ -4,10 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { RequiredLabel } from "@/utils/requiredLabel";
+import { Spinner } from "@/components/ui/spinner";
 
 export const RegisterForm = () => {
 
-  const { form, handleSubmit } = useRegisterForm();
+  const { form, handleSubmit, isLoading } = useRegisterForm();
 
   return (
     <div className="space-y-2 flex flex-col justify-between gap-5">
@@ -114,7 +115,7 @@ export const RegisterForm = () => {
             />
 
             <Separator className="my-2" />
-            <Button type="submit">Continuar {/*<Spinner size="sm" /> */}</Button>
+            <Button type="submit">{isLoading && <Spinner size="sm" />} Continuar </Button>
           </div>
         </form>
       </Form>

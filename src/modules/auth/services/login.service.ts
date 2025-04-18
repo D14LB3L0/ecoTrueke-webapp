@@ -11,9 +11,14 @@ export interface LoginResponse {
     message: string;
 }
 
+export interface loginRequest {
+    email: string;
+    password: string
+}
+
 
 export class LoginUserService {
-    static async login(loginRequest: { email: string; password: string }): Promise<LoginResponse> {
+    static async login(loginRequest: loginRequest): Promise<LoginResponse> {
         try {
             const response = await ecoTruekeApi.post<LoginResponse>("auth/login", loginRequest);
             return response.data;
