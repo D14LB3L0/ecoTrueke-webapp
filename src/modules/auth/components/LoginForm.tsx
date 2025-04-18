@@ -1,6 +1,7 @@
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { useLoginForm } from "../hooks/useLoginForm"
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 
 import { User } from "lucide-react"
 import { Button } from "@/components/ui/button";
@@ -8,13 +9,13 @@ import { Link } from "react-router-dom";
 
 export const LoginForm = () => {
 
-    const { form, handleSubmit } = useLoginForm();
+    const { form, handleSubmit, isLoading } = useLoginForm();
 
     return (
         <div className="space-y-2">
             <div className="">
                 <h1 className="text-2xl font-bold block">Iniciar Sesión</h1>
-                <p className="text-xs block">¿No tienes una cuenta?  
+                <p className="text-xs block">¿No tienes una cuenta?
                     <span> </span>
                     <Link to={'/auth/register'}>
                         <Button className="p-0 text-xs" variant={"link"}>Regístrate aquí</Button>
@@ -51,7 +52,7 @@ export const LoginForm = () => {
                         />
 
                         <Button type="button" className="flex justify-start p-0 text-xs" variant={"link"}>Olvidé mi contraseña</Button>
-                        <Button className="" type="submit">Ingresar</Button>
+                        <Button type="submit">{isLoading && <Spinner size="sm" />} Ingresar  </Button>
                     </div>
                 </form>
             </Form>

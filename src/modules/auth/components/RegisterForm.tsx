@@ -3,13 +3,11 @@ import { useRegisterForm } from "../hooks/useRegisterForm"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { SubscriptionPlans } from "@/components/SubscriptionPlans";
 import { RequiredLabel } from "@/utils/requiredLabel";
-// import { Spinner } from "@/components/ui/spinner";
 
 export const RegisterForm = () => {
 
-  const { form, handleSubmit, openSubscriptionPLans, setOpenSubscriptionPLans } = useRegisterForm();
+  const { form, handleSubmit } = useRegisterForm();
 
   return (
     <div className="space-y-2 flex flex-col justify-between gap-5">
@@ -120,7 +118,6 @@ export const RegisterForm = () => {
           </div>
         </form>
       </Form>
-      <SubscriptionPlans open={openSubscriptionPLans} setOpen={setOpenSubscriptionPLans} />
     </div>
   )
 }
