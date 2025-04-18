@@ -4,6 +4,7 @@ export interface LoginResponseData {
     token: string;
     id: string;
     email: string;
+    accountStatus: string;
 }
 
 export interface LoginResponse {

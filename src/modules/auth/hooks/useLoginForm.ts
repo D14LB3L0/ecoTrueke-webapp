@@ -37,7 +37,7 @@ export const useLoginForm = () => {
             // request API
             const response = await LoginUserService.login(loginRequest);
             if (response) {
-                setUser({ ...user, token: response.data.token, id: response.data.id, email: response.data.email });
+                setUser({ ...user, token: response.data.token, id: response.data.id, email: response.data.email, accountStatus: response.data.accountStatus });
             }
 
         } catch (error: any) {

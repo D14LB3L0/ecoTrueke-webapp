@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import { EcoTrueke } from "../EcoTrueke";
 import { Home } from "../modules/home/pages/Home";
 import { lazy, Suspense } from "react";
+import { ProtectedRouteToken } from "@/utils/security/protectedRoute";
 
 const AuthLayout = lazy(() => import('@/modules/auth/layout/AuthLayout'));
 
@@ -11,9 +12,11 @@ export const router = createBrowserRouter([
         element: <EcoTrueke />,
         children: [
             {
-                path: '/home',
+                path: '/*',
                 element: (
-                    <Home />
+                    <ProtectedRouteToken>
+                        <Home />
+                    </ProtectedRouteToken>
                 )
             },
             {
@@ -26,7 +29,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '*',
-                element: <Navigate to="/auth/login" replace />
+                element: <Navigate to="/home" replace />
             }
         ]
     }
