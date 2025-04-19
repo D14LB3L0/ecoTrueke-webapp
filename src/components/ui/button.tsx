@@ -19,9 +19,26 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        sideBar: cn(
+          "w-full justify-start text-left relative transition-all overflow-hidden",
+          
+          // padding por defecto: pegado a la izquierda
+          "pl-0 pr-4 py-2",
+        
+          // bolita azul
+          "before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-6 before:w-1 before:rounded-r-md before:bg-primary before:transition-all before:opacity-0",
+        
+          // desplazamiento y visibilidad con hover o activo
+          "hover:pl-4 hover:before:opacity-100",
+          "data-[active=true]:pl-4 data-[active=true]:before:opacity-100",
+        
+          "duration-300"
+        )
+        
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        sideBar: "",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",

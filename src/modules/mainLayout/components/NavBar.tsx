@@ -21,12 +21,8 @@ export const NavBar = ({
     const { notifications, unreadCount, markAllAsRead, markAsRead } = useNotification();
 
     return (
-        <div className="min-w-screen min-h-[106px]">
-            <div className="flex justify-center items-center text-white bg-primary min-h-[36px] text-sm pl-8 pr-8 pt-2 pb-2">
-                <p>Un nuevo destino para tus cosas. Una nueva historia para ti. ¡Truekea ahora!</p>
-            </div>
+        <div>
             <div className="p-4 md:p-8 flex flex-col md:flex-row justify-center items-center w-full gap-4 md:gap-32 transition-all">
-
                 <div className="flex items-center justify-between w-full md:w-auto max-w-[448px] md:max-w-none ">
                     <Link to={'/home'}>
                         <div className="min-w-[92px] max-w-[92px]">
@@ -35,7 +31,7 @@ export const NavBar = ({
                     </Link>
                     <div className="md:hidden">
                         {isLoggedIn ? (
-                            <div className="flex justify-center items-center gap-2">
+                            <div className="flex justify-center items-center gap-4">
                                 <div className="flex justify-center items-center gap-1">
                                     <User size={20} />
                                     <Dropdown items={dropDownItems} />
@@ -51,7 +47,6 @@ export const NavBar = ({
                             </Link>
                         )}
                     </div>
-
                 </div>
 
                 <div className="flex justify-center min-w-[224px] w-full md:w-[440px]">
@@ -60,7 +55,7 @@ export const NavBar = ({
 
                 <div className="hidden md:block">
                     {isLoggedIn ? (
-                        <div className="flex justify-center items-center gap-2">
+                        <div className="flex justify-center items-center gap-4">
                             <div className="flex justify-center items-center gap-1">
                                 <User size={20} />
                                 <Dropdown items={dropDownItems} />
@@ -76,7 +71,6 @@ export const NavBar = ({
                         </Link>
                     )}
                 </div>
-
             </div>
         </div>
     )

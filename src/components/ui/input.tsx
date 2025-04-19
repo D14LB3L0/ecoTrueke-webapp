@@ -17,7 +17,7 @@ function Input({ className, type, iconPrefix, ...props }: InputProps) {
 
   return (
     <div className="relative flex w-full items-center">
-      {iconPrefix && <div className="absolute left-3 flex items-center pointer-events-none opacity-20 ">{iconPrefix}</div>}
+      {iconPrefix && <div className="absolute left-3 flex items-center pointer-events-none opacity-50 text-muted-foreground">{iconPrefix}</div>}
       <input
         type={isPassword && showPassword ? "text" : type}
         data-slot="input"
@@ -34,7 +34,7 @@ function Input({ className, type, iconPrefix, ...props }: InputProps) {
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="absolute right-3 text-muted-foreground hover:text-foreground"
+          className="absolute right-3 text-muted-foreground hover:text-foreground cursor-pointer"
           tabIndex={-1}
         >
           {showPassword ? <EyeOff size={16} aria-hidden="true" /> : <Eye size={16} aria-hidden="true" />}

@@ -1,7 +1,7 @@
 import { useStore } from "@/stores/useStore"
 import { useEffect, useState } from "react";
 
-export const useHeaderLayout = () => {
+export const useNavBar = () => {
 
     const user = useStore(state => state.user);
     

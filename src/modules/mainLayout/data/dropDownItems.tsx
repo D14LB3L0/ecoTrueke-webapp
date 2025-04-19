@@ -11,7 +11,7 @@ export const dropDownItems = ({
     {
       key: "profile",
       name: "Mi Perfil",
-      href: "/profile",
+      href: "/dashboard/profile",
       icon: <User size={16} />,
     },
     {

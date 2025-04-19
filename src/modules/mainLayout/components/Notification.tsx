@@ -22,12 +22,12 @@ export function NotificationBell({ notifications, unreadCount, markAllAsRead, ma
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative">
+                <div className="relative cursor-pointer hover:text-green-800">
                     <Bell size={16} />
                     {unreadCount > 0 && (
                         <span className="absolute top-0 right-0 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white" />
                     )}
-                </Button>
+                </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-80 p-0">
                 <div className="sticky top-0 flex items-center justify-between p-3 bg-background z-10">
