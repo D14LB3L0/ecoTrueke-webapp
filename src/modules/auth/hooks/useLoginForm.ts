@@ -6,6 +6,7 @@ import { LoginUserService } from "../services/login.service";
 import { useStore } from "@/stores/useStore";
 import { toast } from "sonner";
 import { Error } from "@/utils/constants/Error";
+import { useNavigate } from "react-router-dom";
 
 export const useLoginForm = () => {
 
@@ -13,6 +14,7 @@ export const useLoginForm = () => {
 
     const user = useStore(state => state.user);
     const setUser = useStore(state => state.setUser);
+    const navigate = useNavigate();
 
     const form = useForm<loginFormValues>({
         resolver: zodResolver(loginFormSchema),
@@ -38,6 +40,7 @@ export const useLoginForm = () => {
             const response = await LoginUserService.login(loginRequest);
             if (response) {
                 setUser({ ...user, token: response.data.token, id: response.data.id, email: response.data.email, accountStatus: response.data.accountStatus });
+                navigate("/home")
             }
 
         } catch (error: any) {

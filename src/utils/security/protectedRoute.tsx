@@ -9,7 +9,7 @@ type ProtectedRouteTokenProps = {
 }
 
 export const ProtectedRouteToken = ({
-    redirectPath = "/auth/login",
+    redirectPath = "/",
     children,
 }: ProtectedRouteTokenProps): ReactElement | null => {
     const token = useStore((state) => state.user.token);

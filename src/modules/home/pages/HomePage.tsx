@@ -1,8 +1,9 @@
 
-export const Home = () => {
+export const HomePage = () => {
+
   return (
     <div className="">
-      Home
+      Home Page
     </div>
   )
 }

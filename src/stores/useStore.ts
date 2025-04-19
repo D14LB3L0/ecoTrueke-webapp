@@ -12,7 +12,7 @@ export const useStore = create<SharedState>()(
         }),
         {
             name: 'storage',
-            storage: createJSONStorage(() => sessionStorage),
+            storage: createJSONStorage(() => localStorage),
             partialize: (state: IUserSlice) => ({
                 user: state.user,
             }),
