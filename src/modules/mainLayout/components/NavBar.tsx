@@ -25,18 +25,40 @@ export const NavBar = ({
             <div className="flex justify-center items-center text-white bg-primary min-h-[36px] text-sm pl-8 pr-8 pt-2 pb-2">
                 <p>Un nuevo destino para tus cosas. Una nueva historia para ti. ¡Truekea ahora!</p>
             </div>
-            <div className="p-8 flex justify-center items-center w-full gap-8 sm:gap-32 transition-all">
-                <Link to={'/home'}>
-                    <div className="max-w-[92px]">
-                        <img src="/auth/logo-horizontal.webp" alt="EcoTueke logo" />
-                    </div>
-                </Link>
+            <div className="p-4 md:p-8 flex flex-col md:flex-row justify-center items-center w-full gap-4 md:gap-32 transition-all">
 
-                <div className="min-w-[224px] w-[440px]">
+                <div className="flex items-center justify-between w-full md:w-auto max-w-[448px] md:max-w-none ">
+                    <Link to={'/home'}>
+                        <div className="min-w-[92px] max-w-[92px]">
+                            <img src="/auth/logo-horizontal.webp" alt="EcoTueke logo" />
+                        </div>
+                    </Link>
+                    <div className="md:hidden">
+                        {isLoggedIn ? (
+                            <div className="flex justify-center items-center gap-2">
+                                <div className="flex justify-center items-center gap-1">
+                                    <User size={20} />
+                                    <Dropdown items={dropDownItems} />
+                                </div>
+                                <div className="flex justify-center items-center">
+                                    <NotificationBell notifications={notifications} unreadCount={unreadCount} markAllAsRead={markAllAsRead} markAsRead={markAsRead} />
+                                </div>
+
+                            </div>
+                        ) : (
+                            <Link to="/auth/login">
+                                <User className="cursor-pointer hover:text-green-800" />
+                            </Link>
+                        )}
+                    </div>
+
+                </div>
+
+                <div className="flex justify-center min-w-[224px] w-full md:w-[440px]">
                     <SearchBar placeholder="¿Qué estas buscando?" handleSearch={handleSearch} query={query} setQuery={setQuery} />
                 </div>
 
-                <div>
+                <div className="hidden md:block">
                     {isLoggedIn ? (
                         <div className="flex justify-center items-center gap-2">
                             <div className="flex justify-center items-center gap-1">

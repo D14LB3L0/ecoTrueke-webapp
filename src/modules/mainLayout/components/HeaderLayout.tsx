@@ -1,5 +1,5 @@
-import { NavBar } from "@/modules/Layout/components/NavBar"
-import dropDownItems from "@/modules/Layout/data/dropDownItems"
+import { NavBar } from "@/modules/mainLayout/components/NavBar"
+import dropDownItems from "@/modules/mainLayout/data/dropDownItems"
 import { useHeaderLayout } from "../hooks/useHeaderLayout";
 import { Outlet } from "react-router-dom";
 

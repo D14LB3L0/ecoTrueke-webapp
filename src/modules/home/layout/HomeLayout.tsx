@@ -1,6 +1,6 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom"
 import { HomePage } from "../pages/HomePage"
-import { HeaderLayout } from "@/modules/Layout/components/HeaderLayout"
+import { HeaderLayout } from "@/modules/mainLayout/components/HeaderLayout"
 
 const HomeLayout = () => {
     return (
