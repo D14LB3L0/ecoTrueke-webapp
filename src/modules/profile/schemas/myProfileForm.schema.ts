@@ -14,8 +14,12 @@ export const myProfilePersonFormSchema = z.object({
     gender: z.string({
         required_error: "Este campo es obligatorio.",
     }).optional(),
-    documentType: z.string({
-        required_error: "Este campo es obligatorio.",
+    documentType: z
+    .string({
+      required_error: "Este campo es obligatorio.",
+    })
+    .refine((val) => val !== "", {
+      message: "Seleccione un tipo de documento válido.",
     }),
     documentNumber: z.string({
         required_error: "Este campo es obligatorio.",

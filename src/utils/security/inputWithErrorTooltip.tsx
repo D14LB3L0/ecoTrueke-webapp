@@ -18,17 +18,19 @@ export const InputWithErrorTooltip = ({
     password = false,
     iconPrefix,
 }: InputWithErrorTooltipProps) => {
-    const error = field?.formState?.errors?.[name]?.message;
+    const { formState, ...safeField } = field;
+    const error = formState?.errors?.[name]?.message;
 
     return (
         <div className="relative">
             <FormControl>
                 <Input
                     placeholder={placeholder}
-                    {...field}
+                    {...safeField}
                     type={password ? "password" : "text"}
                     iconPrefix={iconPrefix}
                     className="pr-12"
+                    aria-invalid={!!error}
                 />
             </FormControl>
 

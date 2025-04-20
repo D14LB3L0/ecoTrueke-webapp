@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Form, FormField, FormItem, FormLabel } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { RequiredLabel } from "@/utils/requiredLabel";
 import { useMyProfilePersonForm } from "../hooks/useMyProfilePersonForm";
 import { Spinner } from "@/components/ui/spinner";
-import { InputWithErrorTooltip } from "@/utils/security/errorTooltip";
+import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SelectWithErrorTooltip } from "@/utils/security/SelectWithErrorTooltip";
 
 
 export const MyProfilePersonForm = () => {
@@ -12,7 +14,7 @@ export const MyProfilePersonForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
-        {/* Nombre */}
+        {/* Name */}
         <FormField
           control={form.control}
           name="name"
@@ -26,7 +28,7 @@ export const MyProfilePersonForm = () => {
           }}
         />
 
-        {/* Apellidos */}
+        {/* LastName */}
         <div className="flex gap-5 w-full">
           <FormField
             control={form.control}
@@ -50,32 +52,59 @@ export const MyProfilePersonForm = () => {
           />
         </div>
 
-        {/* Género */}
-        <div className="flex gap-5 max-w-[415px]">
+        {/* Gender */}
+        <div className="flex gap-5 min-w-[415px]">
           <FormField
             control={form.control}
             name="gender"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel className="font-semibold"><RequiredLabel>Género</RequiredLabel></FormLabel>
-                <InputWithErrorTooltip field={{ ...field, formState: form.formState }} name="gender" placeholder="Género" />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem className="min-w-[415px]">
+                  <FormLabel className="font-semibold">Género</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Género" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="male">Masculino</SelectItem>
+                      <SelectItem value="female">Femenino</SelectItem>
+                      <SelectItem value="other">Otro</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              );
+            }}
           />
         </div>
 
-        {/* Documento */}
+
+        {/* Document */}
         <div className="flex gap-5 w-full">
           <FormField
             control={form.control}
             name="documentType"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="font-semibold"><RequiredLabel>Tipo de Documento</RequiredLabel></FormLabel>
-                <InputWithErrorTooltip field={{ ...field, formState: form.formState }} name="documentType" placeholder="Tipo de Documento" />
+                <FormLabel className="font-semibold">
+                  <RequiredLabel>Tipo de Documento</RequiredLabel>
+                </FormLabel>
+                <SelectWithErrorTooltip
+                  field={field}
+                  formState={form.formState}
+                  name="documentType"
+                  placeholder="Tipo de Documento"
+                  options={[
+                    { label: "DNI", value: "DNI" },
+                    { label: "Pasaporte", value: "PASSPORT" },
+                    { label: "Carnet de extranjería", value: "CE" },
+                  ]}
+                />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="documentNumber"
@@ -88,7 +117,7 @@ export const MyProfilePersonForm = () => {
           />
         </div>
 
-        {/* Contacto */}
+        {/* Contact */}
         <div className="flex gap-5 w-full">
           <FormField
             control={form.control}
@@ -114,6 +143,6 @@ export const MyProfilePersonForm = () => {
 
         <Button type="submit">{isLoading && <Spinner size="sm" />} Guardar Cambios</Button>
       </form>
-    </Form>
+    </Form >
   );
 };

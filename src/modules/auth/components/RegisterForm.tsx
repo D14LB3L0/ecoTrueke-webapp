@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { RequiredLabel } from "@/utils/requiredLabel";
 import { Spinner } from "@/components/ui/spinner";
-import { InputWithErrorTooltip } from "@/utils/security/errorTooltip";
+import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
 
 export const RegisterForm = () => {
   const { form, handleSubmit, isLoading } = useRegisterForm();

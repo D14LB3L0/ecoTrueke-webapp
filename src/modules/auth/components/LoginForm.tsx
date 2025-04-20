@@ -4,7 +4,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { InputWithErrorTooltip } from "@/utils/security/errorTooltip";
+import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
 
 export const LoginForm = () => {
     const { form, handleSubmit, isLoading } = useLoginForm();

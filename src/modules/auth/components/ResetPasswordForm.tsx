@@ -3,7 +3,7 @@ import { Form, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Spinner } from "@/components/ui/spinner";
 import { RequiredLabel } from "@/utils/requiredLabel";
 import { useResetPasswordForm } from "../hooks/useResetPasswordForm";
-import { InputWithErrorTooltip } from "@/utils/security/errorTooltip";
+import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
 
 export const ResetPasswordForm = () => {
     const { form, handleSubmit, isLoading } = useResetPasswordForm();
