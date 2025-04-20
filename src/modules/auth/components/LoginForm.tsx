@@ -1,27 +1,29 @@
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
-import { useLoginForm } from "../hooks/useLoginForm"
-import { Input } from "@/components/ui/input";
+import { Form, FormField, FormItem } from "@/components/ui/form";
+import { useLoginForm } from "../hooks/useLoginForm";
 import { Spinner } from "@/components/ui/spinner";
-
-import { User } from "lucide-react"
+import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { InputWithErrorTooltip } from "@/utils/security/errorTooltip";
 
 export const LoginForm = () => {
-
     const { form, handleSubmit, isLoading } = useLoginForm();
 
     return (
         <div className="space-y-2">
-            <div className="">
+            <div>
                 <h1 className="text-2xl font-bold block">Iniciar Sesión</h1>
-                <p className="text-xs block">¿No tienes una cuenta?
+                <p className="text-xs block">
+                    ¿No tienes una cuenta?
                     <span> </span>
-                    <Link to={'/auth/register'}>
-                        <Button className="p-0 text-xs" variant={"link"}>Regístrate aquí</Button>
+                    <Link to={"/auth/register"}>
+                        <Button className="p-0 text-xs" variant={"link"}>
+                            Regístrate aquí
+                        </Button>
                     </Link>
                 </p>
             </div>
+
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)}>
                     <div className="flex flex-col gap-2 md:min-w-[570px]">
@@ -30,10 +32,12 @@ export const LoginForm = () => {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormControl>
-                                        <Input iconPrefix={<User size={16} />} placeholder="Correo Electrónico" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
+                                    <InputWithErrorTooltip
+                                        field={{ ...field, formState: form.formState }}
+                                        name="email"
+                                        placeholder="Correo Electrónico"
+                                        iconPrefix={<User size={16} />}
+                                    />
                                 </FormItem>
                             )}
                         />
@@ -43,20 +47,28 @@ export const LoginForm = () => {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormControl>
-                                        <Input type="password" placeholder="Contraseña" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
+                                    <InputWithErrorTooltip
+                                        field={{ ...field, formState: form.formState }}
+                                        name="password"
+                                        placeholder="Contraseña"
+                                        password
+                                    />
                                 </FormItem>
                             )}
                         />
-                        <Link to={'/auth/reset-password'}>
-                            <Button type="button" className="flex justify-start p-0 text-xs" variant={"link"}>Olvidé mi contraseña</Button>
+
+                        <Link to={"/auth/reset-password"}>
+                            <Button type="button" className="flex justify-start p-0 text-xs" variant={"link"}>
+                                Olvidé mi contraseña
+                            </Button>
                         </Link>
-                        <Button type="submit">{isLoading && <Spinner size="sm" />} Ingresar  </Button>
+
+                        <Button type="submit">
+                            {isLoading && <Spinner size="sm" />} Ingresar
+                        </Button>
                     </div>
                 </form>
             </Form>
         </div>
-    )
-}
+    );
+};

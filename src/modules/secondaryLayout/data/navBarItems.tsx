@@ -1,19 +1,19 @@
-import { User } from "lucide-react";
+import { User, Box } from "lucide-react";
 import { INavBarItem } from "../components/NavBar";
 
 
 const navBarItems = (): INavBarItem[] => [
     {
         key: 'profile',
-        name: 'perfil',
+        name: 'Perfil',
         icon: <User size={16} />,
         href: '/dashboard/profile'
     },
     {
-        key: 'abc',
-        name: 'perfil',
-        icon: <User size={16} />,
-        href: 'asdas'
+        key: 'product',
+        name: 'Producto',
+        icon: <Box size={16} />,
+        href: '/dashboard/product'
     },
 ]
 
