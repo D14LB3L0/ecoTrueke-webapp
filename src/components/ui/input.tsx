@@ -4,7 +4,7 @@ import { Eye, EyeOff } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  iconPrefix?: React.ReactNode; 
+  iconPrefix?: React.ReactNode;
 }
 
 function Input({ className, type, iconPrefix, ...props }: InputProps) {
@@ -30,7 +30,7 @@ function Input({ className, type, iconPrefix, ...props }: InputProps) {
         )}
         {...props}
       />
-      {isPassword && (
+      {isPassword && !props["aria-invalid"] && (
         <button
           type="button"
           onClick={togglePasswordVisibility}
