@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { SearchBar } from "../../../components/ui/search-bar"
 import { User } from "lucide-react"
-import { Dropdown, IDropdown } from "../../../components/DropDown"
+import { Dropdown, IDropdown } from "../../../components/dropDown"
 import { NotificationBell } from "./Notification"
 import { useNotification } from "../hooks/useNotification"
 import { useSearchBar } from "../hooks/useSearchBar"

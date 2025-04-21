@@ -15,6 +15,7 @@ export const useStore = create<SharedState>()(
             storage: createJSONStorage(() => localStorage),
             partialize: (state: IUserSlice) => ({
                 user: state.user,
+                editProfile: state.editProfile
             }),
         }
     )

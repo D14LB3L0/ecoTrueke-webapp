@@ -32,3 +32,19 @@ export const myProfilePersonFormSchema = z.object({
 });
 
 export type myProfilePersonFormValues = z.infer<typeof myProfilePersonFormSchema>;
+
+
+
+export const myProfileUserFormSchema = z.object({
+    email: z.string({
+        required_error: "Este campo es obligatorio."
+    })
+        .min(1, { message: "Este campo es obligatorio." })
+        .email("El formato no es válido")
+        .transform((email) => email.toLowerCase()),
+    password: z.string({
+        required_error: "Este campo es obligatorio."
+    }).min(1, { message: "Este campo es obligatorio." })
+});
+
+export type myProfileUserFormValues = z.infer<typeof myProfileUserFormSchema>

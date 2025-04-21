@@ -147,8 +147,9 @@ export const MyProfilePersonForm = () => {
             )}
           />
         </div>
-
-        <Button type="submit">{isLoading && <Spinner size="sm" />} Guardar Cambios</Button>
+        <div className="flex justify-end">
+          <Button type="submit">{isLoading && <Spinner size="sm" />} Guardar Cambios</Button>
+        </div>
       </form>
     </Form >
   );

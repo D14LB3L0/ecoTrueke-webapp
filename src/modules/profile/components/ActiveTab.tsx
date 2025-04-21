@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 interface IActiveTab {
     activeTab: string
-    setActiveTab: React.Dispatch<React.SetStateAction<"personal" | "user">>
+    setActiveTab: (editProfile: "person" | "user") => void
 }
 
 export const ActiveTab = ({ activeTab, setActiveTab }: IActiveTab) => {
@@ -14,18 +14,18 @@ export const ActiveTab = ({ activeTab, setActiveTab }: IActiveTab) => {
             <div
                 className={cn(
                     "absolute bottom-0 h-[2px] bg-primary transition-all duration-300",
-                    activeTab === "personal" ? "left-[0px] w-[110px]" : "left-[148px] w-[114px]"
+                    activeTab === "person" ? "left-[0px] w-[110px]" : "left-[148px] w-[114px]"
                 )}
             />
 
             <div
                 className={cn(
                     "cursor-pointer pb-3 transition-colors z-10",
-                    activeTab === "personal"
+                    activeTab === "person"
                         ? "text-primary"
                         : "text-muted-foreground hover:text-foreground"
                 )}
-                onClick={() => setActiveTab("personal")}
+                onClick={() => setActiveTab("person")}
             >
                 Datos Personales
             </div>
