@@ -15,20 +15,19 @@ export const myProfilePersonFormSchema = z.object({
         required_error: "Este campo es obligatorio.",
     }).optional(),
     documentType: z
-    .string({
-      required_error: "Este campo es obligatorio.",
-    })
-    .refine((val) => val !== "", {
-      message: "Seleccione un tipo de documento válido.",
-    }),
+        .string({
+            required_error: "Este campo es obligatorio.",
+        })
+        .refine((val) => val !== "", {
+            message: "Seleccione un tipo de documento válido.",
+        }),
     documentNumber: z.string({
         required_error: "Este campo es obligatorio.",
     })
         .min(8, { message: "Debe tener al menos 8 caracteres." }),
-    phoneNumber: z.string({
-        required_error: "Este campo es obligatorio.",
-    })
-        .min(8, { message: "Debe tener al menos 8 caracteres." }),
+    phoneNumber: z.string().regex(/^\+\d{1,4}[\s-]?\d{6,}$/, {
+        message: "Ingrese un número válido con código de país.",
+    }),
     address: z.string().optional(),
 });
 

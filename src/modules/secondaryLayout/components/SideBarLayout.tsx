@@ -26,7 +26,7 @@ export const SideBarLayout = () => {
                 </div>
             </aside>
 
-            <main className={`flex-1 p-8 pt-5 pb-5 bg-muted/50 min-h-svh space-y-6 transition-all`}>
+            <main className={`flex-1 p-4 md:p-8 pt-5 pb-5 bg-muted/50 min-h-svh space-y-6 transition-all`}>
                 <div className="">
                     <DynamicBreadcrumb />
                 </div>

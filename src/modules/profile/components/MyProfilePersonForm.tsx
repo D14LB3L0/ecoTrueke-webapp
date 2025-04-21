@@ -6,7 +6,9 @@ import { Spinner } from "@/components/ui/spinner";
 import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SelectWithErrorTooltip } from "@/utils/security/SelectWithErrorTooltip";
-
+import 'react-international-phone/style.css';
+import { Controller } from "react-hook-form";
+import { PhoneInputWithErrorTooltip } from "@/utils/security/phoneInputWithErrorTooltip";
 
 export const MyProfilePersonForm = () => {
   const { form, handleSubmit, isLoading } = useMyProfilePersonForm();
@@ -15,6 +17,7 @@ export const MyProfilePersonForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
         {/* Name */}
+        <h2 className="text-md m-0 mb-6 font-semibold text-muted-foreground">Información Personal</h2>
         <FormField
           control={form.control}
           name="name"
@@ -29,7 +32,7 @@ export const MyProfilePersonForm = () => {
         />
 
         {/* LastName */}
-        <div className="flex gap-5 w-full">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-5 w-full">
           <FormField
             control={form.control}
             name="paternalSurname"
@@ -53,35 +56,33 @@ export const MyProfilePersonForm = () => {
         </div>
 
         {/* Gender */}
-        <div className="flex gap-5 min-w-[415px]">
-          <FormField
-            control={form.control}
-            name="gender"
-            render={({ field }) => {
-              return (
-                <FormItem className="min-w-[415px]">
-                  <FormLabel className="font-semibold">Género</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Género" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="male">Masculino</SelectItem>
-                      <SelectItem value="female">Femenino</SelectItem>
-                      <SelectItem value="other">Otro</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              );
-            }}
-          />
-        </div>
-
+        <FormField
+          control={form.control}
+          name="gender"
+          render={({ field }) => {
+            return (
+              <FormItem className="w-full">
+                <FormLabel className="font-semibold">Género</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Género" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="male">Masculino</SelectItem>
+                    <SelectItem value="female">Femenino</SelectItem>
+                    <SelectItem value="other">Otro</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormItem>
+            );
+          }}
+        />
 
         {/* Document */}
-        <div className="flex gap-5 w-full">
+        <h2 className="text-md m-0 mb-6 font-semibold text-muted-foreground">Documento de Identidad</h2>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-5 w-full">
           <FormField
             control={form.control}
             name="documentType"
@@ -118,23 +119,29 @@ export const MyProfilePersonForm = () => {
         </div>
 
         {/* Contact */}
-        <div className="flex gap-5 w-full">
-          <FormField
-            control={form.control}
-            name="phoneNumber"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel className="font-semibold"><RequiredLabel>Número de Celular</RequiredLabel></FormLabel>
-                <InputWithErrorTooltip field={{ ...field, formState: form.formState }} name="phoneNumber" placeholder="Número de Celular" />
-              </FormItem>
-            )}
-          />
+        <h2 className="text-md m-0 mb-6 font-semibold text-muted-foreground">Información de Contacto</h2>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-5 w-full">
+          <FormItem className="w-full">
+            <FormLabel className="font-semibold">
+              <RequiredLabel>Número de Celular</RequiredLabel>
+            </FormLabel>
+
+            <Controller
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <PhoneInputWithErrorTooltip field={field} formState={form.formState} />
+              )}
+            />
+          </FormItem>
+
+
           <FormField
             control={form.control}
             name="address"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="font-semibold"><RequiredLabel>Dirección</RequiredLabel></FormLabel>
+                <FormLabel className="font-semibold">Dirección</FormLabel>
                 <InputWithErrorTooltip field={{ ...field, formState: form.formState }} name="address" placeholder="Dirección" />
               </FormItem>
             )}

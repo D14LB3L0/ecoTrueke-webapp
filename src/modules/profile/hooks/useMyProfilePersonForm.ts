@@ -18,7 +18,7 @@ export const useMyProfilePersonForm = () => {
             documentType: '',
             documentNumber: '',
             phoneNumber: '',
-            address: undefined
+            address: ''
         }
     })
 

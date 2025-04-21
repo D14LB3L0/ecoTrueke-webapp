@@ -1,8 +1,11 @@
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 
-export const ActiveTab = () => {
-    const [activeTab, setActiveTab] = useState<"personal" | "user">("personal");
+interface IActiveTab {
+    activeTab: string
+    setActiveTab: React.Dispatch<React.SetStateAction<"personal" | "user">>
+}
+
+export const ActiveTab = ({ activeTab, setActiveTab }: IActiveTab) => {
 
     return (
         <div className="flex gap-10 font-semibold text-sm relative">
