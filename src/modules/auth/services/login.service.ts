@@ -18,7 +18,7 @@ export interface loginRequest {
 }
 
 
-export class LoginUserService {
+export class LoginService {
     static async login(loginRequest: loginRequest): Promise<LoginResponse> {
         try {
             const response = await ecoTruekeApi.post<LoginResponse>("auth/login", loginRequest);

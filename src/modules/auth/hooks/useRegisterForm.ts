@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
 import { toast } from "sonner"
 import { Error } from "@/utils/constants/Error"
-import { RegisterUserService } from "../services/register.service"
+import { RegisterService } from "../services/register.service"
 import { Success } from "@/utils/constants/Success"
 import { useNavigate } from "react-router-dom"
 
@@ -41,7 +41,7 @@ export const useRegisterForm = () => {
             }
 
             // request API
-            const response = await RegisterUserService.register(registerRequest);
+            const response = await RegisterService.register(registerRequest);
             if (response){
                 toast.dismiss();
                 toast.success(response.message ?? Success.GENERIC)

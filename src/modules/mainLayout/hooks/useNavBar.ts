@@ -9,7 +9,7 @@ export const useNavBar = () => {
 
     // if user is logged
     useEffect(() => {
-        if (user.token != '' && user.id != '') {
+        if (user.token != '' && user.accountStatus == 'active') {
             setIsLoggedIn(true)
         }
     }, [user])

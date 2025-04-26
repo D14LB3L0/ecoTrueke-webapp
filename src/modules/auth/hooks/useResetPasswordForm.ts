@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { resetPasswordFormSchema, resetPasswordFormValues } from "../schemas/resetPasswordForm.schema";
 import { toast } from "sonner";
 import { Error } from "@/utils/constants/Error";
-import { ResetUserPasswordService } from "../services/resetPassword.service";
+import { ResetPasswordService } from "../services/resetPassword.service";
 import { Success } from "@/utils/constants/Success";
 
 export const useResetPasswordForm = () => {
@@ -31,7 +31,7 @@ export const useResetPasswordForm = () => {
             }
 
             // request API
-            const response = await ResetUserPasswordService.resetPassword(resetPasswordRequest);
+            const response = await ResetPasswordService.resetPassword(resetPasswordRequest);
             if (response) {
                 toast.dismiss();
                 toast.success(response.message ?? Success.GENERIC)

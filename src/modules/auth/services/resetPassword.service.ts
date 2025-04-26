@@ -8,7 +8,7 @@ export interface ResetPasswordRequest {
     email: string;
 }
 
-export class ResetUserPasswordService {
+export class ResetPasswordService {
     static async resetPassword(resetPasswordRequest: ResetPasswordRequest): Promise<ResetPasswordResponse> {
         try {
             const response = await ecoTruekeApi.post<ResetPasswordResponse>("auth/reset-password", resetPasswordRequest);

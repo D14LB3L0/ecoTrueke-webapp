@@ -13,7 +13,7 @@ export interface RegisterRequest {
     confirmPassword: string;
 }
 
-export class RegisterUserService {
+export class RegisterService {
     static async register(registerRequest: RegisterRequest): Promise<RegisterResponse> {
         try {
             const response = await ecoTruekeApi.post<RegisterResponse>("auth/register", registerRequest);
