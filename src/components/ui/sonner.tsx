@@ -14,10 +14,10 @@ const Toaster = ({ ...props }: ToasterProps) => {
       toastOptions={{
         classNames: {
           toast: "border rounded-lg shadow-md",
-          success: "!bg-white !text-primary border-green-600",
-          error: "!bg-white !text-destructive border-red-600",
-          warning: "!bg-white !text-yellow-400 border-yellow-600",
-          info: "!bg-white !text-blue-400 border-blue-600",
+          success: "!bg-white !text-primary !border-green-600",
+          error: "!bg-white !text-destructive !border-red-600",
+          warning: "!bg-white !text-yellow-400 !border-yellow-600",
+          info: "!bg-white !text-blue-400 !border-blue-600",
         },
       }}
       {...props}
