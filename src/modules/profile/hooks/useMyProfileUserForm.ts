@@ -25,7 +25,7 @@ export const useMyProfileUserForm = () => {
         resolver: zodResolver(myProfileUserFormSchema),
         mode: 'onChange',
         defaultValues: {
-            email: user.email ?? '',
+            email: user.email ? user.email : '',
             password: ''
         }
     })
@@ -36,7 +36,7 @@ export const useMyProfileUserForm = () => {
 
             // build request
             const changePasswordRequest = {
-                password: values.password
+                password: values.password.trim()
             }
 
             // request API

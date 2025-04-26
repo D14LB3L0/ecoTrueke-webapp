@@ -97,7 +97,7 @@ export const MyProfilePersonForm = () => {
                   name="documentType"
                   placeholder="Tipo de Documento"
                   options={[
-                    { label: "DNI", value: "DNI" },
+                    { label: "DNI", value: "dni" },
                     { label: "Pasaporte", value: "PASSPORT" },
                     { label: "Carnet de extranjería", value: "CE" },
                   ]}
@@ -128,7 +128,7 @@ export const MyProfilePersonForm = () => {
 
             <Controller
               control={form.control}
-              name="phoneNumber"
+              name="phone"
               render={({ field }) => (
                 <PhoneInputWithErrorTooltip field={field} formState={form.formState} />
               )}

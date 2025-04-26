@@ -1,10 +1,11 @@
 import ecoTruekeApi from "@/api/ecoTrueke.api";
+import { IPerson } from "@/interfaces/person.interface";
+import { IUser } from "@/interfaces/user.interface";
 
 export interface LoginResponseData {
     token: string;
-    id: string;
-    email: string;
-    accountStatus: string;
+    user: IUser
+    person: IPerson
 }
 
 export interface LoginResponse {
@@ -22,6 +23,7 @@ export class LoginService {
     static async login(loginRequest: loginRequest): Promise<LoginResponse> {
         try {
             const response = await ecoTruekeApi.post<LoginResponse>("auth/login", loginRequest);
+            console.log(response);
             return response.data;
         } catch (error) {
             throw error;

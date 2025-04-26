@@ -27,7 +27,7 @@ export const useResetPasswordForm = () => {
 
             // build request 
             const resetPasswordRequest = {
-                email: values.email
+                email: values.email.trim()
             }
 
             // request API

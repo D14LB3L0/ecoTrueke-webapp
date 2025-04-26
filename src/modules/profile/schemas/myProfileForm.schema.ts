@@ -25,7 +25,7 @@ export const myProfilePersonFormSchema = z.object({
         required_error: "Este campo es obligatorio.",
     })
         .min(8, { message: "Debe tener al menos 8 caracteres." }),
-    phoneNumber: z.string().regex(/^\+\d{1,4}[\s-]?\d{6,}$/, {
+    phone: z.string().regex(/^\+\d{1,4}[\s-]?\d{6,}$/, {
         message: "Ingrese un número válido con código de país.",
     }),
     address: z.string().optional(),

@@ -3,7 +3,7 @@ import { IUserSlice } from "./interfaces/user.slice.interface";
 import { IUser } from "@/interfaces/user.interface";
 
 export const createUserSlice: StateCreator<IUserSlice, [], [], IUserSlice> = (set) => ({
-    user: { token: '', id: '', personId: '', email: '', accountStatus: '', updatedAt: '', createdAt: '', isDeleted: false, },
+    user: { token: '', email: '', accountStatus: '' },
     setUser: (user: IUser) => set({ user }),
     editProfile: 'person',
     setEditProfile: (editProfile: 'person' | 'user') => set({ editProfile })

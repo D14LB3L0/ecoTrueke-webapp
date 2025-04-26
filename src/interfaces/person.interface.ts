@@ -1,15 +1,12 @@
 export interface IPerson {
-    id: string;
     firstName: string;
-    lastName: string;
-    phoneNumber: string;
+    paternalSurname: string;
+    maternalSurname:string;
+    phone: string;
     address: string;
     documentNumber: string;
-    documentType: 'dni'; 
-    gender: 'female' | 'male' | 'other';
-    profilePictureUrl: string;
-    updatedAt: string; 
-    createdAt: string; 
-    isDeleted: boolean;
+    documentType: 'dni' | undefined; 
+    gender: 'female' | 'male' | 'other' | undefined;
+    profilePicture: string;
   }
   

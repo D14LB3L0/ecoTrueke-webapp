@@ -32,12 +32,12 @@ export const useRegisterForm = () => {
 
             // build request
             const registerRequest = {
-                name: values.name,
-                paternalSurname: values.paternalSurname,
-                maternalSurname: values.maternalSurname,
-                email: values.email,
-                password: values.password,
-                confirmPassword: values.reEnterPassword
+                name: values.name.trim(),
+                paternalSurname: values.paternalSurname.trim(),
+                maternalSurname: values.maternalSurname.trim(),
+                email: values.email.trim(),
+                password: values.password.trim(),
+                confirmPassword: values.reEnterPassword.trim()
             }
 
             // request API
