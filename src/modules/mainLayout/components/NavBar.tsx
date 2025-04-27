@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import { SearchBar } from "../../../components/ui/search-bar"
-import { User } from "lucide-react"
-import { Dropdown, IDropdown } from "../../../components/dropDown"
+import { ChevronDown, User } from "lucide-react"
 import { NotificationBell } from "./Notification"
 import { useNotification } from "../hooks/useNotification"
 import { useSearchBar } from "../hooks/useSearchBar"
+import { Dropdown, IDropdown } from "@/components/DropDown"
 
 
 export interface INavBar {
@@ -31,11 +31,15 @@ export const NavBar = ({
                     </Link>
                     <div className="md:hidden">
                         {isLoggedIn ? (
-                            <div className="flex justify-center items-center gap-4">
-                                <div className="flex justify-center items-center gap-1">
-                                    <User size={20} />
-                                    <Dropdown items={dropDownItems} />
-                                </div>
+                            <div className="flex justify-center items-center gap-6">
+                                <Dropdown items={dropDownItems}>
+                                    {({ open }) => (
+                                        <div className="flex justify-center items-center gap-0 hover:cursor-pointer group">
+                                            <User size={20} className={open ? "text-primary" : "text-muted-foreground group-hover:text-black"} />
+                                            <ChevronDown size={16} className={open ? "text-primary" : "text-muted-foreground group-hover:text-black"} />
+                                        </div>
+                                    )}
+                                </Dropdown>
                                 <div className="flex justify-center items-center">
                                     <NotificationBell notifications={notifications} unreadCount={unreadCount} markAllAsRead={markAllAsRead} markAsRead={markAsRead} />
                                 </div>
@@ -43,7 +47,7 @@ export const NavBar = ({
                             </div>
                         ) : (
                             <Link to="/auth/login">
-                                <User className="cursor-pointer hover:text-green-800" />
+                                <User className="cursor-pointer text-muted-foreground hover:text-primary" />
                             </Link>
                         )}
                     </div>
@@ -55,11 +59,15 @@ export const NavBar = ({
 
                 <div className="hidden md:block">
                     {isLoggedIn ? (
-                        <div className="flex justify-center items-center gap-4">
-                            <div className="flex justify-center items-center gap-1">
-                                <User size={20} />
-                                <Dropdown items={dropDownItems} />
-                            </div>
+                        <div className="flex justify-center items-center gap-6">
+                            <Dropdown items={dropDownItems}>
+                                {({ open }) => (
+                                    <div className="flex justify-center items-center gap-0 hover:cursor-pointer group">
+                                        <User size={20} className={open ? "text-primary" : "text-muted-foreground group-hover:text-black"} />
+                                        <ChevronDown size={16} className={open ? "text-primary" : "text-muted-foreground group-hover:text-black"} />
+                                    </div>
+                                )}
+                            </Dropdown>
                             <div className="flex justify-center items-center">
                                 <NotificationBell notifications={notifications} unreadCount={unreadCount} markAllAsRead={markAllAsRead} markAsRead={markAsRead} />
                             </div>
@@ -67,7 +75,7 @@ export const NavBar = ({
                         </div>
                     ) : (
                         <Link to="/auth/login">
-                            <User className="cursor-pointer hover:text-green-800" />
+                            <User className="cursor-pointer text-muted-foreground hover:text-primary" />
                         </Link>
                     )}
                 </div>

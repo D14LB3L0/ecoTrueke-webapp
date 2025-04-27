@@ -2,18 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Link, useLocation } from "react-router-dom";
 
-export interface INavBarItem {
+export interface INavBar {
     key: string;
+    href?: string;
     name: string;
     icon: React.ReactNode;
-    href: string;
+    onClick?: () => void;
 }
-interface INavBar {
-    items: INavBarItem[];
+interface INavBarItem {
+    items: INavBar[];
     collapsed: boolean;
 }
 
-export const NavBar = ({ items, collapsed }: INavBar) => {
+export const NavBar = ({ items, collapsed }: INavBarItem) => {
     const location = useLocation();
 
     return (
@@ -40,16 +41,34 @@ export const NavBar = ({ items, collapsed }: INavBar) => {
                     );
 
                     return (
-                        <Link key={item.key} to={item.href} className="w-full">
-                            {collapsed ? (
-                                <Tooltip>
-                                    <TooltipTrigger asChild>{button}</TooltipTrigger>
-                                    <TooltipContent side="right">{item.name}</TooltipContent>
-                                </Tooltip>
-                            ) : (
-                                button
-                            )}
-                        </Link>
+                        <>{item.href ? (
+                            <Link key={item.key} to={item.href} className="w-full">
+                                {collapsed ? (
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>{button}</TooltipTrigger>
+                                        <TooltipContent side="right">{item.name}</TooltipContent>
+                                    </Tooltip>
+                                ) : (
+                                    button
+                                )}
+                            </Link>
+                        ) : (
+                            <button
+                                key={item.key}
+                                onClick={item.onClick}
+                                className="w-full"
+                            >
+                                {collapsed ? (
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>{button}</TooltipTrigger>
+                                        <TooltipContent side="right">{item.name}</TooltipContent>
+                                    </Tooltip>
+                                ) : (
+                                    button
+                                )}
+                            </button>
+                        )}
+                        </>
                     );
                 })}
             </nav>

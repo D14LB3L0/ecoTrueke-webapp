@@ -1,5 +1,5 @@
-import { LogOut, Box, User } from "lucide-react";
-import { IDropdown } from "@/components/dropDown";
+import { LogOut, Box, User, LayoutDashboard } from "lucide-react";
+import { IDropdown } from "@/components/DropDown";
 
 export interface IDropdownItem {
   handleLogout: () => void
@@ -11,8 +11,14 @@ export const dropDownItems = ({
     {
       key: "profile",
       name: "Mi Perfil",
-      href: "/dashboard/profile",
+      href: "/al perfil del usuario",
       icon: <User size={16} />,
+    },
+    {
+      key: 'dashboard',
+      name: 'Dashboard',
+      icon: <LayoutDashboard size={16} />,
+      href: '/dashboard'
     },
     {
       key: "upload",

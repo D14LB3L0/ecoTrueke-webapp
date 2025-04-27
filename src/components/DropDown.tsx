@@ -1,30 +1,32 @@
-import { ChevronDown } from "lucide-react"
-
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export interface IDropdown {
     key: string;
     href?: string;
-    name: string
+    name: string;
     icon: React.ReactNode;
     onClick?: () => void;
 }
 
 export interface IDropdownItem {
     items: IDropdown[];
+    children: (props: { open: boolean }) => React.ReactNode;
 }
 
-export function Dropdown({ items }: IDropdownItem) {
+export function Dropdown({ items, children }: IDropdownItem) {
+    const [open, setOpen] = useState(false);
+
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center focus:outline-none">
-                <ChevronDown className="h-8 w-4 cursor-pointer hover:text-green-800" />
+        <DropdownMenu open={open} onOpenChange={setOpen}>
+            <DropdownMenuTrigger asChild>
+                {children({ open })}
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 {items.map((item: IDropdown) => (
@@ -44,5 +46,5 @@ export function Dropdown({ items }: IDropdownItem) {
                 ))}
             </DropdownMenuContent>
         </DropdownMenu>
-    )
+    );
 }

@@ -2,6 +2,7 @@ import { Bell } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 export type Notification = {
     id: string
@@ -19,16 +20,25 @@ export interface INotificationBell {
 }
 
 export function NotificationBell({ notifications, unreadCount, markAllAsRead, markAsRead }: INotificationBell) {
+    const [open, setOpen] = useState(false);
+
     return (
-        <DropdownMenu>
+        <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
-                <div className="relative cursor-pointer hover:text-green-800">
-                    <Bell size={16} />
+                <div className="relative cursor-pointer group">
+                    <Bell
+                        size={18}
+                        className={cn(
+                            "transition-colors",
+                            open ? "text-primary" : "text-muted-foreground group-hover:text-black"
+                        )}
+                    />
                     {unreadCount > 0 && (
                         <span className="absolute top-0 right-0 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white" />
                     )}
                 </div>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent align="end" className="w-80 p-0">
                 <div className="sticky top-0 flex items-center justify-between p-3 bg-background z-10">
                     <p className="text-sm font-medium">Notificaciones</p>
@@ -45,13 +55,18 @@ export function NotificationBell({ notifications, unreadCount, markAllAsRead, ma
                 </div>
                 <div className="max-h-[70vh] overflow-y-auto scrollbar-thin">
                     {notifications.length === 0 ? (
-                        <div className="p-4 text-center text-sm text-muted-foreground">No tienes notificaciones</div>
+                        <div className="p-4 text-center text-sm text-muted-foreground">
+                            No tienes notificaciones
+                        </div>
                     ) : (
                         <div className="divide-y divide-border">
                             {notifications.map((notification) => (
                                 <DropdownMenuItem
                                     key={notification.id}
-                                    className={cn("flex flex-col items-start p-3 cursor-default", !notification.read && "bg-muted/50")}
+                                    className={cn(
+                                        "flex flex-col items-start p-3 cursor-default",
+                                        !notification.read && "bg-muted/50"
+                                    )}
                                     onClick={() => markAsRead(notification.id)}
                                 >
                                     <div className="flex w-full justify-between">

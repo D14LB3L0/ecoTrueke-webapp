@@ -32,15 +32,15 @@ export function SearchBar({ placeholder, handleSearch, query, setQuery }: Search
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="absolute right-8 h-8 w-8"
+                    className="absolute right-8 h-8 w-8 text-muted-foreground"
                     onClick={handleClear}
                     aria-label="Limpiar búsqueda"
                 >
                     <X className="h-4 w-4" />
                 </Button>
             )}
-            <Button type="submit" variant="ghost" size="icon" className="absolute right-0 h-full" aria-label="Buscar">
-                <Search className="h-4 w-4" />
+            <Button type="submit" variant="ghost" size="icon" className="absolute right-0 h-full group" aria-label="Buscar">
+                <Search className="h-4 w-4 text-muted-foreground group-hover:text-black  " />
             </Button>
         </form>
     )

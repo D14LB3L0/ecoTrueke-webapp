@@ -4,10 +4,13 @@ import navBarItems from "../data/navBarItems";
 import { HeaderSideBar } from "./HeaderSideBar";
 import { useState } from "react";
 import { DynamicBreadcrumb } from "./DynamicBreadCrumb";
+import { useNavBar } from "../hooks/useNavBar";
 
 export const SideBarLayout = () => {
     const [collapsed, setCollapsed] = useState(true);
-    const items = navBarItems();
+
+    const { handleLogout } = useNavBar();
+    const items = navBarItems({ handleLogout });
 
     return (
         <div className="flex flex-col md:flex-row w-full">

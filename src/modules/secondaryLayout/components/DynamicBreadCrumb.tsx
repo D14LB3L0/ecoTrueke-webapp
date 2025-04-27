@@ -11,6 +11,7 @@ import * as React from "react";
 
 const breadcrumbMap: Record<string, string> = {
     profile: "Perfil",
+    dashboard: "Dashboard"
 };
 
 export const DynamicBreadcrumb = () => {
