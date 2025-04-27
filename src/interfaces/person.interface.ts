@@ -1,5 +1,5 @@
 export interface IPerson {
-    firstName: string;
+    name: string;
     paternalSurname: string;
     maternalSurname:string;
     phone: string;

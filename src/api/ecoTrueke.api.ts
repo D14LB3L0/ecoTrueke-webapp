@@ -12,7 +12,10 @@ ecoTruekeApi.interceptors.request.use(
         const token = useStore.getState().user.token;
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
-            config.headers['Content-Type'] = "application/json"
+
+            if (config.data && !(config.data instanceof FormData)) {
+                config.headers['Content-Type'] = 'application/json';
+              }
         }
         return config;
     }

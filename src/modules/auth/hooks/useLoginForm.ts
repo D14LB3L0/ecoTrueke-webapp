@@ -45,11 +45,7 @@ export const useLoginForm = () => {
             const response = await LoginService.login(loginRequest);
             if (response) {
                 setUser({ ...user, token: response.data.token, email: response.data.user.email, accountStatus: response.data.user.accountStatus });
-                setPerson({
-                    ...person, firstName: response.data.person.firstName, paternalSurname: response.data.person.paternalSurname, maternalSurname: response.data.person.maternalSurname,
-                    phone: response.data.person.phone, address: response.data.person.address, documentNumber: response.data.person.documentNumber, documentType: response.data.person.documentType,
-                    gender: response.data.person.gender, profilePicture: response.data.person.profilePicture
-                });
+                setPerson({ ...person, ...response.data.person});
                 navigate("/home")
             }
 

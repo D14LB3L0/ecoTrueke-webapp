@@ -23,7 +23,6 @@ export class LoginService {
     static async login(loginRequest: loginRequest): Promise<LoginResponse> {
         try {
             const response = await ecoTruekeApi.post<LoginResponse>("auth/login", loginRequest);
-            console.log(response);
             return response.data;
         } catch (error) {
             throw error;
