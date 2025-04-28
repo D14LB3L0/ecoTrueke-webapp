@@ -12,7 +12,7 @@ interface LinkCardProps {
 const LinkCard: React.FC<LinkCardProps> = ({ to, icon, title, description }) => {
   return (
     <Link to={to} className="group block">
-      <Card className="flex flex-col items-center text-center gap-2 p-6 transition-transform duration-200 hover:shadow-md hover:-translate-y-1 hover:bg-accent">
+      <Card className="max-h-[166px] min-h-[166px] flex flex-col items-center text-center gap-2 p-6 transition-transform duration-200 hover:shadow-md hover:-translate-y-1 hover:bg-accent">
         <CardHeader className="flex items-center justify-center p-0">
           <div className="text-muted-foreground group-hover:text-black transition-colors">
             {icon}

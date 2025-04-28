@@ -37,7 +37,7 @@ export const ResetPasswordForm = () => {
                             )}
                         />
 
-                        <Button type="submit">
+                        <Button type="submit" disabled={isLoading}>
                             {isLoading && <Spinner size="sm" />} Enviar
                         </Button>
                     </div>

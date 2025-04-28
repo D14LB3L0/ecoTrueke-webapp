@@ -9,15 +9,32 @@ import { SelectWithErrorTooltip } from "@/utils/security/SelectWithErrorTooltip"
 import 'react-international-phone/style.css';
 import { Controller } from "react-hook-form";
 import { PhoneInputWithErrorTooltip } from "@/utils/security/phoneInputWithErrorTooltip";
+import ImageUploader from "@/components/ImageUploader";
 
 export const MyProfilePersonForm = () => {
-  const { form, handleSubmit, isLoading } = useMyProfilePersonForm();
+  const { form, handleSubmit, isLoading, previewUrl } = useMyProfilePersonForm();
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+
         {/* Name */}
         <h2 className="text-md m-0 mb-6 font-semibold text-muted-foreground">Información Personal</h2>
+
+        <FormField
+          control={form.control}
+          name="profilePicture"
+          render={({ field }) => (
+            <FormItem className="mb-2 md:mb-4">
+              <FormLabel className="font-semibold">Foto de Perfil</FormLabel>
+              <ImageUploader
+                onFileSelect={(file: File | null) => field.onChange(file)}
+                previewUrl={previewUrl}
+              />
+            </FormItem>
+          )}
+        />
+
         <FormField
           control={form.control}
           name="name"
@@ -148,7 +165,7 @@ export const MyProfilePersonForm = () => {
           />
         </div>
         <div className="flex justify-end">
-          <Button type="submit">{isLoading && <Spinner size="sm" />} Guardar Cambios</Button>
+          <Button type="submit" disabled={isLoading}>{isLoading && <Spinner size="sm" />} Guardar Cambios</Button>
         </div>
       </form>
     </Form >

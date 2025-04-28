@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
 import { toast } from "sonner"
 import { Error } from "@/utils/constants/Error"
-import { RegisterService } from "../services/register.service"
+import { RegisterRequest, RegisterService } from "../services/register.service"
 import { Success } from "@/utils/constants/Success"
 import { useNavigate } from "react-router-dom"
 
@@ -31,7 +31,7 @@ export const useRegisterForm = () => {
             setIsLoading(true);
 
             // build request
-            const registerRequest = {
+            const registerRequest: RegisterRequest = {
                 name: values.name.trim(),
                 paternalSurname: values.paternalSurname.trim(),
                 maternalSurname: values.maternalSurname.trim(),
@@ -42,7 +42,7 @@ export const useRegisterForm = () => {
 
             // request API
             const response = await RegisterService.register(registerRequest);
-            if (response){
+            if (response) {
                 toast.dismiss();
                 toast.success(response.message ?? Success.GENERIC)
                 navigate("/auth/login")

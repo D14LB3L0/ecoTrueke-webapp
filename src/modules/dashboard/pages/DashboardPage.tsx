@@ -16,7 +16,7 @@ export const DashboardPage = () => {
                 <h2 className="text-sm text-muted-foreground">{`Selecciona una sección para comenzar.`}</h2>
             </div>
             <Card className="max-w-[900px]">
-                <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <LinkCard
                         to="/dashboard/profile"
                         icon={<User size="40px" className="mx-auto" />}

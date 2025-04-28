@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Error } from "@/utils/constants/Error";
 import { Success } from "@/utils/constants/Success";
-import { ChangePasswordService } from "../services/editUser.service";
+import { ChangePasswordRequest, ChangePasswordService } from "../services/editUser.service";
 import { DeleteAccountService } from "../services/deleteAccount.service";
 import { useStore } from "@/stores/useStore";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ export const useMyProfileUserForm = () => {
             setIsLoading(true)
 
             // build request
-            const changePasswordRequest = {
+            const changePasswordRequest: ChangePasswordRequest = {
                 password: values.password.trim()
             }
 

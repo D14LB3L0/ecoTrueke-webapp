@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { resetPasswordFormSchema, resetPasswordFormValues } from "../schemas/resetPasswordForm.schema";
 import { toast } from "sonner";
 import { Error } from "@/utils/constants/Error";
-import { ResetPasswordService } from "../services/resetPassword.service";
+import { ResetPasswordRequest, ResetPasswordService } from "../services/resetPassword.service";
 import { Success } from "@/utils/constants/Success";
 
 export const useResetPasswordForm = () => {
@@ -26,7 +26,7 @@ export const useResetPasswordForm = () => {
             setIsLoading(true)
 
             // build request 
-            const resetPasswordRequest = {
+            const resetPasswordRequest: ResetPasswordRequest = {
                 email: values.email.trim()
             }
 

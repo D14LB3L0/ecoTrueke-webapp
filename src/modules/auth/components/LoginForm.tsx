@@ -63,7 +63,7 @@ export const LoginForm = () => {
                             </Button>
                         </Link>
 
-                        <Button type="submit">
+                        <Button type="submit" disabled={isLoading}>
                             {isLoading && <Spinner size="sm" />} Ingresar
                         </Button>
                     </div>

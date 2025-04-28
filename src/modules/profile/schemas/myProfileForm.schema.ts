@@ -1,6 +1,18 @@
 import { z } from "zod";
 
 export const myProfilePersonFormSchema = z.object({
+    profilePicture: z
+        .union([
+            z.instanceof(File)
+                .refine(file => file.size <= 5 * 1024 * 1024, {
+                    message: "La imagen no debe pesar más de 5MB."
+                })
+                .refine(file => file.type.startsWith('image/'), {
+                    message: "El archivo debe ser una imagen."
+                }),
+            z.null(),
+            z.undefined()
+        ]),
     name: z.string({
         required_error: "Este campo es obligatorio.",
     }).min(1, { message: "Este campo es obligatorio." }),

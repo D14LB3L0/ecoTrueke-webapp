@@ -4,7 +4,7 @@ import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
 import { RequiredLabel } from "@/utils/requiredLabel";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { PopupDelete } from "@/components/popupDelete";
+import { PopupDelete } from "@/components/PopupDelete";
 
 export const MyProfileUserForm = () => {
   const { form, handleSubmit, isLoading, openPopupDelete, setOpenPopupDelete, handleSubmitDeleteAccount, isLoadingDelete } = useMyProfileUserForm();
@@ -65,7 +65,7 @@ export const MyProfileUserForm = () => {
           <p className="text-[12px] mb-4 ">Esta acción eliminará permanentemente tu cuenta.</p>
         </div>
         <div className="">
-          <Button className="flex justify-end" onClick={() => setOpenPopupDelete(true)} variant="destructive">Eliminar Cuenta</Button>
+          <Button className="flex justify-end" onClick={() => setOpenPopupDelete(true)} variant="destructive" disabled={isLoading}>Eliminar Cuenta</Button>
         </div>
       </div>
 

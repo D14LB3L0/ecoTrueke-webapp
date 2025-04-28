@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import { loginFormSchema, loginFormValues } from "../schemas/loginForm.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react";
-import { LoginService } from "../services/login.service";
+import { LoginRequest, LoginService } from "../services/login.service";
 import { useStore } from "@/stores/useStore";
 import { toast } from "sonner";
 import { Error } from "@/utils/constants/Error";
@@ -36,7 +36,7 @@ export const useLoginForm = () => {
             setIsLoading(true)
 
             // build request
-            const loginRequest = {
+            const loginRequest: LoginRequest = {
                 email: values.email.trim(),
                 password: values.password.trim()
             };
@@ -45,7 +45,7 @@ export const useLoginForm = () => {
             const response = await LoginService.login(loginRequest);
             if (response) {
                 setUser({ ...user, token: response.data.token, email: response.data.user.email, accountStatus: response.data.user.accountStatus });
-                setPerson({ ...person, ...response.data.person});
+                setPerson({ ...person, ...response.data.person });
                 navigate("/home")
             }
 

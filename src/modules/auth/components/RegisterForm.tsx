@@ -96,7 +96,7 @@ export const RegisterForm = () => {
             />
 
             <Separator className="my-2" />
-            <Button type="submit">{isLoading && <Spinner size="sm" />} Enviar</Button>
+            <Button type="submit" disabled={isLoading}>{isLoading && <Spinner size="sm" />} Enviar</Button>
           </div>
         </form>
       </Form>
