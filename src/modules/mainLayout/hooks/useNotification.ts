@@ -1,30 +1,41 @@
-import { useState } from "react"
-import { Notification } from "../components/Notification"
+import { INotification } from "@/interfaces/notification.interface";
+import { useStore } from "@/stores/useStore";
 
 export const useNotification = () => {
-    const [notifications, setNotifications] = useState<Notification[]>([])
+  // notifcations
+  const notifications = useStore((state) => state.notifications);
+  const setNotifications = useStore((state) => state.setNotifications);
 
-    const unreadCount = notifications.filter((notification: Notification) => !notification.read).length
 
-    const markAllAsRead = () => {
-        setNotifications(
-            notifications.map((notification) => ({
-                ...notification,
-                read: true,
-            })),
-        )
-    }
 
-    const markAsRead = (id: string) => {
-        setNotifications(
-            notifications.map((notification) => (notification.id === id ? { ...notification, read: true } : notification)),
-        )
-    }
 
-    return {
-        notifications,
-        unreadCount,
-        markAllAsRead,
-        markAsRead
-    }
-}
+  const unreadCount = notifications.filter(
+    (n: INotification) => !n.isRead
+  ).length;
+
+  const markAllAsRead = () => {
+    setNotifications(
+      notifications.map((notification) => ({
+        ...notification,
+        read: true,
+      }))
+    );
+  };
+
+  const markAsRead = (id: string) => {
+    setNotifications(
+      notifications.map((notification) =>
+        notification.id === id ? { ...notification, read: true } : notification
+      )
+    );
+  };
+
+
+  
+  return {
+    unreadCount,
+    notifications,
+    markAllAsRead,
+    markAsRead,
+  };
+};
