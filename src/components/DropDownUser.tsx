@@ -20,7 +20,7 @@ export interface IDropdownItem {
     children: (props: { open: boolean }) => React.ReactNode;
 }
 
-export function Dropdown({ items, children }: IDropdownItem) {
+export function DropdownUser({ items, children }: IDropdownItem) {
     const [open, setOpen] = useState(false);
 
     return (
@@ -28,7 +28,7 @@ export function Dropdown({ items, children }: IDropdownItem) {
             <DropdownMenuTrigger asChild>
                 {children({ open })}
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="mt-2">
                 {items.map((item: IDropdown) => (
                     <DropdownMenuItem key={item.key} asChild>
                         {item.href ? (

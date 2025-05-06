@@ -1,5 +1,5 @@
 import { LogOut, Box, User, LayoutDashboard } from "lucide-react";
-import { IDropdown } from "@/components/DropDown";
+import { IDropdown } from "@/components/DropDownUser";
 
 export interface IDropdownItem {
   handleLogout: () => void

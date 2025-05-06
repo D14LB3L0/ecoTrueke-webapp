@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/pagination";
 import { useStore } from "@/stores/useStore";
 import { Spinner } from "@/components/ui/spinner";
+import { Link, useNavigate } from "react-router-dom";
 
 export interface INotificationBell {
   notifications: INotification[];
@@ -205,6 +206,9 @@ export function NotificationBell({
     }
   }, [deleteLoading]);
 
+  // navigate 
+  const navigate = useNavigate();
+
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
@@ -224,7 +228,7 @@ export function NotificationBell({
         </div>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-80 p-0">
+      <DropdownMenuContent align="end" className="w-80 p-0 mt-2">
         <div className="sticky top-0 flex items-center justify-between p-3 bg-background z-10">
           <p className="text-sm font-medium">Notificaciones</p>
           {unreadCount > 0 && (
@@ -263,6 +267,10 @@ export function NotificationBell({
                       if (swipedNotificationId !== notification.id) {
                         const notificationId = notification.isRead;
                         if (!notificationId) markAsRead(notification.id);
+
+                        if (notification.link) {
+                          navigate(notification.link); // redirect
+                        }
                       }
                     }}
                   >

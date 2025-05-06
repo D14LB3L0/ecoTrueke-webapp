@@ -4,7 +4,7 @@ import { ChevronDown, User } from "lucide-react";
 import { NotificationBell } from "./Notification";
 import { useNotification } from "../hooks/useNotification";
 import { useSearchBar } from "../hooks/useSearchBar";
-import { Dropdown, IDropdown } from "@/components/DropDown";
+import { DropdownUser, IDropdown } from "@/components/DropDownUser";
 import { useGetPaginatedNotifications } from "@/hooks/useGetPaginatedNotifications";
 
 export interface INavBar {
@@ -38,7 +38,7 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
           <div className="md:hidden">
             {isLoggedIn ? (
               <div className="flex justify-center items-center gap-6">
-                <Dropdown items={dropDownItems}>
+                <DropdownUser items={dropDownItems}>
                   {({ open }) => (
                     <div className="flex justify-center items-center gap-0 hover:cursor-pointer group">
                       <User
@@ -59,7 +59,7 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
                       />
                     </div>
                   )}
-                </Dropdown>
+                </DropdownUser>
                 <div className="flex justify-center items-center">
                   <NotificationBell
                     notifications={notifications}
@@ -92,7 +92,7 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
         <div className="hidden md:block">
           {isLoggedIn ? (
             <div className="flex justify-center items-center gap-6">
-              <Dropdown items={dropDownItems}>
+              <DropdownUser items={dropDownItems}>
                 {({ open }) => (
                   <div className="flex justify-center items-center gap-0 hover:cursor-pointer group">
                     <User
@@ -113,7 +113,7 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
                     />
                   </div>
                 )}
-              </Dropdown>
+              </DropdownUser>
               <div className="flex justify-center items-center">
                 <NotificationBell
                   notifications={notifications}
