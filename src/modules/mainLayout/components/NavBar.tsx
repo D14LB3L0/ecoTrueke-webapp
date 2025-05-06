@@ -14,8 +14,13 @@ export interface INavBar {
 
 export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
   const { query, setQuery, handleSearch } = useSearchBar();
-  const { notifications, unreadCount, markAllAsRead, markAsRead } =
-    useNotification();
+  const {
+    notifications,
+    unreadCount,
+    markAllAsRead,
+    markAsRead,
+    markAllAsReadLoading,
+  } = useNotification();
 
   useGetPaginatedNotifications();
 
@@ -59,6 +64,7 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
                     unreadCount={unreadCount}
                     markAllAsRead={markAllAsRead}
                     markAsRead={markAsRead}
+                    markAllAsReadLoading={markAllAsReadLoading}
                   />
                 </div>
               </div>
@@ -110,6 +116,7 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
                   unreadCount={unreadCount}
                   markAllAsRead={markAllAsRead}
                   markAsRead={markAsRead}
+                  markAllAsReadLoading={markAllAsReadLoading}
                 />
               </div>
             </div>

@@ -23,6 +23,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useStore } from "@/stores/useStore";
+import { Spinner } from "@/components/ui/spinner";
 
 export interface INotificationBell {
   notifications: INotification[];
@@ -30,6 +31,7 @@ export interface INotificationBell {
   markAllAsRead: () => void;
   markAsRead: (id: string) => void;
   deleteNotification?: (id: string) => void;
+  markAllAsReadLoading: boolean | undefined;
 }
 
 export function NotificationBell({
@@ -38,6 +40,7 @@ export function NotificationBell({
   markAllAsRead,
   markAsRead,
   deleteNotification,
+  markAllAsReadLoading,
 }: INotificationBell) {
   // pagination
   const currentPage = useStore((state) => state.paginationPage);
@@ -203,8 +206,10 @@ export function NotificationBell({
               size="sm"
               className="text-xs text-muted-foreground h-7 px-2"
               onClick={markAllAsRead}
+              disabled={markAllAsReadLoading}
             >
-              Marcar todas como leídas
+              {markAllAsReadLoading && <Spinner size="sm" />} Marcar todas como
+              leídas
             </Button>
           )}
         </div>
@@ -229,7 +234,8 @@ export function NotificationBell({
                     onMouseDown={(e) => handleMouseDown(e, notification.id)}
                     onClick={() => {
                       if (swipedNotificationId !== notification.id) {
-                        markAsRead(notification.id);
+                        const notificationId = notification.isRead;
+                        if (!notificationId) markAsRead(notification.id);
                       }
                     }}
                   >
@@ -252,7 +258,7 @@ export function NotificationBell({
                       variant="ghost"
                       size="icon"
                       className={cn(
-                        "h-8 w-8 text-destructive hover:text-destructive rounded-full ml-1 mr-2 transition-opacity duration-200 hover:bg-white",
+                        "h-8 w-8 text-destructive hover:text-destructive rounded-full ml-1 mr-2 transition-opacity duration-200 hover:bg-red-200",
                         swipedNotificationId === notification.id
                           ? "opacity-100"
                           : "opacity-0"

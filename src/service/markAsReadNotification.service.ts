@@ -1,19 +1,19 @@
 import ecoTruekeApi from "@/api/ecoTrueke.api";
 
-export interface markAsReadNotificationRequest {
+export interface MarkAsReadNotificationRequest {
   notificationIds: string[];
 }
 
-interface markAsReadNotificationResponse {
+interface MarkAsReadNotificationResponse {
   message: string;
 }
 
-export class MarkAsReadNotificationRequest {
+export class MarkAsReadNotificationService {
   static async markAsReadNotification(
-    markAsReadNotification: markAsReadNotificationRequest
-  ): Promise<markAsReadNotificationResponse> {
+    markAsReadNotification: MarkAsReadNotificationRequest
+  ): Promise<MarkAsReadNotificationResponse> {
     try {
-      const response = await ecoTruekeApi.patch<markAsReadNotificationResponse>(
+      const response = await ecoTruekeApi.patch<MarkAsReadNotificationResponse>(
         "notification/mark-read",
         markAsReadNotification
       );
