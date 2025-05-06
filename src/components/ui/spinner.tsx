@@ -75,7 +75,7 @@ export function Spinner({ className, size = "default", variant = "border", ...pr
           "border-current border-t-transparent rounded-full animate-spin",
           sizeClasses[size],
           "border-4",
-          "text-white",
+          "text-current",
         )}
       />
       <span className="sr-only">Loading...</span>

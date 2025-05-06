@@ -30,8 +30,9 @@ export interface INotificationBell {
   unreadCount: number;
   markAllAsRead: () => void;
   markAsRead: (id: string) => void;
-  deleteNotification?: (id: string) => void;
-  markAllAsReadLoading: boolean | undefined;
+  deleteNotification: (id: string) => void;
+  markAllAsReadLoading: boolean;
+  deleteLoading: string | null;
 }
 
 export function NotificationBell({
@@ -41,6 +42,7 @@ export function NotificationBell({
   markAsRead,
   deleteNotification,
   markAllAsReadLoading,
+  deleteLoading,
 }: INotificationBell) {
   // pagination
   const currentPage = useStore((state) => state.paginationPage);
@@ -57,9 +59,9 @@ export function NotificationBell({
   >(null);
   const startX = useRef<number | null>(null);
   const currentX = useRef<number | null>(null);
-  const swipeThreshold = 45; // Píxeles necesarios para activar las acciones
+  const swipeThreshold = 45; // necessary pixels
 
-  // Resetear el estado de deslizamiento cuando se cierra el dropdown
+  // restart displacement
   useEffect(() => {
     if (!open) {
       setSwipedNotificationId(null);
@@ -67,8 +69,11 @@ export function NotificationBell({
   }, [open]);
 
   const handleTouchStart = (e: React.TouchEvent, _: string) => {
+    if (deleteLoading !== null) return;
+
     startX.current = e.touches[0].clientX;
     currentX.current = startX.current;
+    resetAllSwipesExcept(null);
   };
 
   const handleTouchMove = (e: React.TouchEvent, id: string) => {
@@ -77,7 +82,7 @@ export function NotificationBell({
     currentX.current = e.touches[0].clientX;
     const diff = startX.current - currentX.current;
 
-    // Solo permitir deslizamiento hacia la izquierda
+    // only allow left swipe
     if (diff > 0) {
       const element = document.getElementById(`notification-${id}`);
       if (element) {
@@ -96,13 +101,14 @@ export function NotificationBell({
     const element = document.getElementById(`notification-${id}`);
 
     if (diff > swipeThreshold) {
-      // Activar el modo de opciones
+      // active options
       setSwipedNotificationId(id);
+      resetAllSwipesExcept(id);
       if (element) {
         element.style.transform = `translateX(-${swipeThreshold}px)`;
       }
     } else {
-      // Volver a la posición original
+      // original position
       if (element) {
         element.style.transform = "translateX(0)";
       }
@@ -114,6 +120,8 @@ export function NotificationBell({
   };
 
   const handleMouseDown = (e: React.MouseEvent, id: string) => {
+    if (deleteLoading !== null) return;
+
     startX.current = e.clientX;
     currentX.current = startX.current;
 
@@ -133,6 +141,8 @@ export function NotificationBell({
           )}px)`;
         }
       }
+
+      resetAllSwipesExcept(null);
     };
 
     const handleMouseUp = (_: MouseEvent) => {
@@ -178,6 +188,23 @@ export function NotificationBell({
     return formatDistanceToNow(date, { addSuffix: true, locale: es });
   };
 
+  const resetAllSwipesExcept = (idToKeep: string | null) => {
+    notifications.forEach((n) => {
+      if (n.id !== idToKeep) {
+        const el = document.getElementById(`notification-${n.id}`);
+        if (el) el.style.transform = "translateX(0)";
+      }
+    });
+  };
+
+  useEffect(() => {
+    // Solo cerrar el swipe si la notificación que se estaba deslizando ya terminó de cargar
+    if (deleteLoading === null && swipedNotificationId !== null) {
+      resetSwipe(swipedNotificationId);
+      setSwipedNotificationId(null); // ← muy importante
+    }
+  }, [deleteLoading]);
+
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
@@ -208,7 +235,7 @@ export function NotificationBell({
               onClick={markAllAsRead}
               disabled={markAllAsReadLoading}
             >
-              {markAllAsReadLoading && <Spinner size="sm" />} Marcar todas como
+              {markAllAsReadLoading && <Spinner className="text-muted-foreground" size="sm" />} Marcar todas como
               leídas
             </Button>
           )}
@@ -257,6 +284,7 @@ export function NotificationBell({
                     <Button
                       variant="ghost"
                       size="icon"
+                      disabled={deleteLoading === notification.id}
                       className={cn(
                         "h-8 w-8 text-destructive hover:text-destructive rounded-full ml-1 mr-2 transition-opacity duration-200 hover:bg-red-200",
                         swipedNotificationId === notification.id
@@ -267,10 +295,13 @@ export function NotificationBell({
                         if (deleteNotification) {
                           deleteNotification(notification.id);
                         }
-                        resetSwipe(notification.id);
                       }}
                     >
-                      <Trash2 size={16} />
+                      {deleteLoading ? (
+                        <Spinner className="text-destructive" size="sm" />
+                      ) : (
+                        <Trash2 size={16} />
+                      )}
                     </Button>
                   </div>
                 </div>

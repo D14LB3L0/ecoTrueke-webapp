@@ -19,7 +19,9 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
     unreadCount,
     markAllAsRead,
     markAsRead,
+    deleteNotification,
     markAllAsReadLoading,
+    deleteLoading
   } = useNotification();
 
   useGetPaginatedNotifications();
@@ -64,7 +66,9 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
                     unreadCount={unreadCount}
                     markAllAsRead={markAllAsRead}
                     markAsRead={markAsRead}
+                    deleteNotification={deleteNotification}
                     markAllAsReadLoading={markAllAsReadLoading}
+                    deleteLoading={deleteLoading}
                   />
                 </div>
               </div>
@@ -116,7 +120,9 @@ export const NavBar = ({ isLoggedIn, dropDownItems }: INavBar) => {
                   unreadCount={unreadCount}
                   markAllAsRead={markAllAsRead}
                   markAsRead={markAsRead}
+                  deleteNotification={deleteNotification}
                   markAllAsReadLoading={markAllAsReadLoading}
+                  deleteLoading={deleteLoading}
                 />
               </div>
             </div>
