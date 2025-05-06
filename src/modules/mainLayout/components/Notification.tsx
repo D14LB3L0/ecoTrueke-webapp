@@ -233,13 +233,15 @@ export function NotificationBell({
                       }
                     }}
                   >
-                    <div className="flex w-full justify-between">
-                      <p className="font-medium">{notification.title}</p>
-                      <span className="text-xs text-muted-foreground">
+                    <div className="flex w-full justify-between gap-2">
+                      <p className="font-medium text-sm">
+                        {notification.title}
+                      </p>
+                      <span className="text-[10px]  w-[60px] text-muted-foreground">
                         {formatTimeAgo(new Date(notification.createdAt))}
                       </span>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-1">
+                    <p className="text-[12px] text-muted-foreground mt-1">
                       {notification.message}
                     </p>
                   </div>
@@ -250,7 +252,7 @@ export function NotificationBell({
                       variant="ghost"
                       size="icon"
                       className={cn(
-                        "h-8 w-8 text-red-500 hover:text-red-600 rounded-full ml-1 mr-2 transition-opacity duration-200",
+                        "h-8 w-8 text-destructive hover:text-destructive rounded-full ml-1 mr-2 transition-opacity duration-200 hover:bg-white",
                         swipedNotificationId === notification.id
                           ? "opacity-100"
                           : "opacity-0"
