@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/pagination";
 import { useStore } from "@/stores/useStore";
 import { Spinner } from "@/components/ui/spinner";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export interface INotificationBell {
   notifications: INotification[];
@@ -206,7 +206,7 @@ export function NotificationBell({
     }
   }, [deleteLoading]);
 
-  // navigate 
+  // navigate
   const navigate = useNavigate();
 
   return (
@@ -239,8 +239,10 @@ export function NotificationBell({
               onClick={markAllAsRead}
               disabled={markAllAsReadLoading}
             >
-              {markAllAsReadLoading && <Spinner className="text-muted-foreground" size="sm" />} Marcar todas como
-              leídas
+              {markAllAsReadLoading && (
+                <Spinner className="text-muted-foreground" size="sm" />
+              )}{" "}
+              Marcar todas como leídas
             </Button>
           )}
         </div>

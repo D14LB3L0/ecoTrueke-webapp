@@ -4,7 +4,7 @@ import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
 import { RequiredLabel } from "@/utils/requiredLabel";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { PopupDelete } from "@/components/PopupDelete";
+import { PopupDelete } from "@/components/popupDelete";
 
 export const MyProfileUserForm = () => {
   const { form, handleSubmit, isLoading, openPopupDelete, setOpenPopupDelete, handleSubmitDeleteAccount, isLoadingDelete } = useMyProfileUserForm();

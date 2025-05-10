@@ -41,8 +41,10 @@ export const useMyProfileUserForm = () => {
 
             // request API
             const response = await ChangePasswordService.changePassword(changePasswordRequest);
+            form.reset();
             toast.dismiss();
             toast.success(response.message ?? Success.GENERIC)
+
 
         } catch (error: any) {
             toast.success(error?.response.data.message ?? Error.UNEXPECTED_ERROR)
