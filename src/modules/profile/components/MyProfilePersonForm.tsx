@@ -30,6 +30,7 @@ export const MyProfilePersonForm = () => {
               <ImageUploader
                 onFileSelect={(file: File | null) => field.onChange(file)}
                 previewUrl={previewUrl}
+                placeholder={"Sube tu foto de perfil"}
               />
             </FormItem>
           )}
@@ -83,7 +84,7 @@ export const MyProfilePersonForm = () => {
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Género" />
+                      <SelectValue placeholder="Seleccionar género" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -112,7 +113,7 @@ export const MyProfilePersonForm = () => {
                   field={field}
                   formState={form.formState}
                   name="documentType"
-                  placeholder="Tipo de Documento"
+                  placeholder="Seleccionar Documento"
                   options={[
                     { label: "DNI", value: "dni" },
                     { label: "Pasaporte", value: "PASSPORT" },

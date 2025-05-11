@@ -25,9 +25,9 @@ export const DashboardPage = () => {
                     />
 
                     <LinkCard
-                        to="/dashboard/products"
+                        to="/dashboard/my-products"
                         icon={<Package size="40px" className="mx-auto" />}
-                        title="Productos"
+                        title="Mis Productos"
                         description="Administra tus productos registrados en el sistema."
                     />
                     <LinkCard

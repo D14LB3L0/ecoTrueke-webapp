@@ -1,21 +1,26 @@
-import { MyProfilePage } from "@/modules/profile/pages/MyProfilePage"
-import { SideBarLayout } from "@/modules/secondaryLayout/components/SideBarLayout"
-import { Navigate, Outlet, Route, Routes } from "react-router-dom"
-import { DashboardPage } from "../pages/DashboardPage"
+import { MyProfilePage } from "@/modules/profile/pages/MyProfilePage";
+import { SideBarLayout } from "@/modules/secondaryLayout/components/SideBarLayout";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { DashboardPage } from "../pages/DashboardPage";
+import { MyProductsPage } from "@/modules/product/pages/MyProductsPage";
+import { UploadProductPage } from "@/modules/product/pages/UploadProductPage";
 
 const DashboardLayout = () => {
-    return (
-        <>
-            <Outlet />
-            <Routes>
-                <Route element={<SideBarLayout />}>
-                    <Route path="/*" element={<Navigate to="/dashboard" replace />} />
-                    <Route path="/" element={<DashboardPage />} />
-                    <Route path="/profile" element={<MyProfilePage />} />
-                </Route>
-            </Routes>
-        </>
-    )
-}
+  return (
+    <>
+      <Outlet />
+      <Routes>
+        <Route element={<SideBarLayout />}>
+          <Route path="/*" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/profile" element={<MyProfilePage />} />
 
-export default DashboardLayout
+          <Route path="/my-products" element={<MyProductsPage/>} />
+          <Route path="/my-products/upload" element={<UploadProductPage/>} />
+        </Route>
+      </Routes>
+    </>
+  );
+};
+
+export default DashboardLayout;

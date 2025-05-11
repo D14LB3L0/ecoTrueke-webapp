@@ -9,10 +9,11 @@ interface ImageUploaderProps {
   className?: string;
   variant?: 'avatar' | 'box';
   previewUrl?: string;
+  placeholder: string
 }
 
 const ImageUploader = React.forwardRef(
-  ({ onFileSelect, className, variant = 'avatar', previewUrl }: ImageUploaderProps, ref: ForwardedRef<HTMLDivElement>) => {
+  ({ onFileSelect, className, variant = 'avatar', previewUrl,placeholder }: ImageUploaderProps, ref: ForwardedRef<HTMLDivElement>) => {
     const [isDragging, setIsDragging] = useState(false);
     const [preview, setPreview] = useState<string | undefined>(previewUrl);
 
@@ -136,7 +137,7 @@ const ImageUploader = React.forwardRef(
               )}
               <p className="text-center text-[12px] font-medium">
                 {variant === 'avatar'
-                  ? 'Sube tu foto de perfil'
+                  ? `${placeholder}`
                   : 'Arrastra tu imagen aquí o haz clic para seleccionar'}
               </p>
             </div>

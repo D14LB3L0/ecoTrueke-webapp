@@ -21,10 +21,10 @@ const navBarItems = ({
             href: '/dashboard/profile'
         },
         {
-            key: 'product',
-            name: 'Productos',
+            key: 'my-products',
+            name: 'Mis productos',
             icon: <Box size={16} />,
-            href: '/dashboard/product'
+            href: '/dashboard/my-products'
         },
         {
             key: "logout",

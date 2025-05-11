@@ -10,8 +10,10 @@ import {
 import * as React from "react";
 
 const breadcrumbMap: Record<string, string> = {
+    dashboard: "Dashboard",
     profile: "Perfil",
-    dashboard: "Dashboard"
+    "my-products": "Mis productos",
+    upload: "Subir producto"
 };
 
 export const DynamicBreadcrumb = () => {
