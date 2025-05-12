@@ -4,6 +4,7 @@ import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { DashboardPage } from "../pages/DashboardPage";
 import { MyProductsPage } from "@/modules/product/pages/MyProductsPage";
 import { UploadProductPage } from "@/modules/product/pages/UploadProductPage";
+import { ManageProductPage } from "@/modules/product/pages/ManageProductPage";
 
 const DashboardLayout = () => {
   return (
@@ -17,6 +18,7 @@ const DashboardLayout = () => {
 
           <Route path="/my-products" element={<MyProductsPage/>} />
           <Route path="/my-products/upload" element={<UploadProductPage/>} />
+          <Route path="/my-products/manage" element={<ManageProductPage/>} />
         </Route>
       </Routes>
     </>

@@ -23,7 +23,7 @@ export const MyProductsPage = () => {
           />
 
           <LinkCard
-            to="/dashboard/products"
+            to="/dashboard/my-products/manage"
             icon={<Boxes size="40px" className="mx-auto" />}
             title="Ver productos"
             description="Revisa y gestiona todos los productos que has registrado."
