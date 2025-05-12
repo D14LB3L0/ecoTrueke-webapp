@@ -16,6 +16,10 @@ export const uploadProductFormSchema = z.object({
       required_error: "Este campo es obligatorio.",
     })
     .min(1, { message: "Este campo es obligatorio." }),
+  quantity: z
+    .number()
+    .nonnegative({ message: "Debe ser 0 o mayor" })
+    .gt(0, { message: "Debe ser mayor que 0" }),
   description: z.string().optional(),
   typeTransaction: z
     .string({

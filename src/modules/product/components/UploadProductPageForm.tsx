@@ -68,6 +68,31 @@ export const UploadProductPageForm = () => {
         <div className="flex flex-col md:flex-row gap-8 md:gap-5 w-full">
           <FormField
             control={form.control}
+            name="quantity"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel className="font-semibold">
+                    <RequiredLabel>Cantidad</RequiredLabel>
+                  </FormLabel>
+                  <InputWithErrorTooltip
+                    field={{
+                      ...field,
+                      onChange: (e: any) =>
+                        field.onChange(Number(e.target.value)),
+                      formState: form.formState,
+                    }}
+                    name="cantidad"
+                    placeholder="cant."
+                    type="number"
+                  />
+                </FormItem>
+              );
+            }}
+          />
+
+          <FormField
+            control={form.control}
             name="typeTransaction"
             render={({ field }) => {
               return (
