@@ -7,6 +7,6 @@ export interface IPerson {
     documentNumber: string;
     documentType: 'dni' | undefined; 
     gender: 'female' | 'male' | 'other' | undefined;
-    profilePicture: File | null;
+    profilePicture: string | null; 
   }
   

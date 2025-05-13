@@ -8,11 +8,14 @@ import { IDashboardSlice } from "./dashboard-store/interface/dashboard.slice.int
 import { createDashboardSlice } from "./dashboard-store/dashboardSlice";
 import { INotificationSlice } from "./notification-store/interfacaes/notification.slice.interface";
 import { createNotificationSlice } from "./notification-store/notificationSlice";
+import { IProductSlice } from "./product-store/interface/product.slice.interface";
+import { createProductSlice } from "./product-store/productSlice";
 
 type SharedState = IUserSlice &
   IPersonSlice &
   IDashboardSlice &
-  INotificationSlice;
+  INotificationSlice &
+  IProductSlice;
 
 export const useStore = create<SharedState>()(
   persist(
@@ -21,6 +24,7 @@ export const useStore = create<SharedState>()(
       ...createPersonSlice(set, get, store),
       ...createDashboardSlice(set, get, store),
       ...createNotificationSlice(set, get, store),
+      ...createProductSlice(set, get, store),
     }),
     {
       name: "storage",

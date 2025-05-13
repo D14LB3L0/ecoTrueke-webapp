@@ -46,11 +46,11 @@ export function NotificationBell({
   deleteLoading,
 }: INotificationBell) {
   // pagination
-  const currentPage = useStore((state) => state.paginationPage);
-  const totalPages = useStore((state) => state.paginationTotalPages);
+  const currentPage = useStore((state) => state.paginationPageProductDashboard);
+  const totalPages = useStore((state) => state.paginationTotalPagesProductDashboard);
 
   // change pagination
-  const setCurrentPage = useStore((state) => state.setPaginationPage);
+  const setCurrentPage = useStore((state) => state.setPaginationPageProductDashboard);
 
   // open notification
   const [open, setOpen] = useState(false);

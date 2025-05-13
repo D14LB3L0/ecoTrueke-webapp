@@ -16,9 +16,10 @@ const DashboardLayout = () => {
           <Route path="/" element={<DashboardPage />} />
           <Route path="/profile" element={<MyProfilePage />} />
 
-          <Route path="/my-products" element={<MyProductsPage/>} />
-          <Route path="/my-products/upload" element={<UploadProductPage/>} />
-          <Route path="/my-products/manage" element={<ManageProductPage/>} />
+          <Route path="/my-products" element={<MyProductsPage />} />
+          <Route path="/my-products/upload" element={<UploadProductPage />} />
+          <Route path="/my-products/manage" element={<ManageProductPage />} />
+          <Route path="/my-products/manage:productId" element={<ManageProductPage />} />
         </Route>
       </Routes>
     </>

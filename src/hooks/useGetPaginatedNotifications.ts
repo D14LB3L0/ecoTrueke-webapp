@@ -10,9 +10,9 @@ export const useGetPaginatedNotifications = () => {
   const setNotifications = useStore((state) => state.setNotifications);
 
   // pagination data
-  const page = useStore((state) => state.paginationPage);
-  const amountPage = useStore((state) => state.paginationAmountPage);
-  const totalPages = useStore((state) => state.setPagintaionTotalPages);
+  const page = useStore((state) => state.paginationPageProductDashboard);
+  const amountPage = useStore((state) => state.paginationAmountPageProductDashboard);
+  const totalPages = useStore((state) => state.setPagintaionTotalPagesProductDashboard);
 
   // tanstack
   const query = useQuery({

@@ -21,10 +21,10 @@ export const PopupDelete = ({ title, description, actionButton, handleSubmit, op
                     <DialogDescription className="text-black">{description}</DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <Button variant="outline" onClick={() => setOpen(false)}>
+                    <Button disabled={isLoading} variant="outline" onClick={() => setOpen(false)}>
                         Cancelar
                     </Button>
-                    <Button variant="destructive" onClick={handleSubmit}>
+                    <Button disabled={isLoading} variant="destructive" onClick={handleSubmit}>
                         {isLoading && <Spinner size="sm" />} {actionButton}
                     </Button>
                 </DialogFooter>
