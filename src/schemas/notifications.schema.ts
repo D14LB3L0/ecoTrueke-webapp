@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const notificationSchema = z.object({
+export const notificationsSchema = z.object({
   id: z.string(),
   title: z.string(),
   message: z.string(),
@@ -10,4 +10,4 @@ export const notificationSchema = z.object({
   createdAt: z.string(),
 });
 
-export type Notification = z.infer<typeof notificationSchema>;
+export type Notifications = z.infer<typeof notificationsSchema>;

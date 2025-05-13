@@ -10,9 +10,9 @@ export const createNotificationSlice: StateCreator<
 > = (set) => ({
   notifications: [],
   setNotifications: (notifications: INotification[]) => set({ notifications }),
-  paginationTotalPages: 1,
-  setPagintaionTotalPages: (paginationTotalPages: number) => set({paginationTotalPages}),
-  paginationPage: 1,
-  setPaginationPage: (paginationPage: number) => set({paginationPage}),
-  paginationAmountPage: 3
+  paginationTotalPagesNotifications: 1,
+  setPagintaionTotalPagesNotifications: (paginationTotalPagesNotifications: number) => set({paginationTotalPagesNotifications}),
+  paginationPageNotifications: 1,
+  setPaginationPageNotifications: (paginationPageNotifications: number) => set({paginationPageNotifications}),
+  paginationAmountPageNotifications: 3
 });

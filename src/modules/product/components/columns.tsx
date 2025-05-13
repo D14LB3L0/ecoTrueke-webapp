@@ -1,29 +1,31 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { IProduct } from "@/interfaces/product.interface";
+import { IProducts } from "@/interfaces/product.interface";
 import { DataTableColumnHeader } from "@/components/Table/DataTableColumnHeader";
 import { RowActions } from "./row-actions";
 
-export const columns: ColumnDef<IProduct, unknown>[] = [
+export const columns: ColumnDef<IProducts, unknown>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
         title="Nombre"
-        className="text-left w-[200px]"
+        className="text-left"
       ></DataTableColumnHeader>
     ),
     cell: ({ row }) => {
-      const product = row.original as IProduct;
+      const product = row.original as IProducts;
 
       return (
-        <div className="flex items-center space-x-2 max-w-[180px]">
+        <div className="flex items-center gap-2 max-w-[200px]">
           <img
-            src={product.productPicture ?? ""}
-            alt="Producto"
+            src={`${import.meta.env.VITE_API_ECOTRUEKE}EcoTrueke/${
+              product.productPicture
+            }`}
+              alt="Producto"
             className="w-12 h-12 rounded object-cover"
           />
-          <span className="capitalize break-words whitespace-normal w-full">
+          <span className="capitalize break-words whitespace-normal">
             {row.getValue("name")}
           </span>
         </div>

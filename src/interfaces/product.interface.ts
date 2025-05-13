@@ -1,10 +1,8 @@
-export interface IProduct {
+export interface IProducts{
   id: string;
   productPicture: string | null;
   name: string;
   quantity: number;
-  description: string;
   typeTranscription: string;
-  category: string;
   condition: string;
 }
