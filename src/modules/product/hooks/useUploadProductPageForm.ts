@@ -13,6 +13,7 @@ import {
 } from "../service/registerProduct.service";
 import { Success } from "@/utils/constants/Success";
 import { useNavigate } from "react-router-dom";
+import { useGetPaginatedProducts } from "@/hooks/useGetPaginatedProducts";
 
 export const useUploadProductPageForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -23,6 +24,9 @@ export const useUploadProductPageForm = () => {
   // person.profilePicture
   //     ? `${import.meta.env.VITE_API_ECOTRUEKE}EcoTrueke/${person.profilePicture}`
   //     : undefined
+
+  // refetch list products
+  const { refetch } = useGetPaginatedProducts();
 
   const form = useForm<uploadProductFormValues>({
     resolver: zodResolver(uploadProductFormSchema),
@@ -56,7 +60,8 @@ export const useUploadProductPageForm = () => {
       );
       toast.dismiss();
       toast.success(response.message ?? Success.GENERIC);
-      navigate('/dashboard/my-products')
+      navigate("/dashboard/my-products");
+      refetch();
     } catch (error: any) {
       toast.dismiss();
       toast.warning(error?.response.data.message ?? Error.UNEXPECTED_ERROR);
