@@ -81,8 +81,6 @@ export function DataTable<TData, TValue>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
 
-  console.log(paginationPage)
-
   return (
     <div className="space-y-4">
       <div className="rounded-md border">
