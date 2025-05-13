@@ -7,5 +7,4 @@ export interface IProduct {
   typeTranscription: string;
   category: string;
   condition: string;
-  status: string;
 }

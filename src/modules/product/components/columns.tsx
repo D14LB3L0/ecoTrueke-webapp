@@ -10,14 +10,14 @@ export const columns: ColumnDef<IProduct, unknown>[] = [
       <DataTableColumnHeader
         column={column}
         title="Nombre"
-        className="text-left w-[220px]"
+        className="text-left w-[200px]"
       ></DataTableColumnHeader>
     ),
     cell: ({ row }) => {
       const product = row.original as IProduct;
 
       return (
-        <div className="flex items-center space-x-2 max-w-[210px]">
+        <div className="flex items-center space-x-2 max-w-[180px]">
           <img
             src={product.productPicture ?? ""}
             alt="Producto"
@@ -37,16 +37,6 @@ export const columns: ColumnDef<IProduct, unknown>[] = [
         column={column}
         title="T.Transacción"
         className="text-left w-[110px] md:w-[80px]"
-      ></DataTableColumnHeader>
-    ),
-  },
-  {
-    accessorKey: "status",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Estado"
-        className="text-left w-[90px] md:w-[60px]"
       ></DataTableColumnHeader>
     ),
   },
