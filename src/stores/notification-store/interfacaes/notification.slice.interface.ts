@@ -3,9 +3,9 @@ import { INotification } from "@/interfaces/notification.interface";
 export interface INotificationSlice {
   notifications: INotification[];
   setNotifications: (notification: INotification[]) => void;
-  paginationTotalPages: number;
-  setPagintaionTotalPages: (paginationTotalPages: number) => void;
-  paginationPage: number;
-  setPaginationPage: (paginationPage: number) => void;
-  paginationAmountPage: number;
+  paginationTotalPagesNotifications: number;
+  setPagintaionTotalPagesNotifications: (paginationTotalPages: number) => void;
+  paginationPageNotifications: number;
+  setPaginationPageNotifications: (paginationPage: number) => void;
+  paginationAmountPageNotifications: number;
 }

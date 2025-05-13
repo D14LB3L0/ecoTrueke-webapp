@@ -81,16 +81,7 @@ export function DataTable<TData, TValue>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
 
-  React.useEffect(() => {
-    const currentPage = table.getState().pagination.pageIndex + 1;
-
-    if (paginationPage !== currentPage) {
-      setPage(currentPage);
-    }
-  }, [
-    table.getState().pagination.pageIndex,
-    table.getState().pagination.pageSize,
-  ]);
+  console.log(paginationPage)
 
   return (
     <div className="space-y-4">

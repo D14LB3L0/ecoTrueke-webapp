@@ -17,5 +17,5 @@ export const createProductSlice: StateCreator<
   paginationPageProductDashboard: 1,
   setPaginationPageProductDashboard: (paginationPage: number) =>
     set({ paginationPageProductDashboard: paginationPage }),
-  paginationAmountPageProductDashboard: 15,
+  paginationAmountPageProductDashboard: 2,
 });

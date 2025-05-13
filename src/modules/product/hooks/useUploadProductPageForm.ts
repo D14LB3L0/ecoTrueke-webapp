@@ -43,10 +43,10 @@ export const useUploadProductPageForm = () => {
       setIsLoading(true);
       const registerProductRequest: RegisterProductRequest = {
         productPicture: values.productPicture ?? null,
-        name: values.name ?? "",
-        description: values.description ?? "",
-        typeTranscription: values.typeTransaction ?? "",
-        condition: values.condition ?? "",
+        name: values.name.trim() ?? "",
+        description: values.description?.trim() ?? "",
+        typeTranscription: values.typeTransaction.trim() ?? "",
+        condition: values.condition.trim() ?? "",
         category: values.category ?? [],
         quantity: values.quantity ?? "",
       };

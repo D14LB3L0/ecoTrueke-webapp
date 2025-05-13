@@ -1,4 +1,4 @@
-import { notificationSchema } from "@/schemas/notification.schema";
+import { notificationsSchema } from "@/schemas/notifications.schema";
 import { GetPaginatedNotificationsService } from "@/service/getPaginatedNotifications.service";
 import { useStore } from "@/stores/useStore";
 import { useQuery } from "@tanstack/react-query";
@@ -10,13 +10,13 @@ export const useGetPaginatedNotifications = () => {
   const setNotifications = useStore((state) => state.setNotifications);
 
   // pagination data
-  const page = useStore((state) => state.paginationPageProductDashboard);
-  const amountPage = useStore((state) => state.paginationAmountPageProductDashboard);
-  const totalPages = useStore((state) => state.setPagintaionTotalPagesProductDashboard);
+  const page = useStore((state) => state.paginationPageNotifications);
+  const amountPage = useStore((state) => state.paginationAmountPageNotifications);
+  const totalPages = useStore((state) => state.setPaginationPageNotifications);
 
   // tanstack
   const query = useQuery({
-    queryKey: ["getListNotification", page],
+    queryKey: ["getListNotifications", page],
     queryFn: async () => {
       const response =
         await GetPaginatedNotificationsService.getPaginatedNotifications({
@@ -26,7 +26,7 @@ export const useGetPaginatedNotifications = () => {
 
       return {
         notification: z
-          .array(notificationSchema)
+          .array(notificationsSchema)
           .parse(response.notifications),
         totalPages: response.totalPages,
       };

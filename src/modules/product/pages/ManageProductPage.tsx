@@ -2,7 +2,7 @@ import { DataTable } from "@/components/Table/DataTable";
 import { useStore } from "@/stores/useStore";
 import { columns } from "../components/columns";
 import { Card, CardContent } from "@/components/ui/card";
-import { useEffect } from "react";
+import { useGetPaginatedProducts } from "@/hooks/useGetPaginatedProducts";
 
 export const ManageProductPage = () => {
   // pagination
@@ -19,36 +19,8 @@ export const ManageProductPage = () => {
 
   // product
   const products = useStore((state) => state.productsDashboard);
-  const setProducts = useStore((state) => state.setProductsDashboard);
 
-  useEffect(() => {
-    setProducts([
-      {
-        id: "1",
-        productPicture: "https://placehold.co/600x400",
-        name: "Camisa de algodón",
-        quantity: 10,
-        typeTranscription: "exchange", // o "sale", "donation" según tu lógica
-        condition: "nuevo",
-      },
-      {
-        id: "2",
-        productPicture: "https://placehold.co/600x400",
-        name: "Camisa de algodón",
-        quantity: 10,
-        typeTranscription: "exchange", // o "sale", "donation" según tu lógica
-        condition: "usadoa",
-      },
-      {
-        id: "3",
-        productPicture: "https://placehold.co/600x400",
-        name: "Camisa de algodón",
-        quantity: 10,
-        typeTranscription: "exchange", // o "sale", "donation" según tu lógica
-        condition: "nuevo",
-      },
-    ]);
-  }, []);
+  useGetPaginatedProducts();
 
   return (
     <div className="space-y-6 min-w-[308px]">
