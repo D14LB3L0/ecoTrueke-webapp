@@ -2,6 +2,11 @@ import { ColumnDef } from "@tanstack/react-table";
 import { IProducts } from "@/interfaces/product.interface";
 import { DataTableColumnHeader } from "@/components/Table/DataTableColumnHeader";
 import { RowActions } from "./row-actions";
+import {
+  mapProductCondition,
+  mapProductStatus,
+  mapProductTransaction,
+} from "@/utils/mapper/Product.mapper";
 
 export const columns: ColumnDef<IProducts, unknown>[] = [
   {
@@ -22,7 +27,7 @@ export const columns: ColumnDef<IProducts, unknown>[] = [
             src={`${import.meta.env.VITE_API_ECOTRUEKE}EcoTrueke/${
               product.productPicture
             }`}
-              alt="Producto"
+            alt="Producto"
             className="w-12 h-12 rounded object-cover"
           />
           <span className="capitalize break-words whitespace-normal">
@@ -41,6 +46,18 @@ export const columns: ColumnDef<IProducts, unknown>[] = [
         className="text-left w-[110px] md:w-[80px]"
       ></DataTableColumnHeader>
     ),
+    cell: ({ row }) => {
+      const readableTransaction = mapProductTransaction(
+        row.getValue("typeTranscription")
+      );
+      return (
+        <div className="">
+          <span className="capitalize break-words whitespace-normal">
+            {readableTransaction}
+          </span>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "condition",
@@ -51,6 +68,18 @@ export const columns: ColumnDef<IProducts, unknown>[] = [
         className="text-left w-[80px] md:w-[60px]"
       ></DataTableColumnHeader>
     ),
+    cell: ({ row }) => {
+      const readableCondition = mapProductCondition(
+        row.getValue("condition")
+      );
+      return (
+        <div className="">
+          <span className="capitalize break-words whitespace-normal">
+            {readableCondition}
+          </span>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "quantity",

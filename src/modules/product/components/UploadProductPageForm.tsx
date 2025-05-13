@@ -128,7 +128,6 @@ export const UploadProductPageForm = () => {
                     placeholder="Seleccionar Documento"
                     options={[
                       { label: "Nuevo", value: "new" },
-                      { label: "Bueno", value: "good" },
                       { label: "Regular", value: "fair" },
                       { label: "Malo", value: "poor" },
                     ]}
