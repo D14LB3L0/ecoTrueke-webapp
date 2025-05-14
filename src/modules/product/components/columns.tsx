@@ -1,9 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { IProduct } from "@/interfaces/product.interface";
+import { IProducts } from "@/interfaces/product.interface";
 import { DataTableColumnHeader } from "@/components/Table/DataTableColumnHeader";
 import { RowActions } from "./row-actions";
 
-export const columns: ColumnDef<IProduct, unknown>[] = [
+export const columns: ColumnDef<IProducts, unknown>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => (
@@ -14,7 +14,7 @@ export const columns: ColumnDef<IProduct, unknown>[] = [
       ></DataTableColumnHeader>
     ),
     cell: ({ row }) => {
-      const product = row.original as IProduct;
+      const product = row.original as IProducts;
 
       return (
         <div className="flex items-center space-x-2 max-w-[180px]">

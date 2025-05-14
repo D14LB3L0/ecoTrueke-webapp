@@ -28,33 +28,24 @@ export const ManageProductPage = () => {
         productPicture: "https://placehold.co/600x400",
         name: "Camisa de algodón",
         quantity: 10,
-        description: "Camisa de manga larga, 100% algodón, color azul.",
         typeTranscription: "exchange", // o "sale", "donation" según tu lógica
-        category: "clothes", // o "toys", etc.
         condition: "nuevo",
-        status: "pending"
       },
       {
         id: "2",
         productPicture: "https://placehold.co/600x400",
         name: "Camisa de algodón",
         quantity: 10,
-        description: "Camisa de manga larga, 100% algodón, color azul.",
         typeTranscription: "exchange", // o "sale", "donation" según tu lógica
-        category: "clothes", // o "toys", etc.
         condition: "usadoa",
-        status: "pending"
       },
       {
         id: "3",
         productPicture: "https://placehold.co/600x400",
         name: "Camisa de algodón",
         quantity: 10,
-        description: "Camisa de manga larga, 100% algodón, color azul.",
         typeTranscription: "exchange", // o "sale", "donation" según tu lógica
-        category: "clothes", // o "toys", etc.
         condition: "nuevo",
-        status: "pending"
       },
     ]);
   }, []);

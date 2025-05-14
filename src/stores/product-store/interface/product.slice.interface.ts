@@ -1,8 +1,8 @@
-import { IProduct } from "@/interfaces/product.interface";
+import { IProducts } from "@/interfaces/product.interface";
 
 export interface IProductSlice {
-  productsDashboard: IProduct[];
-  setProductsDashboard: (productsDashboard: IProduct[]) => void;
+  productsDashboard: IProducts[];
+  setProductsDashboard: (productsDashboard: IProducts[]) => void;
   paginationTotalPagesProductDashboard: number;
   setPagintaionTotalPagesProductDashboard: (paginationTotalPages: number) => void;
   paginationPageProductDashboard: number;

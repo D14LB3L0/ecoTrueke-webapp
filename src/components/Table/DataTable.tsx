@@ -23,7 +23,7 @@ import {
 } from "../ui/table";
 import { DataTablePagination } from "./dataTablePagination";
 import { useNavigate } from "react-router-dom";
-import { IProduct } from "@/interfaces/product.interface";
+import { IProducts } from "@/interfaces/product.interface";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -115,7 +115,7 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => {
-                const product = row.original as IProduct;
+                const product = row.original as IProducts;
 
                 return (
                   <TableRow
