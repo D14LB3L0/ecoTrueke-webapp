@@ -20,7 +20,7 @@ export const uploadProductFormSchema = z.object({
     .number()
     .nonnegative({ message: "Debe ser 0 o mayor" })
     .gt(0, { message: "Debe ser mayor que 0" }),
-  description: z.string().optional(),
+  description: z.string().optional().nullable(),
   typeTransaction: z
     .string({
       required_error: "Este campo es obligatorio.",

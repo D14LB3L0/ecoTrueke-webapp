@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   uploadProductFormSchema,
@@ -14,16 +14,29 @@ import {
 import { Success } from "@/utils/constants/Success";
 import { useNavigate } from "react-router-dom";
 import { useGetPaginatedProducts } from "@/hooks/useGetPaginatedProducts";
+import { useStore } from "@/stores/useStore";
+import { useGetProduct } from "@/hooks/useGetProduct";
 
-export const useUploadProductPageForm = () => {
+interface IUseProductPageForm {
+  productId?: string;
+}
+
+export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  const [previewUrl, _] = useState<string | undefined>();
-  // person.profilePicture
-  //     ? `${import.meta.env.VITE_API_ECOTRUEKE}EcoTrueke/${person.profilePicture}`
-  //     : undefined
+  // get product
+  useGetProduct({ productId: productId ?? undefined });
+
+  const currentProduct = useStore((state) => state.productDashboard);
+  const setCurrentProduct = useStore((state) => state.setProductDashboard);
+
+  const previewUrl = currentProduct.productPicture
+    ? `${import.meta.env.VITE_API_ECOTRUEKE}EcoTrueke/${
+        currentProduct.productPicture
+      }`
+    : undefined;
 
   // refetch list products
   const { refetch } = useGetPaginatedProducts();
@@ -41,6 +54,44 @@ export const useUploadProductPageForm = () => {
       category: [],
     },
   });
+
+  useEffect(() => {
+    if (currentProduct) {
+      form.reset({
+        productPicture: undefined,
+        name: currentProduct.name,
+        description: currentProduct.description ?? "",
+        typeTransaction: currentProduct.typeTranscription,
+        condition: currentProduct.condition,
+        quantity: currentProduct.quantity,
+        category: currentProduct.category,
+      });
+    }
+  }, [currentProduct]);
+
+  useEffect(() => {
+    return () => {
+      form.reset({
+        productPicture: undefined,
+        name: "",
+        description: "",
+        typeTransaction: "",
+        condition: "",
+        quantity: 0,
+        category: [],
+      });
+      setCurrentProduct({
+        productPicture: "",
+        name: "",
+        description: null,
+        typeTranscription: "",
+        category: [],
+        condition: "",
+        status: "",
+        quantity: 1,
+      });
+    };
+  }, []);
 
   const handleSubmit = async (values: uploadProductFormValues) => {
     try {

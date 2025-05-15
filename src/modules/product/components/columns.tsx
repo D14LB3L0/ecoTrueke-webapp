@@ -4,7 +4,6 @@ import { DataTableColumnHeader } from "@/components/Table/DataTableColumnHeader"
 import { RowActions } from "./row-actions";
 import {
   mapProductCondition,
-  mapProductStatus,
   mapProductTransaction,
 } from "@/utils/mapper/Product.mapper";
 
@@ -20,13 +19,16 @@ export const columns: ColumnDef<IProducts, unknown>[] = [
     ),
     cell: ({ row }) => {
       const product = row.original as IProducts;
-
       return (
         <div className="flex items-center gap-2 max-w-[200px]">
           <img
-            src={`${import.meta.env.VITE_API_ECOTRUEKE}EcoTrueke/${
+            src={
               product.productPicture
-            }`}
+                ? `${import.meta.env.VITE_API_ECOTRUEKE}EcoTrueke/${
+                    product.productPicture
+                  }`
+                : "/placeholder/placeholder.jpg"
+            }
             alt="Producto"
             className="w-12 h-12 rounded object-cover"
           />
@@ -69,9 +71,7 @@ export const columns: ColumnDef<IProducts, unknown>[] = [
       ></DataTableColumnHeader>
     ),
     cell: ({ row }) => {
-      const readableCondition = mapProductCondition(
-        row.getValue("condition")
-      );
+      const readableCondition = mapProductCondition(row.getValue("condition"));
       return (
         <div className="">
           <span className="capitalize break-words whitespace-normal">

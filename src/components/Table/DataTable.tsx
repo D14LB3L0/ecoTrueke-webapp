@@ -24,6 +24,7 @@ import {
 import { DataTablePagination } from "./dataTablePagination";
 import { useNavigate } from "react-router-dom";
 import { IProducts } from "@/interfaces/product.interface";
+import { useStore } from "@/stores/useStore";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -81,6 +82,14 @@ export function DataTable<TData, TValue>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
 
+  // product id
+  const setProductId = useStore((state) => state.setEditProductDashboardId);
+
+  const handleEdit = (productId: string) => {
+    setProductId(productId);
+    navigate(`/dashboard/my-products/manage/edit`);
+  };
+
   return (
     <div className="space-y-4">
       <div className="rounded-md border">
@@ -109,11 +118,7 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableRow
                     key={row.id}
-                    onClick={
-                      link
-                        ? () => navigate(`/dashboard/my-products/manage?productId=${product.id}`)
-                        : undefined
-                    }
+                    onClick={() => handleEdit(product.id) }
                     className={`${link ? "cursor-pointer" : ""}`}
                     data-state={row.getIsSelected() && "selected"}
                   >
