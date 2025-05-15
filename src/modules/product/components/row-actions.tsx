@@ -1,6 +1,6 @@
 import { PopupDelete } from "@/components/popupDelete";
 import { Spinner } from "@/components/ui/spinner";
-import { Pencil, Trash2 } from "lucide-react";
+import {  Trash2 } from "lucide-react";
 import { useState } from "react";
 
 interface RowActionsProps {
@@ -24,18 +24,8 @@ export function RowActions({ productId, productName }: RowActionsProps) {
     }
   };
 
-  const handleEdit = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    console.log("Editar", productId);
-  };
-
   return (
     <div className="flex gap-4 items-center justify-start">
-      <Pencil
-        size={20}
-        onClick={handleEdit}
-        className="cursor-pointer text-muted-foreground hover:text-black"
-      />
       {loadingProductId === productId ? (
         <div className="flex items-center justify-center w-5 h-5">
           <Spinner size="sm" />

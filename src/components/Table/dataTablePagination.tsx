@@ -29,7 +29,6 @@ export function DataTablePagination<TData>({
 
 const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-
   useEffect(() => {
     setInternalPage(paginationPage);
   }, [paginationPage]);
@@ -43,8 +42,6 @@ const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
       setPage(page); // llamada externa después del delay
     }, 400);
   };
-
-
 
   return (
     <div className="flex items-center justify-end ">

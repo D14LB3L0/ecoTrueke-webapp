@@ -1,17 +1,22 @@
 import { Form, FormField, FormItem, FormLabel } from "@/components/ui/form";
-import { useUploadProductPageForm } from "../hooks/useUploadProductPageForm";
+import { useProductPageForm } from "../hooks/useProductPageForm";
 import ImageUploader from "@/components/ImageUploader";
 import { RequiredLabel } from "@/utils/requiredLabel";
 import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
-import { Textarea } from "@/components/ui/textarea";
 
 import { SelectWithErrorTooltip } from "@/utils/security/SelectWithErrorTooltip";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import { Textarea } from "@/components/ui/textarea";
 
-export const UploadProductPageForm = () => {
-  const { form, handleSubmit, isLoading, previewUrl } =
-    useUploadProductPageForm();
+interface IProductPageForm {
+  productId?: string;
+}
+
+export const ProductPageForm = ({ productId }: IProductPageForm) => {
+  const { form, handleSubmit, isLoading, previewUrl } = useProductPageForm({
+    productId,
+  });
 
   return (
     <Form {...form}>
@@ -60,7 +65,11 @@ export const UploadProductPageForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold">Descripción</FormLabel>
-              <Textarea placeholder="Describe tu producto" {...field} />
+              <Textarea
+                placeholder="Describe tu producto"
+                {...field}
+                value={field.value ?? ""} 
+              />
             </FormItem>
           )}
         />

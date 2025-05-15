@@ -39,7 +39,7 @@ export const SelectWithErrorTooltip = ({
 
     return (
         <div className="relative w-full">
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                 <FormControl>
                     <SelectTrigger
                         className={cn("w-full", error && "pr-10")}
