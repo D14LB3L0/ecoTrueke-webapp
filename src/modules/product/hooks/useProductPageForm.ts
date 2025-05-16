@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetPaginatedProducts } from "@/hooks/useGetPaginatedProducts";
 import { useStore } from "@/stores/useStore";
 import { useGetProduct } from "@/hooks/useGetProduct";
+import { EditProductRequest, EditProductService } from "../service/editProduct.service";
 
 interface IUseProductPageForm {
   productId?: string;
@@ -96,22 +97,52 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
   const handleSubmit = async (values: uploadProductFormValues) => {
     try {
       setIsLoading(true);
-      const registerProductRequest: RegisterProductRequest = {
-        productPicture: values.productPicture ?? null,
-        name: values.name.trim() ?? "",
-        description: values.description?.trim() ?? "",
-        typeTranscription: values.typeTransaction.trim() ?? "",
-        condition: values.condition.trim() ?? "",
-        category: values.category ?? [],
-        quantity: values.quantity ?? "",
-      };
 
-      const response = await RegisterProductService.registerProductService(
-        registerProductRequest
-      );
-      toast.dismiss();
-      toast.success(response.message ?? Success.GENERIC);
-      navigate("/dashboard/my-products");
+      if (productId) {
+        let editProductRequest: EditProductRequest = {
+          productId: productId,
+          name: values.name.trim() ?? "",
+          description: values.description?.trim() ?? "",
+          typeTranscription: values.typeTransaction.trim() ?? "",
+          condition: values.condition.trim() ?? "",
+          category: values.category ?? [],
+          quantity: values.quantity ?? "",
+        };
+
+        // CASE 1: Upload new image
+        if (values.productPicture instanceof File) {
+          editProductRequest.productPicture = values.productPicture;
+        }
+        // CASE 2: Delete image
+        else if (values.productPicture === null) {
+          editProductRequest.productPictureRemove = "true";
+        }
+
+        const response = await EditProductService.editProductService(editProductRequest)
+
+        if (response){
+          toast.dismiss();
+          toast.success(response.message ?? Success.GENERIC);
+        }
+
+      } else {
+        const registerProductRequest: RegisterProductRequest = {
+          productPicture: values.productPicture ?? null,
+          name: values.name.trim() ?? "",
+          description: values.description?.trim() ?? "",
+          typeTranscription: values.typeTransaction.trim() ?? "",
+          condition: values.condition.trim() ?? "",
+          category: values.category ?? [],
+          quantity: values.quantity ?? "",
+        };
+
+        const response = await RegisterProductService.registerProductService(
+          registerProductRequest
+        );
+        toast.dismiss();
+        toast.success(response.message ?? Success.GENERIC);
+        navigate("/dashboard/my-products");
+      }
       refetch();
     } catch (error: any) {
       toast.dismiss();

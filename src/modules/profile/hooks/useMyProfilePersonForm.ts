@@ -61,9 +61,6 @@ export const useMyProfilePersonForm = () => {
             else if (values.profilePicture === null) {
                 editPersonRequest.profilePictureRemove = "true";
             }
-            // CASE 3: No changes
-            else {
-            }
 
             const response = await EditPersonService.editPersonService(editPersonRequest);
             if (response) {
