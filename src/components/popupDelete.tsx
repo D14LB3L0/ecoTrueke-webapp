@@ -12,23 +12,47 @@ interface PopupDelete {
     isLoading: boolean
 }
 
-export const PopupDelete = ({ title, description, actionButton, handleSubmit, open, setOpen, isLoading }: PopupDelete) => {
-    return (
-        <Dialog open={open} onOpenChange={setOpen}>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>{title}</DialogTitle>
-                    <DialogDescription className="text-black">{description}</DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                    <Button disabled={isLoading} variant="outline" onClick={() => setOpen(false)}>
-                        Cancelar
-                    </Button>
-                    <Button disabled={isLoading} variant="destructive" onClick={handleSubmit}>
-                        {isLoading && <Spinner size="sm" />} {actionButton}
-                    </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
-    )
-}
+export const PopupDelete = ({
+  title,
+  description,
+  actionButton,
+  handleSubmit,
+  open,
+  setOpen,
+  isLoading,
+}: PopupDelete) => {
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <div onClick={(e) => e.stopPropagation()}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{title}</DialogTitle>
+            <DialogDescription className="text-black">
+              {description}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              disabled={isLoading}
+              variant="outline"
+              onClick={() => setOpen(false)}
+            >
+              Cancelar
+            </Button>
+            <Button
+              disabled={isLoading}
+              variant="destructive"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSubmit();
+              }}
+            >
+              {isLoading && <Spinner size="sm" />} {actionButton}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </div>
+    </Dialog>
+  );
+};
+
