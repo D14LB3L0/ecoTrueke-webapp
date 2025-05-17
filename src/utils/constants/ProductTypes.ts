@@ -1,4 +1,5 @@
 export const ProductStatus = {
+  active: "Activo",
   pending: "Pendiente",
   traded: "Intercambiado",
   sold: "Vendido",

@@ -5,6 +5,7 @@ export interface IProducts {
   quantity: number;
   typeTranscription: string;
   condition: string;
+  status: string;
 }
 
 export interface IProduct {

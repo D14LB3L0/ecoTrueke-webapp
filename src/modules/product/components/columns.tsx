@@ -4,6 +4,7 @@ import { DataTableColumnHeader } from "@/components/Table/DataTableColumnHeader"
 import { RowActions } from "./row-actions";
 import {
   mapProductCondition,
+  mapProductStatus,
   mapProductTransaction,
 } from "@/utils/mapper/Product.mapper";
 
@@ -56,6 +57,26 @@ export const columns: ColumnDef<IProducts, unknown>[] = [
         <div className="">
           <span className="capitalize break-words whitespace-normal">
             {readableTransaction}
+          </span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "status",
+       header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Estado"
+        className="text-left w-[80px] md:w-[60px]"
+      ></DataTableColumnHeader>
+    ),
+      cell: ({ row }) => {
+      const readableStatus = mapProductStatus(row.getValue("status"));
+      return (
+        <div className="">
+          <span className="capitalize break-words whitespace-normal">
+            {readableStatus}
           </span>
         </div>
       );

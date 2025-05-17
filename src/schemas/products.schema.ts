@@ -7,6 +7,7 @@ export const productsSchema = z.object({
   quantity: z.number(),
   typeTranscription: z.string(),
   condition: z.string(),
+  status: z.string()
 });
 
 export type Products = z.infer<typeof productsSchema>;
