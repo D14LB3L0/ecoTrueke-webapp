@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { IProducts } from "@/interfaces/product.interface";
 import { mapProductTransaction } from "@/utils/mapper/Product.mapper";
 
