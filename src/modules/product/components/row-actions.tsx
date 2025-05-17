@@ -1,7 +1,12 @@
 import { PopupDelete } from "@/components/popupDelete";
 import { Spinner } from "@/components/ui/spinner";
-import {  Trash2 } from "lucide-react";
-import { useState } from "react";
+import { Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { DeleteProductService } from "../service/deleteProduct.service";
+import { toast } from "sonner";
+import { Success } from "@/utils/constants/Success";
+import { useGetPaginatedProducts } from "@/hooks/useGetPaginatedProducts";
+import { useStore } from "@/stores/useStore";
 
 interface RowActionsProps {
   productId: string;
@@ -13,10 +18,26 @@ export function RowActions({ productId, productName }: RowActionsProps) {
   const [loadingProductId, setLoadingProductId] = useState<string | null>(null);
   const [loadingPopUp, setLoadingPopUp] = useState<boolean>(false);
 
+  // refetch list products
+  const { refetch } = useGetPaginatedProducts();
+
+  // list
+  const setPage = useStore((state) => state.setPaginationPageProductDashboard);
+  const page = useStore((state) => state.paginationPageProductDashboard);
+
   const handleSubmitDeleteProduct = async () => {
     try {
-      setLoadingProductId(productId);
       setLoadingPopUp(true);
+      setLoadingProductId(productId);
+
+      const response = await DeleteProductService.DeleteProduct(productId);
+      if (response) {
+        setPage(1);
+        refetch();
+        toast.dismiss();
+        toast.success(response.message ?? Success.GENERIC);
+      }
+      setOpen(false);
     } catch (error: any) {
     } finally {
       setLoadingPopUp(false);
@@ -24,11 +45,15 @@ export function RowActions({ productId, productName }: RowActionsProps) {
     }
   };
 
+  useEffect(() => {
+    refetch();
+  }, [page]);
+
   return (
     <div className="flex gap-4 items-center justify-start">
       {loadingProductId === productId ? (
         <div className="flex items-center justify-center w-5 h-5">
-          <Spinner size="sm" />
+          <Spinner size="sm" className="text-destructive" />
         </div>
       ) : (
         <Trash2

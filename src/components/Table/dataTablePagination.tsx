@@ -8,26 +8,24 @@ import {
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 
-
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
   totalPages: number;
-  setPage: (page: number) => void; 
-  paginationPage: number
+  setPage: (page: number) => void;
+  paginationPage: number;
 }
 
 export function DataTablePagination<TData>({
   table,
   totalPages,
   setPage,
-  paginationPage
+  paginationPage,
 }: DataTablePaginationProps<TData>) {
-
   const [internalPage, setInternalPage] = useState(
     table.getState().pagination.pageIndex + 1
   );
 
-const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setInternalPage(paginationPage);
@@ -46,16 +44,16 @@ const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   return (
     <div className="flex items-center justify-end ">
       <div className="flex items-center space-x-6 lg:space-x-8">
-        <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Página {internalPage} de {totalPages}
-        </div>
+        {totalPages > 0 && (
+          <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+            Página {internalPage} de {totalPages}
+          </div>
+        )}
         <div className="flex items-center space-x-2">
           <Button
             variant="outline"
             className="h-8 w-8 p-0"
-            onClick={() =>
-              handlePageChange(1, () => table.setPageIndex(0))
-            }
+            onClick={() => handlePageChange(1, () => table.setPageIndex(0))}
             disabled={internalPage === 1}
           >
             <ChevronsLeft />

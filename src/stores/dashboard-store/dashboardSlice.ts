@@ -15,7 +15,7 @@ export const createDashboardSlice: StateCreator<
   productsDashboard: [],
   setProductsDashboard: (products: IProducts[]) =>
     set({ productsDashboard: products }),
-  paginationTotalPagesProductDashboard: 1,
+  paginationTotalPagesProductDashboard: 0,
   setPagintaionTotalPagesProductDashboard: (paginationTotalPages: number) =>
     set({ paginationTotalPagesProductDashboard: paginationTotalPages }),
   paginationPageProductDashboard: 1,
