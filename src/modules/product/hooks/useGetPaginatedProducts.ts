@@ -1,26 +1,24 @@
 import { productsSchema } from "@/schemas/products.schema";
-import { GetPaginatedProductsService } from "@/service/getPaginatedProducts.service";
+import { GetPaginatedProductsService } from "@/modules/product/service/getPaginatedProducts.service";
 import { useStore } from "@/stores/useStore";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { z } from "zod";
 
 interface IUseGetPaginatedProducts {
-  myProducts?: boolean;
+  searchTerm: string;
 }
 
-export const useGetPaginatedProducts = ({ myProducts = false }: IUseGetPaginatedProducts = {}) => {
+export const useGetPaginatedProducts = ({
+  searchTerm,
+}: IUseGetPaginatedProducts) => {
   // product list
-  const setProducts = useStore((state) => state.setProductsDashboard);
+  const setProducts = useStore((state) => state.setProducts);
 
   // pagination data
-  const page = useStore((state) => state.paginationPageProductDashboard);
-  const amountPage = useStore(
-    (state) => state.paginationAmountPageProductDashboard
-  );
-  const totalPages = useStore(
-    (state) => state.setPagintaionTotalPagesProductDashboard
-  );
+  const page = useStore((state) => state.paginationPageProduct);
+  const amountPage = useStore((state) => state.paginationAmountPageProduct);
+  const totalPages = useStore((state) => state.setPagintaionTotalPagesProduct);
 
   // tanstack
   const query = useQuery({
@@ -29,7 +27,8 @@ export const useGetPaginatedProducts = ({ myProducts = false }: IUseGetPaginated
       const response = await GetPaginatedProductsService.getPaginatedProducts({
         page,
         amountPage,
-        myProducts
+        myProducts: false,
+        searchTerm,
       });
 
       return {
@@ -38,6 +37,7 @@ export const useGetPaginatedProducts = ({ myProducts = false }: IUseGetPaginated
       };
     },
     staleTime: 30000,
+    enabled: false,
     retry: false,
     gcTime: 30000,
   });

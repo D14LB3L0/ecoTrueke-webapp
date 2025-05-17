@@ -13,7 +13,7 @@ import {
 } from "../service/registerProduct.service";
 import { Success } from "@/utils/constants/Success";
 import { useNavigate } from "react-router-dom";
-import { useGetPaginatedProducts } from "@/hooks/useGetPaginatedProducts";
+import { useGetPaginatedProductsDashboard } from "@/modules/product/hooks/useGetPaginatedProductsDashboard";
 import { useStore } from "@/stores/useStore";
 import { useGetProduct } from "@/hooks/useGetProduct";
 import { EditProductRequest, EditProductService } from "../service/editProduct.service";
@@ -40,7 +40,7 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
     : undefined;
 
   // refetch list products
-  const { refetch } = useGetPaginatedProducts({ myProducts: true });
+  const { refetch } = useGetPaginatedProductsDashboard({ myProducts: true });
 
   const form = useForm<uploadProductFormValues>({
     resolver: zodResolver(uploadProductFormSchema),

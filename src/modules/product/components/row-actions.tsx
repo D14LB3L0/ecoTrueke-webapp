@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { DeleteProductService } from "../service/deleteProduct.service";
 import { toast } from "sonner";
 import { Success } from "@/utils/constants/Success";
-import { useGetPaginatedProducts } from "@/hooks/useGetPaginatedProducts";
+import { useGetPaginatedProductsDashboard } from "@/modules/product/hooks/useGetPaginatedProductsDashboard";
 import { useStore } from "@/stores/useStore";
 
 interface RowActionsProps {
@@ -19,7 +19,7 @@ export function RowActions({ productId, productName }: RowActionsProps) {
   const [loadingPopUp, setLoadingPopUp] = useState<boolean>(false);
 
   // refetch list products
-  const { refetch } = useGetPaginatedProducts({ myProducts: true });
+  const { refetch } = useGetPaginatedProductsDashboard({ myProducts: true });
 
   // list
   const setPage = useStore((state) => state.setPaginationPageProductDashboard);

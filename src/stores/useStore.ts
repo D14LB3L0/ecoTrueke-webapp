@@ -36,6 +36,7 @@ export const useStore = create<SharedState>()(
         collapsedSideBar: state.collapsedSideBar,
         editProductDashboardId: state.editProductDashboardId,
         paginationPageProductDashboard: state.paginationPageProductDashboard,
+        products: state.products
       }),
     }
   )

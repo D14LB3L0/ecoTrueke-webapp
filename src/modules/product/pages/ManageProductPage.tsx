@@ -1,8 +1,8 @@
 import { DataTable } from "@/components/Table/DataTable";
 import { useStore } from "@/stores/useStore";
-import { columns } from "../components/columns";
 import { Card, CardContent } from "@/components/ui/card";
-import { useGetPaginatedProducts } from "@/hooks/useGetPaginatedProducts";
+import { useGetPaginatedProductsDashboard } from "@/modules/product/hooks/useGetPaginatedProductsDashboard";
+import { columns } from "../components/columns";
 
 export const ManageProductPage = () => {
   // pagination
@@ -20,7 +20,7 @@ export const ManageProductPage = () => {
   // product
   const products = useStore((state) => state.productsDashboard);
 
-  useGetPaginatedProducts({ myProducts: true });
+  useGetPaginatedProductsDashboard({ myProducts: true });
 
   return (
     <div className="space-y-6 min-w-[308px]">
