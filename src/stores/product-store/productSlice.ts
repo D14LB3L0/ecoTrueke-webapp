@@ -17,7 +17,11 @@ export const createProductSlice: StateCreator<
   setPaginationPageProduct: (paginationPage: number) =>
     set({ paginationPageProduct: paginationPage }),
   paginationAmountPageProduct: 20,
+  productId: "",
+  setProductId: (productId: string) => set({ productId }),
   product: {
+    id:"",
+    userId: "",
     productPicture: "",
     name: "",
     description: "",

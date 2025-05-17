@@ -7,7 +7,7 @@ import { InputWithErrorTooltip } from "@/utils/security/inputWithErrorTooltip";
 import { SelectWithErrorTooltip } from "@/utils/security/SelectWithErrorTooltip";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { Textarea } from "@/components/ui/textarea";
+import { TextareaWithCounter } from "@/components/ui/textarea";
 
 interface IProductPageForm {
   productId?: string;
@@ -65,10 +65,11 @@ export const ProductPageForm = ({ productId }: IProductPageForm) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold">Descripción</FormLabel>
-              <Textarea
+              <TextareaWithCounter
+                maxLength={300}
                 placeholder="Describe tu producto"
                 {...field}
-                value={field.value ?? ""} 
+                value={field.value ?? ""}
               />
             </FormItem>
           )}
@@ -153,11 +154,11 @@ export const ProductPageForm = ({ productId }: IProductPageForm) => {
           render={({ field }) => {
             const options = [
               { label: "Tecnología", value: "technology" },
-              { label: "Ropa y calzado", value: "clothing" },
-              { label: "Hogar y muebles", value: "home" },
-              { label: "Juguetes y juegos", value: "toys" },
+              { label: "Ropa", value: "clothing" },
+              { label: "Hogar", value: "home" },
+              { label: "Juegos", value: "toys" },
               { label: "Deportes", value: "sports" },
-              { label: "Libros y papelería", value: "books" },
+              { label: "Libros", value: "books" },
               { label: "Vehículos", value: "vehicles" },
               { label: "Otros", value: "others" },
             ];

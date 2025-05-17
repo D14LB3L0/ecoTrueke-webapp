@@ -16,7 +16,10 @@ import { useNavigate } from "react-router-dom";
 import { useGetPaginatedProductsDashboard } from "@/modules/product/hooks/useGetPaginatedProductsDashboard";
 import { useStore } from "@/stores/useStore";
 import { useGetProduct } from "@/hooks/useGetProduct";
-import { EditProductRequest, EditProductService } from "../service/editProduct.service";
+import {
+  EditProductRequest,
+  EditProductService,
+} from "../service/editProduct.service";
 
 interface IUseProductPageForm {
   productId?: string;
@@ -28,7 +31,7 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
   const navigate = useNavigate();
 
   // get product
-  useGetProduct({ productId: productId ?? undefined });
+  useGetProduct({ productId: productId ?? undefined, dashboard: true });
 
   const currentProduct = useStore((state) => state.productDashboard);
   const setCurrentProduct = useStore((state) => state.setProductDashboard);
@@ -118,13 +121,14 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
           editProductRequest.productPictureRemove = "true";
         }
 
-        const response = await EditProductService.editProductService(editProductRequest)
+        const response = await EditProductService.editProductService(
+          editProductRequest
+        );
 
-        if (response){
+        if (response) {
           toast.dismiss();
           toast.success(response.message ?? Success.GENERIC);
         }
-
       } else {
         const registerProductRequest: RegisterProductRequest = {
           productPicture: values.productPicture ?? null,

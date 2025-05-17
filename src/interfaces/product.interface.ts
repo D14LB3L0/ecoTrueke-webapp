@@ -9,6 +9,8 @@ export interface IProducts {
 }
 
 export interface IProduct {
+  id: string;
+  userId: string;
   productPicture: string | null;
   name: string;
   description: string | null;
