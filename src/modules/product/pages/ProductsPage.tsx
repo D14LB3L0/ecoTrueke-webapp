@@ -3,17 +3,18 @@ import { PaginatedProductGrid } from "../components/PaginatedProduct";
 
 export const ProductsPage = () => {
   const products = useStore((state) => state.products);
-  const paginationAmount = useStore((state) => state.paginationAmountPageProduct);
+  const paginationAmount = useStore(
+    (state) => state.paginationAmountPageProduct
+  );
 
   return (
     <div className="flex justify-center items-center">
-      <div className="max-w-[810px] flex justify-between items-start p-2">
-        <div className="min-w-[210px]">filtros</div>
-        <div className="min-w-[600px]">
+      <div className="max-w-[810px] flex flex-col lg:flex-row p-2 ">
+        <div className="md:min-w-[210px]">filtros</div>
+        <div className="md:min-w-[600px]">
           <PaginatedProductGrid
             products={products}
             productsPerPage={paginationAmount}
-            columns={3}
           />
         </div>
       </div>

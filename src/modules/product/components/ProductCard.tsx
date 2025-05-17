@@ -8,17 +8,15 @@ interface IProductCard {
 }
 
 export const ProductCard = ({ products }: IProductCard) => {
-  console.log(products);
-
   return (
     <div className="space-y-4">
-      <div className="font-semibold text-2xl">Resultados de búsqueda</div>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="font-semibold text-2xl flex justify-center md:justify-start">Resultados de búsqueda</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-center justify-center">
         {products.map((product: IProducts) => {
           return (
             <Card
               key={product.id}
-              className="w-[180px] rounded-lg shadow-md overflow-hidden p-0"
+              className="w-full rounded-lg shadow-md overflow-hidden p-0"
             >
               <div className="flex flex-col gap-2">
                 <div className="h-[100px] flex items-center justify-center mt-4">
