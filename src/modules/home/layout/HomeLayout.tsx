@@ -1,6 +1,7 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom"
 import { HomePage } from "../pages/HomePage"
 import { HeaderLayout } from "@/modules/mainLayout/components/HeaderLayout"
+import { ProductsPage } from "@/modules/product/pages/ProductsPage"
 
 const HomeLayout = () => {
     return (
@@ -10,6 +11,7 @@ const HomeLayout = () => {
                 <Route element={<HeaderLayout />}>
                     <Route path="/*" element={<Navigate to="/home" replace />} />
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/products" element={<ProductsPage />} />
                 </Route>
             </Routes>
         </>

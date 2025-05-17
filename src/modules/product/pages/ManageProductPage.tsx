@@ -1,8 +1,8 @@
 import { DataTable } from "@/components/Table/DataTable";
 import { useStore } from "@/stores/useStore";
-import { columns } from "../components/columns";
 import { Card, CardContent } from "@/components/ui/card";
 import { useGetPaginatedProductsDashboard } from "@/modules/product/hooks/useGetPaginatedProductsDashboard";
+import { columns } from "../components/columns";
 
 export const ManageProductPage = () => {
   // pagination

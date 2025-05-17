@@ -30,7 +30,7 @@ export const columns: ColumnDef<IProducts, unknown>[] = [
                   }`
                 : "/placeholder/placeholder.jpg"
             }
-            alt="Producto"
+            alt="producto"
             className="w-12 h-12 rounded object-cover"
           />
           <span className="capitalize break-words whitespace-normal">
