@@ -19,7 +19,7 @@ export function RowActions({ productId, productName }: RowActionsProps) {
   const [loadingPopUp, setLoadingPopUp] = useState<boolean>(false);
 
   // refetch list products
-  const { refetch } = useGetPaginatedProducts();
+  const { refetch } = useGetPaginatedProducts({ myProducts: true });
 
   // list
   const setPage = useStore((state) => state.setPaginationPageProductDashboard);

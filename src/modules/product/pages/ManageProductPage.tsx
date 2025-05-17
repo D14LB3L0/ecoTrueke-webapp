@@ -20,7 +20,7 @@ export const ManageProductPage = () => {
   // product
   const products = useStore((state) => state.productsDashboard);
 
-  useGetPaginatedProducts();
+  useGetPaginatedProducts({ myProducts: true });
 
   return (
     <div className="space-y-6 min-w-[308px]">

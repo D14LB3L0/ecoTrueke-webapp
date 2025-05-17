@@ -4,6 +4,7 @@ import { IProducts } from "@/interfaces/product.interface";
 export interface GetPaginatedProductssRequest {
   page: number;
   amountPage: number;
+  myProducts: boolean
 }
 
 

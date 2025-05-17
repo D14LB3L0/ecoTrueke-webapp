@@ -5,7 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { z } from "zod";
 
-export const useGetPaginatedProducts = () => {
+interface IUseGetPaginatedProducts {
+  myProducts?: boolean;
+}
+
+export const useGetPaginatedProducts = ({ myProducts = false }: IUseGetPaginatedProducts = {}) => {
   // product list
   const setProducts = useStore((state) => state.setProductsDashboard);
 
@@ -25,6 +29,7 @@ export const useGetPaginatedProducts = () => {
       const response = await GetPaginatedProductsService.getPaginatedProducts({
         page,
         amountPage,
+        myProducts
       });
 
       return {

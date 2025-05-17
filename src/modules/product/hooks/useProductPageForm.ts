@@ -40,7 +40,7 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
     : undefined;
 
   // refetch list products
-  const { refetch } = useGetPaginatedProducts();
+  const { refetch } = useGetPaginatedProducts({ myProducts: true });
 
   const form = useForm<uploadProductFormValues>({
     resolver: zodResolver(uploadProductFormSchema),
