@@ -1,4 +1,3 @@
-"use client"
 
 import { useState, useEffect } from "react"
 import type { IProducts } from "@/interfaces/product.interface"
@@ -8,10 +7,9 @@ import { ProductCard } from "./ProductCard"
 interface PaginatedProductGridProps {
   products: IProducts[]
   productsPerPage?: number
-  columns?: number
 }
 
-export const PaginatedProductGrid = ({ products, productsPerPage = 6, columns = 3 }: PaginatedProductGridProps) => {
+export const PaginatedProductGrid = ({ products, productsPerPage = 6 }: PaginatedProductGridProps) => {
   const [currentPage, setCurrentPage] = useState(1)
   const totalPages = Math.ceil(products.length / productsPerPage)
 

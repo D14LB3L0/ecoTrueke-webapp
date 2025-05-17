@@ -23,6 +23,8 @@ export const createDashboardSlice: StateCreator<
     set({ paginationPageProductDashboard: paginationPage }),
   paginationAmountPageProductDashboard: 2,
   productDashboard: {
+    id: "",
+    userId: "",
     productPicture: "",
     name: "",
     description: "",
@@ -32,7 +34,8 @@ export const createDashboardSlice: StateCreator<
     status: "",
     quantity: 1,
   },
-  setProductDashboard: (productDashboard: IProduct) => set ({ productDashboard }),
+  setProductDashboard: (productDashboard: IProduct) =>
+    set({ productDashboard }),
   editProductDashboardId: "",
   setEditProductDashboardId: (editProductDashboardId: string) =>
     set({ editProductDashboardId }),

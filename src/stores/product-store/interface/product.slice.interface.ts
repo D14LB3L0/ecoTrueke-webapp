@@ -8,6 +8,8 @@ export interface IProductSlice {
   paginationPageProduct: number;
   setPaginationPageProduct: (paginationPage: number) => void;
   paginationAmountPageProduct: number;
+  productId: string;
+  setProductId: (productId: string) => void;
   product: IProduct;
   setProduct: (product: IProduct) => void;
 }

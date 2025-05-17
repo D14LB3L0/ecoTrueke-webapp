@@ -6,11 +6,16 @@ import { useEffect } from "react";
 
 interface IUseGetProduct {
   productId: string | undefined;
+  dashboard?: boolean;
 }
 
-export const useGetProduct = ({ productId }: IUseGetProduct) => {
+export const useGetProduct = ({
+  productId,
+  dashboard = false,
+}: IUseGetProduct) => {
   // product
-  const setProduct = useStore((state) => state.setProductDashboard);
+  const setProductDashboard = useStore((state) => state.setProductDashboard);
+  const setProduct = useStore((state) => state.setProduct);
 
   // tanstack
   const query = useQuery({
@@ -30,19 +35,23 @@ export const useGetProduct = ({ productId }: IUseGetProduct) => {
   });
 
   useEffect(() => {
-    if (query.data) {
-      setProduct(query.data.product);
-    } else if (query.isFetched) {
-      setProduct({
-        productPicture: "",
-        name: "",
-        description: null,
-        typeTranscription: "",
-        category: [],
-        condition: "",
-        status: "",
-        quantity: 1,
-      });
+    if (dashboard) {
+      if (query.data) {
+        setProductDashboard(query.data.product);
+      } else if (query.isFetched) {
+        setProductDashboard({
+          productPicture: "",
+          name: "",
+          description: null,
+          typeTranscription: "",
+          category: [],
+          condition: "",
+          status: "",
+          quantity: 1,
+        });
+      }
+    } else {
+      if (query.data) setProduct(query.data?.product);
     }
   }, [query.data]);
 

@@ -15,3 +15,14 @@ export const ProductCondition = {
   fair: "Regular",
   poor: "Malo",
 };
+
+export const ProductCategory = {
+  technology: "Tecnología",
+  clothing: "Ropa",
+  home: "Hogar",
+  toys: "Juegos",
+  sports: "Deportes",
+  books: "Libros",
+  vehicles: "Vehículos",
+  others: "Otros",
+} as const;
