@@ -15,7 +15,7 @@ export interface IDashboardSlice {
   setPaginationPageProductDashboard: (paginationPage: number) => void;
   paginationAmountPageProductDashboard: number;
   productDashboard: IProduct;
-  setProductDashboard: (product: IProduct) => void;
+  setProductDashboard: (productDashboard: IProduct) => void;
   editProductDashboardId: string;
   setEditProductDashboardId: (editProductDashboardId: string) => void;
 }
