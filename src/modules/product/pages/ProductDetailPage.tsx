@@ -7,12 +7,16 @@ import {
   mapProductStatus,
   mapProductTransaction,
 } from "@/utils/mapper/Product.mapper";
+import { useState } from "react";
+import { ChooseProductExchange } from "../components/popup/ChooseProductExchange";
 
 export const ProductDetailPage = () => {
   const productId = useStore((state) => state.productId);
   const product = useStore((state) => state.product);
 
   useGetProduct({ productId });
+
+  const [openChooseProduct, setOpenChooseProduct] = useState<boolean>(false);
 
   return (
     <div className="p-4">
@@ -93,10 +97,20 @@ export const ProductDetailPage = () => {
             <Button variant="link" className=" text-sm">
               Ver detalles del usuario
             </Button>
-            <Button className="w-full ">Solicitar intercambio</Button>
+            <Button
+              className="w-full"
+              onClick={() => setOpenChooseProduct(true)}
+            >
+              Solicitar intercambio
+            </Button>
           </div>
         </div>
       </div>
+
+      <ChooseProductExchange
+        open={openChooseProduct}
+        setOpen={setOpenChooseProduct}
+      />
     </div>
   );
 };

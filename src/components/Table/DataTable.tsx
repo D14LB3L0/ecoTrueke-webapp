@@ -118,7 +118,7 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableRow
                     key={row.id}
-                    onClick={() => handleEdit(product.id) }
+                    onClick={() => link && handleEdit(product.id)}
                     className={`${link ? "cursor-pointer" : ""}`}
                     data-state={row.getIsSelected() && "selected"}
                   >
