@@ -6,6 +6,14 @@ import { useStore } from "@/stores/useStore";
 import { IProducts } from "@/interfaces/product.interface";
 import { useEffect, useMemo, useState } from "react";
 import { ChooseExchangeColumn } from "../ChooseExchangeColumn";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { Error } from "@/utils/constants/Error";
+import {
+  ProposalExchangeRequest,
+  ProposalExchangeService,
+} from "../../service/proposalExchange.service";
+import { Success } from "@/utils/constants/Success";
 
 interface ChooseProductExchange {
   open: boolean;
@@ -16,8 +24,11 @@ export const ChooseProductExchange = ({
   open,
   setOpen,
 }: ChooseProductExchange) => {
+  // products
   const products = useStore((state) => state.productsDashboard);
+  const product = useStore((state) => state.product);
 
+  // pagination
   const paginationAmountPage = useStore(
     (state) => state.paginationAmountPageProductDashboard
   );
@@ -30,19 +41,54 @@ export const ChooseProductExchange = ({
     (state) => state.paginationTotalPagesProductDashboard
   );
 
+  // filter products
   const filteredProducts = useMemo(() => {
     return products.filter((product: IProducts) => product.status === "active");
   }, [products]);
 
+  // set page
   useEffect(() => {
     setPage(1);
   }, []);
 
+  // product selected
   const [selectedProductId, setSelectedProductId] = useState<string | null>(
     null
   );
 
+  // get products
   useGetPaginatedProductsDashboard({ myProducts: true });
+
+  const handleExchange = async () => {
+    if (selectedProductId === null) {
+      toast.dismiss();
+      toast.warning("No se selecciono ningún producto.");
+    }
+
+    const proposalExchangeRequest: ProposalExchangeRequest = {
+      ownerId: product.userId,
+      proposalType: product.typeTranscription,
+      offeredProductId: selectedProductId,
+      requestedProductId: product.id,
+    };
+
+    const response = await ProposalExchangeService.proposalExchangeService(
+      proposalExchangeRequest
+    );
+
+    if (response) {
+      toast.dismiss();
+      toast.success(response.message ?? Success.GENERIC);
+      setOpen(false);
+      setSelectedProductId(null);
+    }
+
+    try {
+    } catch (error: any) {
+      toast.dismiss();
+      toast.warning(error?.response.data.message ?? Error.UNEXPECTED_ERROR);
+    }
+  };
 
   return (
     <Dialog
@@ -54,7 +100,9 @@ export const ChooseProductExchange = ({
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="font-bold text-primary">Selecciona un producto para ofrecer</DialogTitle>
+          <DialogTitle className="font-bold text-primary">
+            Selecciona un producto para ofrecer
+          </DialogTitle>
         </DialogHeader>
         <DataTable
           columns={ChooseExchangeColumn(
@@ -68,6 +116,10 @@ export const ChooseProductExchange = ({
           totalPages={totalPages}
           link={false}
         />
+
+        <div className="flex justify-end">
+          <Button onClick={handleExchange}>Enviar solicitud</Button>
+        </div>
       </DialogContent>
     </Dialog>
   );

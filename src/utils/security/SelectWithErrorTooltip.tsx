@@ -26,6 +26,7 @@ interface SelectWithErrorTooltipProps {
         label: string;
         value: string;
     }[];
+    disabled?: boolean
 }
 
 export const SelectWithErrorTooltip = ({
@@ -34,12 +35,13 @@ export const SelectWithErrorTooltip = ({
     name,
     placeholder,
     options,
+    disabled
 }: SelectWithErrorTooltipProps) => {
     const error = formState?.errors?.[name]?.message;
 
     return (
         <div className="relative w-full">
-            <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+            <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value} disabled={disabled}>
                 <FormControl>
                     <SelectTrigger
                         className={cn("w-full", error && "pr-10")}

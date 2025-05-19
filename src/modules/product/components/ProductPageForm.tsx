@@ -111,6 +111,7 @@ export const ProductPageForm = ({ productId }: IProductPageForm) => {
                     <RequiredLabel>Tipo de transacción</RequiredLabel>
                   </FormLabel>
                   <SelectWithErrorTooltip
+                    disabled={productId ? true : false}
                     field={field}
                     formState={form.formState}
                     name="typeTransaction"
