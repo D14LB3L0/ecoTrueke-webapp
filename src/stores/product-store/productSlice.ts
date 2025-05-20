@@ -9,7 +9,7 @@ export const createProductSlice: StateCreator<
   IProductSlice
 > = (set) => ({
   products: [],
-  setProducts: (products: IProducts[]) => set({ products: products }),
+  setProducts: (products: IProducts[]) => set({ products }),
   paginationTotalPagesProduct: 0,
   setPagintaionTotalPagesProduct: (paginationTotalPages: number) =>
     set({ paginationTotalPagesProduct: paginationTotalPages }),
@@ -20,7 +20,7 @@ export const createProductSlice: StateCreator<
   productId: "",
   setProductId: (productId: string) => set({ productId }),
   product: {
-    id:"",
+    id: "",
     userId: "",
     productPicture: "",
     name: "",

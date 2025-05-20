@@ -10,12 +10,15 @@ import { INotificationSlice } from "./notification-store/interfacaes/notificatio
 import { createNotificationSlice } from "./notification-store/notificationSlice";
 import { IProductSlice } from "./product-store/interface/product.slice.interface";
 import { createProductSlice } from "./product-store/productSlice";
+import { IProposalSlice } from "./proposal-store/interface/proposal.slice.interface";
+import { createProposalSlice } from "./proposal-store/proposalSlice";
 
 type SharedState = IUserSlice &
   IPersonSlice &
   IDashboardSlice &
   INotificationSlice &
-  IProductSlice;
+  IProductSlice &
+  IProposalSlice
 
 export const useStore = create<SharedState>()(
   persist(
@@ -25,6 +28,7 @@ export const useStore = create<SharedState>()(
       ...createDashboardSlice(set, get, store),
       ...createNotificationSlice(set, get, store),
       ...createProductSlice(set, get, store),
+      ...createProposalSlice(set,get,store)
     }),
     {
       name: "storage",
@@ -38,6 +42,7 @@ export const useStore = create<SharedState>()(
         paginationPageProductDashboard: state.paginationPageProductDashboard,
         products: state.products,
         productId: state.productId,
+        proposals: state.proposals
       }),
     }
   )
