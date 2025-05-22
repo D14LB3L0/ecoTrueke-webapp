@@ -14,6 +14,7 @@ import {
   ProposalExchangeService,
 } from "../../service/proposalExchange.service";
 import { Success } from "@/utils/constants/Success";
+import { useGetProposalRequested } from "@/hooks/useGetProposalRequested";
 
 interface ChooseProductExchange {
   open: boolean;
@@ -56,6 +57,8 @@ export const ChooseProductExchange = ({
     null
   );
 
+  const { refetch } = useGetProposalRequested();
+
   // get products
   useGetPaginatedProductsDashboard({ myProducts: true });
 
@@ -81,6 +84,7 @@ export const ChooseProductExchange = ({
       toast.success(response.message ?? Success.GENERIC);
       setOpen(false);
       setSelectedProductId(null);
+      refetch();
     }
 
     try {

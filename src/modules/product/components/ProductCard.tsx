@@ -13,7 +13,7 @@ interface IProductCard {
 export const ProductCard = ({ products }: IProductCard) => {
   const setProductId = useStore((state) => state.setProductId);
 
-  const proposals = useStore((state) => state.proposals);
+  const proposals = useStore((state) => state.proposalsRequested);
 
   const requestedProductIds = useMemo(() => {
     return new Set(proposals.map((p) => p.requestedProductId));

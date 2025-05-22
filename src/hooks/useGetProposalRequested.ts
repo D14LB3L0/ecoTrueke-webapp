@@ -1,20 +1,19 @@
 import { proposalSchema } from "@/schemas/proposals.schema";
-import { GetProposalService } from "@/service/getProposal.service";
+import { GetProposalRequestedService } from "@/service/getProposalRequested.service";
 import { useStore } from "@/stores/useStore";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { z } from "zod";
 
-export const useGetProposal = () => {
+export const useGetProposalRequested = () => {
   // proposal
-  const setProposals = useStore((state) => state.setProposals);
+  const setProposals = useStore((state) => state.setProposalsRequested);
 
   // tanstack
   const query = useQuery({
-    queryKey: ["getProposal"],
+    queryKey: ["getProposalRequested"],
     queryFn: async () => {
-      const response = await GetProposalService.getProposal();
-      console.log(response.proposals);
+      const response = await GetProposalRequestedService.getProposalRequested();
       return {
         proposals: z.array(proposalSchema).parse(response.proposals),
       };

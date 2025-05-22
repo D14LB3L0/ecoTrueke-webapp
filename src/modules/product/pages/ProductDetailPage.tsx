@@ -19,7 +19,7 @@ export const ProductDetailPage = () => {
   const [openChooseProduct, setOpenChooseProduct] = useState<boolean>(false);
 
   // proposal
-  const proposals = useStore((state) => state.proposals);
+  const proposals = useStore((state) => state.proposalsRequested);
   const hasRequest = proposals.some((p) => p.requestedProductId === product.id);
 
   return (

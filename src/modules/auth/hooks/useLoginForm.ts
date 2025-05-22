@@ -7,7 +7,7 @@ import { useStore } from "@/stores/useStore";
 import { toast } from "sonner";
 import { Error } from "@/utils/constants/Error";
 import { useNavigate } from "react-router-dom";
-import { useGetProposal } from "@/hooks/useGetProposal";
+import { useGetProposalRequested } from "@/hooks/useGetProposalRequested";
 
 export const useLoginForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -31,7 +31,7 @@ export const useLoginForm = () => {
   });
 
   // get proposal
-  const { refetch } = useGetProposal();
+  const { refetch } = useGetProposalRequested();
 
   // login user
   const handleSubmit = async (values: loginFormValues) => {
@@ -53,10 +53,10 @@ export const useLoginForm = () => {
           email: response.data.user.email,
           accountStatus: response.data.user.accountStatus,
         });
+        refetch();
         setPerson({ ...person, ...response.data.person });
         navigate("/home");
 
-        refetch();
       }
     } catch (error: any) {
       toast.dismiss();

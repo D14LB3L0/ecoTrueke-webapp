@@ -42,7 +42,7 @@ export const useStore = create<SharedState>()(
         paginationPageProductDashboard: state.paginationPageProductDashboard,
         products: state.products,
         productId: state.productId,
-        proposals: state.proposals
+        proposalsRequested: state.proposalsRequested
       }),
     }
   )
