@@ -2,7 +2,7 @@ import ecoTruekeApi from "@/api/ecoTrueke.api";
 import { IProposal } from "@/interfaces/proposal.interface";
 
 export interface GetProposalResponse {
-  proposal: IProposal[];
+  proposals: IProposal[];
 }
 
 interface GetProposalDataResponse {

@@ -18,6 +18,10 @@ export const ProductDetailPage = () => {
 
   const [openChooseProduct, setOpenChooseProduct] = useState<boolean>(false);
 
+  // proposal
+  const proposals = useStore((state) => state.proposals);
+  const hasRequest = proposals.some((p) => p.requestedProductId === product.id);
+
   return (
     <div className="p-4">
       <div className="max-w-[810px] mx-auto mb-4 md:flex md:gap-8 rounded-lg shadow-md p-6 bg-muted/50">
@@ -97,12 +101,18 @@ export const ProductDetailPage = () => {
             <Button variant="link" className=" text-sm">
               Ver detalles del usuario
             </Button>
-            <Button
-              className="w-full"
-              onClick={() => setOpenChooseProduct(true)}
-            >
-              Solicitar intercambio
-            </Button>
+            {hasRequest ? (
+              <div className="w-full text-center py-2 rounded-md text-sm font-medium shadow-sm">
+                Ya solicitaste este producto
+              </div>
+            ) : (
+              <Button
+                className="w-full"
+                onClick={() => setOpenChooseProduct(true)}
+              >
+                Solicitar intercambio
+              </Button>
+            )}
           </div>
         </div>
       </div>

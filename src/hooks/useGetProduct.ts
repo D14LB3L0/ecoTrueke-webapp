@@ -40,6 +40,8 @@ export const useGetProduct = ({
         setProductDashboard(query.data.product);
       } else if (query.isFetched) {
         setProductDashboard({
+          userId: "",
+          id: "",
           productPicture: "",
           name: "",
           description: null,

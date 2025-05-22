@@ -85,6 +85,8 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
         category: [],
       });
       setCurrentProduct({
+        id:"",
+        userId: "",
         productPicture: "",
         name: "",
         description: null,
