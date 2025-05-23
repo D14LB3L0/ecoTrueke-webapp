@@ -1,6 +1,6 @@
 import LinkCard from "@/components/LinkCard";
 import { Card, CardContent } from "@/components/ui/card";
-import { Boxes, Upload } from "lucide-react";
+import { Boxes, Upload, Handshake } from "lucide-react";
 
 export const MyProductsPage = () => {
   return (
@@ -27,6 +27,12 @@ export const MyProductsPage = () => {
             icon={<Boxes size="40px" className="mx-auto" />}
             title="Ver productos"
             description="Revisa y gestiona todos los productos que has registrado."
+          />
+          <LinkCard
+            to="/dashboard/my-products/proposal"
+            icon={<Handshake size="40px" className="mx-auto" />}
+            title="Gestionar propuestas"
+            description="Acepta o rechaza propuestas de intercambio recibidas en tus productos."
           />
         </CardContent>
       </Card>

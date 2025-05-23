@@ -15,7 +15,8 @@ const breadcrumbMap: Record<string, string> = {
     "my-products": "Mis productos",
     upload: "Subir producto",
     manage: "Gestionar productos",
-    edit: "Editar"
+    edit: "Editar",
+    proposal: "Propuestas"
 };
 
 export const DynamicBreadcrumb = () => {

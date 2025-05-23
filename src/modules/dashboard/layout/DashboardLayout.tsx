@@ -6,6 +6,7 @@ import { MyProductsPage } from "@/modules/product/pages/MyProductsPage";
 import { UploadProductPage } from "@/modules/product/pages/UploadProductPage";
 import { ManageProductPage } from "@/modules/product/pages/ManageProductPage";
 import { EditProductPage } from "@/modules/product/pages/EditProductPage";
+import { ProposalProductPage } from "@/modules/product/pages/ProposalProductPage";
 
 const DashboardLayout = () => {
   return (
@@ -22,6 +23,7 @@ const DashboardLayout = () => {
           <Route path="/my-products/manage" element={<ManageProductPage />} />
           <Route path="/my-products/manage/view" element={<ManageProductPage />} />
           <Route path="/my-products/manage/edit" element={<EditProductPage />} />
+          <Route path="/my-products/proposal" element={<ProposalProductPage />} />
         </Route>
       </Routes>
     </>

@@ -18,7 +18,7 @@ type SharedState = IUserSlice &
   IDashboardSlice &
   INotificationSlice &
   IProductSlice &
-  IProposalSlice
+  IProposalSlice;
 
 export const useStore = create<SharedState>()(
   persist(
@@ -28,7 +28,7 @@ export const useStore = create<SharedState>()(
       ...createDashboardSlice(set, get, store),
       ...createNotificationSlice(set, get, store),
       ...createProductSlice(set, get, store),
-      ...createProposalSlice(set,get,store)
+      ...createProposalSlice(set, get, store),
     }),
     {
       name: "storage",
@@ -42,7 +42,8 @@ export const useStore = create<SharedState>()(
         paginationPageProductDashboard: state.paginationPageProductDashboard,
         products: state.products,
         productId: state.productId,
-        proposalsRequested: state.proposalsRequested
+        proposalsRequested: state.proposalsRequested,
+        proposals: state.proposals,
       }),
     }
   )
