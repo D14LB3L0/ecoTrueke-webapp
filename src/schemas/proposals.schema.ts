@@ -25,6 +25,7 @@ export const personDtoSchema = z.object({
 export const productDtoSchema = z.object({
   id: z.string(),
   name: z.string(),
+  productPicture: z.string()
 });
 
 export const proposalProductSchema = z.object({

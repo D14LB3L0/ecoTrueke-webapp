@@ -34,6 +34,7 @@ interface DataTableProps<TData, TValue> {
   paginationAmountPage: number;
   totalPages: number;
   link?: boolean;
+  details?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -44,6 +45,7 @@ export function DataTable<TData, TValue>({
   paginationAmountPage,
   totalPages,
   link,
+  details,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
@@ -90,6 +92,11 @@ export function DataTable<TData, TValue>({
     navigate(`/dashboard/my-products/manage/edit`);
   };
 
+  const handleDetails = (productId: string) => {
+    setProductId(productId);
+    navigate(`/home/product/details?proposal=true`);
+  };
+
   return (
     <div className="space-y-4">
       <div className="rounded-md border">
@@ -118,7 +125,13 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableRow
                     key={row.id}
-                    onClick={() => link && handleEdit(product.id)}
+                    onClick={() => {
+                      if (link && details) {
+                        handleDetails(product.id);
+                      } else {
+                        handleEdit(product.id);
+                      }
+                    }}
                     className={`${link ? "cursor-pointer" : ""}`}
                     data-state={row.getIsSelected() && "selected"}
                   >

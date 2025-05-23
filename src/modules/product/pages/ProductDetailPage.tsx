@@ -9,10 +9,14 @@ import {
 } from "@/utils/mapper/Product.mapper";
 import { useState } from "react";
 import { ChooseProductExchange } from "../components/popup/ChooseProductExchange";
+import { useSearchParams } from "react-router-dom";
 
 export const ProductDetailPage = () => {
   const productId = useStore((state) => state.productId);
   const product = useStore((state) => state.product);
+
+  const [searchParams] = useSearchParams();
+  const isProposal = searchParams.get("proposal") === "true";
 
   useGetProduct({ productId });
 
@@ -101,7 +105,12 @@ export const ProductDetailPage = () => {
             <Button variant="link" className=" text-sm">
               Ver detalles del usuario
             </Button>
-            {hasRequest ? (
+
+            {isProposal ? (
+              <div className="w-full text-center py-2 rounded-md text-sm font-medium shadow-sm">
+                Propuesta de intercambio
+              </div>
+            ) : hasRequest ? (
               <div className="w-full text-center py-2 rounded-md text-sm font-medium shadow-sm">
                 Ya solicitaste este producto
               </div>

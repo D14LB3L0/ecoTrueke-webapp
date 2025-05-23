@@ -27,9 +27,11 @@ export interface IProposalProduct {
   offeredProduct: {
     id: string;
     name: string;
+    productPicture: string;
   };
   requestedProduct: {
     id: string;
     name: string;
+    productPicture: string;
   };
 }
