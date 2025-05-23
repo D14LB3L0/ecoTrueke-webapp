@@ -1,8 +1,14 @@
 import ecoTruekeApi from "@/api/ecoTrueke.api";
 import { IProposal } from "@/interfaces/proposal.interface";
 
+export interface GetProposalRequest {
+  page: number;
+  amountPage: number;
+}
+
 export interface GetProposalResponse {
   proposals: IProposal[];
+  totalPages: number;
 }
 
 interface GetProposalDataResponse {
@@ -11,10 +17,15 @@ interface GetProposalDataResponse {
 }
 
 export class GetProposalService {
-  static async getProposal(): Promise<GetProposalResponse> {
+  static async getProposal(
+    getProposalRequest: GetProposalRequest
+  ): Promise<GetProposalResponse> {
     try {
       const response = await ecoTruekeApi.get<GetProposalDataResponse>(
-        "proposal"
+        "proposal",
+        {
+          params: getProposalRequest,
+        }
       );
       return response.data.data;
     } catch (error) {
