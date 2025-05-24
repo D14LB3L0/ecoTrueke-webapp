@@ -1,6 +1,8 @@
 import { IProposal, IProposalProduct } from "@/interfaces/proposal.interface";
 
 export interface IProposalSlice {
+  proposalId: string;
+  setProposalId: (proposal: string) => void;
   proposals: IProposalProduct[];
   setProposals: (proposal: IProposalProduct[]) => void;
   proposalsRequested: IProposal[];

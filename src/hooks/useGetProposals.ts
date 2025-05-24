@@ -27,9 +27,9 @@ export const useGetProposals = () => {
         totalPages: response.totalPages
       };
     },
-    staleTime: 30000,
+    staleTime: 0,
     retry: false,
-    gcTime: 30000,
+    gcTime: 0,
   });
 
   useEffect(() => {

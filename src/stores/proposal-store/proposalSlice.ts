@@ -8,6 +8,8 @@ export const createProposalSlice: StateCreator<
   [],
   IProposalSlice
 > = (set) => ({
+  proposalId: '',
+  setProposalId:(proposalId: string) => set({ proposalId }) ,
   proposals: [],
   setProposals: (proposals: IProposalProduct[]) => set({ proposals }),
   proposalsRequested: [],
