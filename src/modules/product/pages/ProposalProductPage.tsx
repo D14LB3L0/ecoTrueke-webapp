@@ -21,7 +21,7 @@ export const ProposalProductPage = () => {
   return (
     <div className="space-y-6 min-w-[308px]">
       <div className="space-y-2">
-        <h1 className="text-2xl font-bold">Tus solicitudes</h1>
+        <h1 className="text-2xl font-bold">Propuestas</h1>
         <h2 className="text-sm text-muted-foreground">
           Acepta o rechaza las solicitudes de intercambio.
         </h2>

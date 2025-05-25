@@ -128,7 +128,7 @@ export function DataTable<TData, TValue>({
                     onClick={() => {
                       if (link && details) {
                         handleDetails(product.id);
-                      } else {
+                      } else if(link){
                         handleEdit(product.id);
                       }
                     }}
