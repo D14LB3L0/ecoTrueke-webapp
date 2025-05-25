@@ -120,6 +120,7 @@ export const columns: ColumnDef<IProducts, unknown>[] = [
         <RowActions
           productId={row.getValue("id")}
           productName={row.getValue("name")}
+          productStatus={row.getValue("status")}
         />
       );
     },

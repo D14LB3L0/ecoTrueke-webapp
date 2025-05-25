@@ -1,6 +1,6 @@
 import { PopupDelete } from "@/components/popupDelete";
 import { Spinner } from "@/components/ui/spinner";
-import { Trash2 } from "lucide-react";
+import { Trash2, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { DeleteProductService } from "../service/deleteProduct.service";
 import { toast } from "sonner";
@@ -11,9 +11,14 @@ import { useStore } from "@/stores/useStore";
 interface RowActionsProps {
   productId: string;
   productName: string;
+  productStatus: string;
 }
 
-export function RowActions({ productId, productName }: RowActionsProps) {
+export function RowActions({
+  productId,
+  productName,
+  productStatus,
+}: RowActionsProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [loadingProductId, setLoadingProductId] = useState<string | null>(null);
   const [loadingPopUp, setLoadingPopUp] = useState<boolean>(false);
@@ -24,6 +29,8 @@ export function RowActions({ productId, productName }: RowActionsProps) {
   // list
   const setPage = useStore((state) => state.setPaginationPageProductDashboard);
   const page = useStore((state) => state.paginationPageProductDashboard);
+
+  console.log(productStatus);
 
   const handleSubmitDeleteProduct = async () => {
     try {
@@ -55,7 +62,7 @@ export function RowActions({ productId, productName }: RowActionsProps) {
         <div className="flex items-center justify-center w-5 h-5">
           <Spinner size="sm" className="text-destructive" />
         </div>
-      ) : (
+      ) : productStatus === "active" ? (
         <Trash2
           size={20}
           onClick={(e) => {
@@ -64,6 +71,8 @@ export function RowActions({ productId, productName }: RowActionsProps) {
           }}
           className="cursor-pointer text-muted-foreground hover:text-destructive"
         />
+      ) : (
+        <Lock size={20} className="text-gray-400 cursor-pointer" />
       )}
 
       <PopupDelete

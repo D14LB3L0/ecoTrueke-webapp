@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useGetProposalRequested } from "@/hooks/useGetProposalRequested";
 import { IProducts } from "@/interfaces/product.interface";
 import { useStore } from "@/stores/useStore";
 import { mapProductTransaction } from "@/utils/mapper/Product.mapper";
@@ -14,9 +15,14 @@ export const ProductCard = ({ products }: IProductCard) => {
   const setProductId = useStore((state) => state.setProductId);
 
   const proposals = useStore((state) => state.proposalsRequested);
+  useGetProposalRequested();
 
   const requestedProductIds = useMemo(() => {
-    return new Set(proposals.map((p) => p.requestedProductId));
+    return new Set(
+      proposals
+        .filter((p) => p.status !== "rejected")
+        .map((p) => p.requestedProductId)
+    );
   }, [proposals]);
 
   return (

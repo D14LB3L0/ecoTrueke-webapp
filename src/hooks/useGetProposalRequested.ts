@@ -8,6 +8,9 @@ import { z } from "zod";
 export const useGetProposalRequested = () => {
   // proposal
   const setProposals = useStore((state) => state.setProposalsRequested);
+  
+  // token
+  const token = useStore(state => state.user.token);
 
   // tanstack
   const query = useQuery({
@@ -21,7 +24,7 @@ export const useGetProposalRequested = () => {
     staleTime: 0,
     retry: false,
     gcTime: 0,
-    enabled: false,
+    enabled: !!token,
   });
 
   useEffect(() => {
