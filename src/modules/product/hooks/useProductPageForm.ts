@@ -102,7 +102,6 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
   const handleSubmit = async (values: uploadProductFormValues) => {
     try {
       setIsLoading(true);
-
       if (productId) {
         let editProductRequest: EditProductRequest = {
           productId: productId,
