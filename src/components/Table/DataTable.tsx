@@ -128,11 +128,15 @@ export function DataTable<TData, TValue>({
                     onClick={() => {
                       if (link && details) {
                         handleDetails(product.id);
-                      } else if(link){
+                      } else if (link && product.status === "active") {
                         handleEdit(product.id);
                       }
                     }}
-                    className={`${link ? "cursor-pointer" : ""}`}
+                    className={`${
+                      link && product.status === "active"
+                        ? "cursor-pointer"
+                        : ""
+                    }`}
                     data-state={row.getIsSelected() && "selected"}
                   >
                     {row.getVisibleCells().map((cell) => (
