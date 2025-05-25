@@ -26,6 +26,9 @@ export const ProductDetailPage = () => {
   const proposals = useStore((state) => state.proposalsRequested);
   const hasRequest = proposals.some((p) => p.requestedProductId === product.id);
 
+  // token
+  const token = useStore((state) => state.user.token);
+
   return (
     <div className="p-4">
       <div className="max-w-[810px] mx-auto mb-4 md:flex md:gap-8 rounded-lg shadow-md p-6 bg-muted/50">
@@ -118,6 +121,7 @@ export const ProductDetailPage = () => {
               <Button
                 className="w-full"
                 onClick={() => setOpenChooseProduct(true)}
+                disabled={token ? false : true}
               >
                 Solicitar intercambio
               </Button>
