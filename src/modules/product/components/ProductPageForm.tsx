@@ -88,8 +88,24 @@ export const ProductPageForm = ({ productId }: IProductPageForm) => {
                   <InputWithErrorTooltip
                     field={{
                       ...field,
-                      onChange: (e: any) =>
-                        field.onChange(Number(e.target.value)),
+                      onChange: (e: any) => {
+                        const value = e.target.value;
+
+                        // Si está vacío, permitirlo
+                        if (value === "") {
+                          field.onChange("");
+                          return;
+                        }
+
+                        // Si empieza con 0, bloquearlo
+                        if (/^0/.test(value)) {
+                          return;
+                        }
+
+                        // Si es válido, continuar
+                        field.onChange(Number(value));
+                      },
+
                       formState: form.formState,
                     }}
                     name="cantidad"

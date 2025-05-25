@@ -3,7 +3,6 @@ import { NavBar } from "./NavBar";
 import navBarItems from "../data/navBarItems";
 import { HeaderSideBar } from "./HeaderSideBar";
 import { DynamicBreadcrumb } from "./DynamicBreadCrumb";
-import { useNavBar } from "../hooks/useNavBar";
 import { useStore } from "@/stores/useStore";
 
 export const SideBarLayout = () => {
@@ -11,8 +10,7 @@ export const SideBarLayout = () => {
   const collapsedSideBar = useStore((state) => state.collapsedSideBar);
   const setCollapsedSideBar = useStore((state) => state.setCollapsedSideBar);
 
-  const { handleLogout } = useNavBar();
-  const items = navBarItems({ handleLogout });
+  const items = navBarItems();
 
   return (
     <div className="flex flex-col md:flex-row w-full">

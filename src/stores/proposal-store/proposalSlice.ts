@@ -15,7 +15,7 @@ export const createProposalSlice: StateCreator<
   proposalsRequested: [],
   setProposalsRequested: (proposalsRequested: IProposal[]) =>
     set({ proposalsRequested }),
-  paginationTotalPagesProposals: 1,
+  paginationTotalPagesProposals: 0,
   setPagintaionTotalPagesProposals: (paginationTotalPagesProposals: number) =>
     set({ paginationTotalPagesProposals }),
   paginationPageProposals: 1,

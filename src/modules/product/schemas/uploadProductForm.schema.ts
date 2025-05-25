@@ -19,7 +19,8 @@ export const uploadProductFormSchema = z.object({
   quantity: z
     .number()
     .nonnegative({ message: "Debe ser 0 o mayor" })
-    .gt(0, { message: "Debe ser mayor que 0" }),
+    .gt(0, { message: "Debe ser mayor que 0" })
+    .nullable(),
   description: z.string().optional().nullable(),
   typeTransaction: z
     .string({

@@ -10,10 +10,9 @@ import React from "react";
 
 export interface INavBar {
   key: string;
-  href?: string;
+  href: string;
   name: string;
   icon: React.ReactNode;
-  onClick?: () => void;
 }
 
 interface INavBarItem {
@@ -56,29 +55,16 @@ export const NavBar = ({ items, collapsed }: INavBarItem) => {
 
           return (
             <React.Fragment key={item.key}>
-              {item.href ? (
-                <Link to={item.href} className="w-full">
-                  {collapsed ? (
-                    <Tooltip>
-                      <TooltipTrigger asChild>{button}</TooltipTrigger>
-                      <TooltipContent side="right">{item.name}</TooltipContent>
-                    </Tooltip>
-                  ) : (
-                    button
-                  )}
-                </Link>
-              ) : (
-                <div onClick={item.onClick} className="w-full cursor-pointer">
-                  {collapsed ? (
-                    <Tooltip>
-                      <TooltipTrigger asChild>{button}</TooltipTrigger>
-                      <TooltipContent side="right">{item.name}</TooltipContent>
-                    </Tooltip>
-                  ) : (
-                    button
-                  )}
-                </div>
-              )}
+              <Link to={item.href} className="w-full">
+                {collapsed ? (
+                  <Tooltip>
+                    <TooltipTrigger asChild>{button}</TooltipTrigger>
+                    <TooltipContent side="right">{item.name}</TooltipContent>
+                  </Tooltip>
+                ) : (
+                  button
+                )}
+              </Link>
             </React.Fragment>
           );
         })}

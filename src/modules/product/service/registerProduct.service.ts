@@ -7,7 +7,7 @@ export interface RegisterProductRequest {
   typeTranscription: string;
   category: string[];
   condition: string;
-  quantity: number;
+  quantity: number | null | string;
 }
 
 export interface RegisterProductResponse {
@@ -38,7 +38,8 @@ export class RegisterProductService {
         formData.append("category", cat);
       });
       formData.append("condition", registerProductRequest.condition);
-      formData.append("quantity", registerProductRequest.quantity.toString());
+      if (registerProductRequest.quantity != null)
+        formData.append("quantity", registerProductRequest.quantity.toString());
 
       const response = await ecoTruekeApi.post<RegisterProductResponse>(
         "product",

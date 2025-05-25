@@ -9,7 +9,7 @@ export interface EditProductRequest {
   typeTranscription: string;
   category: string[];
   condition: string;
-  quantity: number;
+  quantity: number | null | string;
 }
 
 export interface EditProductResponse {
@@ -46,7 +46,8 @@ export class EditProductService {
         formData.append("category", cat);
       });
       formData.append("condition", editProductRequest.condition);
-      formData.append("quantity", editProductRequest.quantity.toString());
+      if (editProductRequest.quantity != null)
+        formData.append("quantity", editProductRequest.quantity.toString());
 
       const response = await ecoTruekeApi.put<EditProductResponse>(
         `product/${editProductRequest.productId}`,

@@ -39,7 +39,29 @@ export const InputWithErrorTooltip = ({
           className={type ?? "pr-12"}
           min={0}
           aria-invalid={!!error}
-          onKeyDown={type ? (e) => e.preventDefault() : undefined}
+          onKeyDown={
+            type
+              ? (e) => {
+                  const allowedKeys = [
+                    "Backspace",
+                    "Tab",
+                    "ArrowLeft",
+                    "ArrowRight",
+                    "Delete",
+                    "Home",
+                    "End",
+                  ];
+
+                  // Permitir control keys
+                  if (allowedKeys.includes(e.key)) return;
+
+                  // Permitir solo números
+                  if (!/^[0-9]$/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }
+              : undefined
+          }
         />
       </FormControl>
 

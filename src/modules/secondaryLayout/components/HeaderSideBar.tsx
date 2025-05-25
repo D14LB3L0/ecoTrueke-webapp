@@ -3,7 +3,6 @@ import { Menu } from "lucide-react";
 import { NavBar } from "./NavBar";
 import navBarItems from "../data/navBarItems";
 import { useEffect, useState } from "react";
-import { useNavBar } from "../hooks/useNavBar";
 
 interface HeaderSideBarProps {
     onToggle: () => void;
@@ -12,9 +11,8 @@ interface HeaderSideBarProps {
 
 export const HeaderSideBar = ({ onToggle, collapsed }: HeaderSideBarProps) => {
 
-    const { handleLogout } = useNavBar();
 
-    const items = navBarItems({ handleLogout });
+    const items = navBarItems();
 
     const [openSheet, setOpenSheet] = useState<boolean>(false)
 

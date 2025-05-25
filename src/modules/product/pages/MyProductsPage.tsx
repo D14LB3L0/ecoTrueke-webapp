@@ -1,8 +1,11 @@
 import LinkCard from "@/components/LinkCard";
 import { Card, CardContent } from "@/components/ui/card";
+import { useStore } from "@/stores/useStore";
 import { Boxes, Upload, Handshake } from "lucide-react";
 
 export const MyProductsPage = () => {
+  const person = useStore((state) => state.person);
+
   return (
     <div className="space-y-6 min-w-[308px]">
       <div className="space-y-2">
@@ -20,6 +23,7 @@ export const MyProductsPage = () => {
             icon={<Upload size="40px" className="mx-auto" />}
             title="Subir producto"
             description="Agrega un nuevo producto para vender, intercambiar o donar."
+            disabled={person.phone == null ? true : false}
           />
 
           <LinkCard

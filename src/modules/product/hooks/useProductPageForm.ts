@@ -54,7 +54,7 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
       description: "",
       typeTransaction: "",
       condition: "",
-      quantity: 0,
+      quantity: null,
       category: [],
     },
   });
@@ -81,7 +81,7 @@ export const useProductPageForm = ({ productId }: IUseProductPageForm) => {
         description: "",
         typeTransaction: "",
         condition: "",
-        quantity: 0,
+        quantity: null,
         category: [],
       });
       setCurrentProduct({
