@@ -12,7 +12,7 @@ export const useGetPaginatedNotifications = () => {
   // pagination data
   const page = useStore((state) => state.paginationPageNotifications);
   const amountPage = useStore((state) => state.paginationAmountPageNotifications);
-  const totalPages = useStore((state) => state.setPaginationPageNotifications);
+  const totalPages = useStore((state) => state.setPagintaionTotalPagesNotifications);
 
   // tanstack
   const query = useQuery({
@@ -31,9 +31,9 @@ export const useGetPaginatedNotifications = () => {
         totalPages: response.totalPages,
       };
     },
-    staleTime: 30000,
+    staleTime: 0,
     retry: false,
-    gcTime: 30000,
+    gcTime: 0,
   });
 
   useEffect(() => {

@@ -46,11 +46,15 @@ export function NotificationBell({
   deleteLoading,
 }: INotificationBell) {
   // pagination
-  const currentPage = useStore((state) => state.paginationPageProductDashboard);
-  const totalPages = useStore((state) => state.paginationTotalPagesProductDashboard);
+  const currentPage = useStore((state) => state.paginationPageNotifications);
+  const totalPages = useStore(
+    (state) => state.paginationTotalPagesNotifications
+  );
 
   // change pagination
-  const setCurrentPage = useStore((state) => state.setPaginationPageProductDashboard);
+  const setCurrentPage = useStore(
+    (state) => state.setPaginationPageNotifications
+  );
 
   // open notification
   const [open, setOpen] = useState(false);
@@ -208,6 +212,11 @@ export function NotificationBell({
 
   // navigate
   const navigate = useNavigate();
+
+  // reload page
+  useEffect(() => {
+    if (totalPages == 1 || totalPages == 0) setCurrentPage(1);
+  }, [totalPages]);
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
