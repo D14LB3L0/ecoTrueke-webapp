@@ -4,6 +4,8 @@ import { useGetProposals } from "@/hooks/useGetProposals";
 import { useStore } from "@/stores/useStore";
 import { Error } from "@/utils/constants/Error";
 import { useState } from "react";
+import { Success } from "@/utils/constants/Success";
+import { ConfirmOrCancelProposalService } from "../service/confirmCancelProposal.service";
 
 interface ProposalRowAction {
   proposalId: string;
@@ -13,17 +15,35 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
   const [loadingExchangeSuccess, setLoadingExchangeSuccess] =
     useState<boolean>(false);
 
+  const [openPopupQualifyUser, setOpenPopUpQualifyUser] =
+    useState<boolean>(false);
+
   const setProposalId = useStore((state) => state.setProposalId);
   const currentProposal = useStore((state) => state.proposalId);
 
   const { refetch } = useGetProposals({ status: "accepted" });
 
-  const handleExchangeSuccess = () => {
+  const handleExchangeSuccess = async (
+    productAction: string,
+    proposalAction: string
+  ) => {
     try {
       setProposalId(proposalId);
       setLoadingExchangeSuccess(true);
 
       // await confirm ... open popup calicate user
+      const response =
+        await ConfirmOrCancelProposalService.confirmOrCancelProposal({
+          proposalId,
+          productAction,
+          proposalAction,
+        });
+
+      if (response) {
+        refetch();
+        toast.dismiss();
+        toast.success(response.message ?? Success.GENERIC);
+      }
     } catch (error: any) {
       toast.dismiss();
       toast.warning(error?.response.data.message ?? Error.UNEXPECTED_ERROR);
@@ -39,9 +59,9 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
       ) : (
         <div className="flex gap-4 items-center">
           <div
-            className="mr-1 cursor-pointer  text-muted-foreground hover:text-primary transition-colors duration-200"
+            className="mr-1 cursor-pointer text-muted-foreground hover:text-primary transition-colors duration-200"
             onClick={(e) => {
-              handleExchangeSuccess();
+              handleExchangeSuccess("traded", "completed");
               e.stopPropagation();
             }}
           >
@@ -50,7 +70,8 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
           <div
             className="mr-1 cursor-pointer  text-muted-foreground hover:text-destructive transition-colors duration-200"
             onClick={(e) => {
-              handleExchangeSuccess();
+              handleExchangeSuccess("active", "cancelled");
+              setOpenPopUpQualifyUser(true);
               e.stopPropagation();
             }}
           >
