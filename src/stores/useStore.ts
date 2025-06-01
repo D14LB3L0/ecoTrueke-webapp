@@ -12,13 +12,16 @@ import { IProductSlice } from "./product-store/interface/product.slice.interface
 import { createProductSlice } from "./product-store/productSlice";
 import { IProposalSlice } from "./proposal-store/interface/proposal.slice.interface";
 import { createProposalSlice } from "./proposal-store/proposalSlice";
+import { IUserRatingSlice } from "./userRating-store/interfaces/userRating.slice.interface";
+import { createUserRatingSlice } from "./userRating-store/userRatingSlice";
 
 type SharedState = IUserSlice &
   IPersonSlice &
   IDashboardSlice &
   INotificationSlice &
   IProductSlice &
-  IProposalSlice;
+  IProposalSlice &
+  IUserRatingSlice
 
 export const useStore = create<SharedState>()(
   persist(
@@ -29,6 +32,7 @@ export const useStore = create<SharedState>()(
       ...createNotificationSlice(set, get, store),
       ...createProductSlice(set, get, store),
       ...createProposalSlice(set, get, store),
+      ...createUserRatingSlice(set, get, store)
     }),
     {
       name: "storage",
