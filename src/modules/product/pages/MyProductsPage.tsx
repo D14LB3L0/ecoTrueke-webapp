@@ -1,7 +1,7 @@
 import LinkCard from "@/components/LinkCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { useStore } from "@/stores/useStore";
-import { Boxes, Upload, Handshake } from "lucide-react";
+import { Boxes, Upload, Handshake, Clock } from "lucide-react";
 
 export const MyProductsPage = () => {
   const person = useStore((state) => state.person);
@@ -33,10 +33,16 @@ export const MyProductsPage = () => {
             description="Revisa y gestiona todos los productos que has registrado."
           />
           <LinkCard
-            to="/dashboard/my-products/proposal"
+            to="/dashboard/my-products/requested"
             icon={<Handshake size="40px" className="mx-auto" />}
-            title="Gestionar propuestas"
-            description="Acepta o rechaza propuestas de intercambio recibidas en tus productos."
+            title="Gestionar solicitudes"
+            description="Acepta o rechaza solicitudes recibidas."
+          />
+          <LinkCard
+            to="/dashboard/my-products/proposal"
+            icon={<Clock size="40px" className="mx-auto" />}
+            title="Solicitudes activas"
+            description="Confirma o cancela las propuestas que están en curso."
           />
         </CardContent>
       </Card>

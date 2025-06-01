@@ -5,7 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { z } from "zod";
 
-export const useGetProposals = () => {
+interface IUseGetProposals {
+  status: string;
+}
+
+export const useGetProposals = ({ status }: IUseGetProposals) => {
   // proposal
   const setProposals = useStore((state) => state.setProposals);
 
@@ -16,15 +20,16 @@ export const useGetProposals = () => {
 
   // tanstack
   const query = useQuery({
-    queryKey: ["getListProposals", page],
+    queryKey: ["getListProposals", page, status],
     queryFn: async () => {
       const response = await GetProposalService.getProposal({
         page,
-        amountPage
+        amountPage,
+        status,
       });
       return {
         proposals: z.array(proposalProductSchema).parse(response.proposals),
-        totalPages: response.totalPages
+        totalPages: response.totalPages,
       };
     },
     staleTime: 0,
@@ -35,7 +40,7 @@ export const useGetProposals = () => {
   useEffect(() => {
     if (query.data) {
       setProposals(query.data.proposals);
-      totalPages(query.data.totalPages)
+      totalPages(query.data.totalPages);
     }
   }, [query.data]);
 

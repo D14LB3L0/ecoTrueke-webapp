@@ -16,6 +16,7 @@ const breadcrumbMap: Record<string, string> = {
     upload: "Subir producto",
     manage: "Gestionar productos",
     edit: "Editar",
+    requested: "Solicitudes",
     proposal: "Propuestas"
 };
 

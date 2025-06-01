@@ -8,18 +8,18 @@ import { Success } from "@/utils/constants/Success";
 import { Error } from "@/utils/constants/Error";
 import { useGetProposals } from "@/hooks/useGetProposals";
 
-interface ProposalRowActions {
+interface RequestedRowActions {
   proposalId: string;
 }
 
-export const ProposalRowActions = ({ proposalId }: ProposalRowActions) => {
+export const RequestedRowActions = ({ proposalId }: RequestedRowActions) => {
   const [loadingAcceptOrRejectRequest, setLoadingAcceptOrRejectRequest] =
     useState<boolean>(false);
 
   const setProposalId = useStore((state) => state.setProposalId);
   const currentProposal = useStore((state) => state.proposalId);
 
-  const { refetch } = useGetProposals();
+  const { refetch } = useGetProposals({ status: "pending" });
 
   const handleAcceptOrRejectRequest = async (action: string) => {
     try {

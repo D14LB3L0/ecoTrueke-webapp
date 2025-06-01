@@ -1,8 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "@/components/Table/DataTableColumnHeader";
 import { IProposalProduct } from "@/interfaces/proposal.interface";
-import { ProposalRowActions } from "./ProposalRowActions";
+import { RequestedRowActions } from "./RequestedRowActions";
 import { useStore } from "@/stores/useStore";
+import { ProposalRowAction } from "./ProposalRowAction";
 
 export const ProposalColumn: ColumnDef<IProposalProduct, unknown>[] = [
   {
@@ -112,7 +113,12 @@ export const ProposalColumn: ColumnDef<IProposalProduct, unknown>[] = [
     accessorKey: "id",
     header: ({}) => <div className="text-left w-[70px] md:w-[60px]"></div>,
     cell: ({ row }) => {
-      return <ProposalRowActions proposalId={row.getValue("id")} />;
+      const proposal = row.original as IProposalProduct;
+      return proposal.status === "pending" ? (
+        <RequestedRowActions proposalId={proposal.id} />
+      ) : (
+        <ProposalRowAction proposalId={proposal.id} />
+      );
     },
   },
 ];

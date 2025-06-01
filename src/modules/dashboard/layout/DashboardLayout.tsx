@@ -6,7 +6,8 @@ import { MyProductsPage } from "@/modules/product/pages/MyProductsPage";
 import { UploadProductPage } from "@/modules/product/pages/UploadProductPage";
 import { ManageProductPage } from "@/modules/product/pages/ManageProductPage";
 import { EditProductPage } from "@/modules/product/pages/EditProductPage";
-import { ProposalProductPage } from "@/modules/product/pages/ProposalProductPage";
+import { RequestProductPage } from "@/modules/product/pages/RequestProductPage";
+import { ProposalActive } from "@/modules/product/pages/ProposalActive";
 
 const DashboardLayout = () => {
   return (
@@ -23,7 +24,8 @@ const DashboardLayout = () => {
           <Route path="/my-products/manage" element={<ManageProductPage />} />
           <Route path="/my-products/manage/view" element={<ManageProductPage />} />
           <Route path="/my-products/manage/edit" element={<EditProductPage />} />
-          <Route path="/my-products/proposal" element={<ProposalProductPage />} />
+          <Route path="/my-products/requested" element={<RequestProductPage />} />
+          <Route path="/my-products/proposal" element={<ProposalActive />} />
         </Route>
       </Routes>
     </>

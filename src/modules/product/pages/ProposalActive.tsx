@@ -1,10 +1,11 @@
-import { useStore } from "@/stores/useStore";
-import { Card, CardContent } from "@/components/ui/card";
 import { DataTable } from "@/components/Table/DataTable";
-import { ProposalColumn } from "../components/ProposalColumn";
+import { Card, CardContent } from "@/components/ui/card";
 import { useGetProposals } from "@/hooks/useGetProposals";
+import { useStore } from "@/stores/useStore";
+import { useEffect } from "react";
+import { ProposalColumn } from "../components/ProposalColumn";
 
-export const ProposalProductPage = () => {
+export const ProposalActive = () => {
   const proposals = useStore((state) => state.proposals);
 
   // pagination
@@ -16,14 +17,18 @@ export const ProposalProductPage = () => {
   const totalPages = useStore((state) => state.paginationTotalPagesProposals);
 
   // tanstack
-  useGetProposals();
+  useGetProposals({ status: "accepted" });
+
+  useEffect(() => {
+    setPage(1);
+  }, []);
 
   return (
     <div className="space-y-6 min-w-[308px]">
       <div className="space-y-2">
-        <h1 className="text-2xl font-bold">Propuestas</h1>
+        <h1 className="text-2xl font-bold">Solicitudes activas</h1>
         <h2 className="text-sm text-muted-foreground">
-          Acepta o rechaza las solicitudes de intercambio.
+          Confirma la realización de la transacción.  
         </h2>
       </div>
       <Card className="max-w-[900px]">

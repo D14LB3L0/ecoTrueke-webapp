@@ -25,6 +25,7 @@ import { DataTablePagination } from "./dataTablePagination";
 import { useNavigate } from "react-router-dom";
 import { IProducts } from "@/interfaces/product.interface";
 import { useStore } from "@/stores/useStore";
+import { IProposalProduct } from "@/interfaces/proposal.interface";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -86,6 +87,7 @@ export function DataTable<TData, TValue>({
 
   // product id
   const setProductId = useStore((state) => state.setEditProductDashboardId);
+  const setProductIdView = useStore((state) => state.setProductId);
 
   const handleEdit = (productId: string) => {
     setProductId(productId);
@@ -93,7 +95,7 @@ export function DataTable<TData, TValue>({
   };
 
   const handleDetails = (productId: string) => {
-    setProductId(productId);
+    setProductIdView(productId);
     navigate(`/home/product/details?proposal=true`);
   };
 
@@ -121,19 +123,22 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => {
                 const product = row.original as IProducts;
+                const proposal = row.original as IProposalProduct;
 
                 return (
                   <TableRow
                     key={row.id}
                     onClick={() => {
                       if (link && details) {
-                        handleDetails(product.id);
+                        handleDetails(proposal.offeredProduct.id);
                       } else if (link && product.status === "active") {
                         handleEdit(product.id);
                       }
                     }}
                     className={`${
-                      link && product.status === "active"
+                      link &&
+                      (product.status === "active" ||
+                        product.status === "accepted")
                         ? "cursor-pointer"
                         : ""
                     }`}
