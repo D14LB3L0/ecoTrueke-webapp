@@ -6,6 +6,7 @@ import { Error } from "@/utils/constants/Error";
 import { useState } from "react";
 import { Success } from "@/utils/constants/Success";
 import { ConfirmOrCancelProposalService } from "../service/confirmCancelProposal.service";
+import { RatingModal } from "@/components/RatingModal";
 
 interface ProposalRowAction {
   proposalId: string;
@@ -39,10 +40,14 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
           proposalAction,
         });
 
+      setOpenPopUpQualifyUser(true);
       if (response) {
         refetch();
         toast.dismiss();
         toast.success(response.message ?? Success.GENERIC);
+
+        if (productAction === "traded") {
+        }
       }
     } catch (error: any) {
       toast.dismiss();
@@ -52,8 +57,12 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
     }
   };
 
+  const handleRatingSubmit = (rating: number) => {
+    console.log(rating);
+  };
+
   return (
-    <div className="">
+    <div className="" onClick={(e) => e.stopPropagation()}>
       {loadingExchangeSuccess && currentProposal === proposalId ? (
         <Spinner className="text-muted-foreground" size="sm" />
       ) : (
@@ -71,7 +80,6 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
             className="mr-1 cursor-pointer  text-muted-foreground hover:text-destructive transition-colors duration-200"
             onClick={(e) => {
               handleExchangeSuccess("active", "cancelled");
-              setOpenPopUpQualifyUser(true);
               e.stopPropagation();
             }}
           >
@@ -79,6 +87,14 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
           </div>
         </div>
       )}
+
+      <RatingModal
+        isOpen={openPopupQualifyUser}
+        onClose={() => setOpenPopUpQualifyUser(false)}
+        onSubmit={handleRatingSubmit}
+        title="¿Cómo calificarías al usuario?"
+        description="Tu opinión es muy importante para nosotros"
+      />
     </div>
   );
 };
