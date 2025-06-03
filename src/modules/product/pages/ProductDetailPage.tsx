@@ -9,7 +9,7 @@ import {
 } from "@/utils/mapper/Product.mapper";
 import { useState } from "react";
 import { ChooseProductExchange } from "../components/popup/ChooseProductExchange";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export const ProductDetailPage = () => {
   const productId = useStore((state) => state.productId);
@@ -31,6 +31,8 @@ export const ProductDetailPage = () => {
 
   // person
   const phone = useStore((state) => state.person.phone);
+
+  const setProductPersonId = useStore((state) => state.setProductPersonId);
 
   return (
     <div className="p-4">
@@ -108,9 +110,15 @@ export const ProductDetailPage = () => {
           </div>
 
           <div className="flex flex-col items-center gap-4 ">
-            <Button variant="link" className=" text-sm">
-              Ver detalles del usuario
-            </Button>
+            <Link to={"/home/profile"}>
+              <Button
+                variant="link"
+                className=" text-sm"
+                onClick={() => setProductPersonId(product.userId)}
+              >
+                Ver detalles del usuario
+              </Button>
+            </Link>
 
             {isProposal ? (
               <div className="w-full text-center py-2 rounded-md text-sm font-medium shadow-sm">

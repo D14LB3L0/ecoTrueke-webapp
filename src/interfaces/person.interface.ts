@@ -10,3 +10,13 @@ export interface IPerson {
     profilePicture: string | null; 
   }
   
+
+export interface IproductPerson {
+  name: string;
+  paternalSurname: string;
+  maternalSurname: string;
+  address: string | null;
+  gender: string | null;
+  profilePicture: string | null;
+  createdAt: string;
+}

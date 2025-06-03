@@ -48,6 +48,7 @@ export const useStore = create<SharedState>()(
         productId: state.productId,
         proposalsRequested: state.proposalsRequested,
         proposals: state.proposals,
+        productPersonId: state.productPersonId
       }),
     }
   )
