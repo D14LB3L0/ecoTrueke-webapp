@@ -8,6 +8,6 @@ export const createUserRatingSlice: StateCreator<
   [],
   IUserRatingSlice
 > = (set) => ({
-  userStars: { stars: 0 },
+  userStars: { averageStars: 0 },
   setUserStars: (userStars: IUserRating) => set({ userStars }),
 });

@@ -1,4 +1,6 @@
+import StarRating from "@/components/ui/star-rating";
 import { useGetProductPerson } from "@/hooks/useGetProductPerson";
+import { useGetUserRating } from "@/hooks/useGetUserRating";
 import { useStore } from "@/stores/useStore";
 import { CalendarDays, MapPin, User } from "lucide-react";
 
@@ -6,7 +8,11 @@ export const UserProfilePage = () => {
   const productPersonId = useStore((state) => state.productPersonId);
   useGetProductPerson(productPersonId);
 
+  useGetUserRating(productPersonId);
+
   const productPerson = useStore((state) => state.productPerson);
+
+  const averageStars = useStore((state) => state.userStars);
 
   return (
     <div className="p-4">
@@ -57,8 +63,15 @@ export const UserProfilePage = () => {
             </p>
           </div>
 
-          <div className="">
-            <div className="">Calificación general como usuario</div>
+          <div className="flex flex-col justify-center">
+            <div className="text-sm text-muted-foreground font-medium">
+              Calificación general como usuario
+            </div>{" "}
+            <StarRating
+              rating={averageStars.averageStars}
+              maxStars={5}
+              size={15}
+            />
           </div>
         </div>
       </div>
