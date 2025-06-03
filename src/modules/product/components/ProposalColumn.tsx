@@ -117,7 +117,10 @@ export const ProposalColumn: ColumnDef<IProposalProduct, unknown>[] = [
       return proposal.status === "pending" ? (
         <RequestedRowActions proposalId={proposal.id} />
       ) : (
-        <ProposalRowAction proposalId={proposal.id} />
+        <ProposalRowAction
+        proposalId={proposal.id}
+        proposerUser={proposal.proposerId}
+        />
       );
     },
   },

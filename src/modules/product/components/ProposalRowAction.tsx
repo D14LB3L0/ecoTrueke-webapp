@@ -7,12 +7,17 @@ import { useState } from "react";
 import { Success } from "@/utils/constants/Success";
 import { ConfirmOrCancelProposalService } from "../service/confirmCancelProposal.service";
 import { RatingModal } from "@/components/RatingModal";
+import { RatingUserService } from "../service/ratingUser.service";
 
 interface ProposalRowAction {
   proposalId: string;
+  proposerUser: string;
 }
 
-export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
+export const ProposalRowAction = ({
+  proposalId,
+  proposerUser,
+}: ProposalRowAction) => {
   const [loadingExchangeSuccess, setLoadingExchangeSuccess] =
     useState<boolean>(false);
 
@@ -32,7 +37,6 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
       setProposalId(proposalId);
       setLoadingExchangeSuccess(true);
 
-      // await confirm ... open popup calicate user
       const response =
         await ConfirmOrCancelProposalService.confirmOrCancelProposal({
           proposalId,
@@ -40,25 +44,42 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
           proposalAction,
         });
 
-      setOpenPopUpQualifyUser(true);
       if (response) {
-        refetch();
         toast.dismiss();
         toast.success(response.message ?? Success.GENERIC);
-
-        if (productAction === "traded") {
+        if (response && productAction === "traded") {
+          setOpenPopUpQualifyUser(true);
         }
       }
     } catch (error: any) {
       toast.dismiss();
       toast.warning(error?.response.data.message ?? Error.UNEXPECTED_ERROR);
-    } finally {
-      setLoadingExchangeSuccess(false);
     }
   };
 
-  const handleRatingSubmit = (rating: number) => {
-    console.log(rating);
+  const handleRatingSubmit = async (stars: number) => {
+    try {
+      const response = await RatingUserService.ratingUser({
+        proposerUserId: proposerUser,
+        proposalId: proposalId,
+        stars,
+      });
+
+      toast.dismiss();
+      toast.success(response.message ?? Success.GENERIC);
+    } catch (error: any) {
+      toast.dismiss();
+      toast.warning(error?.response.data.message ?? Error.UNEXPECTED_ERROR);
+    } finally {
+      setLoadingExchangeSuccess(false);
+      refetch();
+    }
+  };
+
+  const handleRatingOnClose = async () => {
+    setLoadingExchangeSuccess(false);
+    setOpenPopUpQualifyUser(false);
+    refetch();
   };
 
   return (
@@ -90,7 +111,7 @@ export const ProposalRowAction = ({ proposalId }: ProposalRowAction) => {
 
       <RatingModal
         isOpen={openPopupQualifyUser}
-        onClose={() => setOpenPopUpQualifyUser(false)}
+        onClose={handleRatingOnClose}
         onSubmit={handleRatingSubmit}
         title="¿Cómo calificarías al usuario?"
         description="Tu opinión es muy importante para nosotros"
