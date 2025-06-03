@@ -1,4 +1,4 @@
-import { User, Box, LayoutDashboard, LogOut, Home } from "lucide-react";
+import { User, Box, LayoutDashboard, LogOut, Home, Clock } from "lucide-react";
 import { INavBar } from "../components/NavBar";
 
 const navBarItems = (): INavBar[] => [
@@ -19,6 +19,12 @@ const navBarItems = (): INavBar[] => [
     name: "Mis productos",
     icon: <Box size={16} />,
     href: "/dashboard/my-products",
+  },
+  {
+    key: "history",
+    name: "Historial",
+    icon: <Clock size={16} />,
+    href: "/dashboard/history",
   },
   {
     key: "home",

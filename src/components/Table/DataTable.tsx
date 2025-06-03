@@ -36,6 +36,7 @@ interface DataTableProps<TData, TValue> {
   totalPages: number;
   link?: boolean;
   details?: boolean;
+  history?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -47,6 +48,7 @@ export function DataTable<TData, TValue>({
   totalPages,
   link,
   details,
+  history,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
@@ -129,7 +131,9 @@ export function DataTable<TData, TValue>({
                   <TableRow
                     key={row.id}
                     onClick={() => {
-                      if (link && details) {
+                      if (history) {
+                        return;
+                      } else if (link && details) {
                         handleDetails(proposal.offeredProduct.id);
                       } else if (link && product.status === "active") {
                         handleEdit(product.id);

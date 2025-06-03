@@ -4,7 +4,7 @@ import { IProposal } from "@/interfaces/proposal.interface";
 export interface GetProposalRequest {
   page: number;
   amountPage: number;
-  status: string
+  status: string | null
 }
 
 export interface GetProposalResponse {

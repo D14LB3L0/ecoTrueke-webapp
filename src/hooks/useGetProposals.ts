@@ -6,10 +6,10 @@ import { useEffect } from "react";
 import { z } from "zod";
 
 interface IUseGetProposals {
-  status: string;
+  status?: string | null;
 }
 
-export const useGetProposals = ({ status }: IUseGetProposals) => {
+export const useGetProposals = ({ status = null }: IUseGetProposals) => {
   // proposal
   const setProposals = useStore((state) => state.setProposals);
 
@@ -32,9 +32,9 @@ export const useGetProposals = ({ status }: IUseGetProposals) => {
         totalPages: response.totalPages,
       };
     },
-    staleTime: 0,
+    staleTime: 3000,
     retry: false,
-    gcTime: 0,
+    gcTime: 3000,
   });
 
   useEffect(() => {

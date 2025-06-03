@@ -8,6 +8,7 @@ import { ManageProductPage } from "@/modules/product/pages/ManageProductPage";
 import { EditProductPage } from "@/modules/product/pages/EditProductPage";
 import { RequestProductPage } from "@/modules/product/pages/RequestProductPage";
 import { ProposalActive } from "@/modules/product/pages/ProposalActive";
+import { HistoryProposalPage } from "@/modules/history/pages/HistoryProposalPage";
 
 const DashboardLayout = () => {
   return (
@@ -26,6 +27,8 @@ const DashboardLayout = () => {
           <Route path="/my-products/manage/edit" element={<EditProductPage />} />
           <Route path="/my-products/requested" element={<RequestProductPage />} />
           <Route path="/my-products/proposal" element={<ProposalActive />} />
+
+          <Route path="/history" element={<HistoryProposalPage/>}/>
         </Route>
       </Routes>
     </>
