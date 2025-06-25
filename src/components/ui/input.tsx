@@ -7,20 +7,33 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   iconPrefix?: React.ReactNode;
 }
 
-function Input({ className, type, iconPrefix, ...props }: InputProps) {
+function Input({ className, type, iconPrefix, onBeforeInput, ...props }: InputProps) {
   const [showPassword, setShowPassword] = React.useState(false)
   const isPassword = type === "password"
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
+  const togglePasswordVisibility = () => setShowPassword(!showPassword)
+
+  const handleBeforeInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const input = (e.nativeEvent as InputEvent).data
+    if (input && !/^[a-zA-Z0-9@._-]$/.test(input)) {
+      e.preventDefault()
+    }
+
+    // Llamar al onBeforeInput externo si lo pasan
+    onBeforeInput?.(e)
   }
 
   return (
     <div className="relative flex w-full items-center">
-      {iconPrefix && <div className="absolute left-3 flex items-center pointer-events-none opacity-50 text-muted-foreground">{iconPrefix}</div>}
+      {iconPrefix && (
+        <div className="absolute left-3 flex items-center pointer-events-none opacity-50 text-muted-foreground">
+          {iconPrefix}
+        </div>
+      )}
       <input
         type={isPassword && showPassword ? "text" : type}
         data-slot="input"
+        onBeforeInput={handleBeforeInput}
         className={cn(
           "file:text-foreground placeholder:text-sm placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
           "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
