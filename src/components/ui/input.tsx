@@ -15,7 +15,7 @@ function Input({ className, type, iconPrefix, onBeforeInput, ...props }: InputPr
 
   const handleBeforeInput = (e: React.FormEvent<HTMLInputElement>) => {
     const input = (e.nativeEvent as InputEvent).data
-    if (input && !/^[a-zA-Z0-9@._-]$/.test(input)) {
+    if (input && !/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ@._-]$/.test(input)) {
       e.preventDefault()
     }
 
