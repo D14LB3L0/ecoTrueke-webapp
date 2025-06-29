@@ -10,7 +10,7 @@ interface GetUserRatingDataResponse {
 }
 
 export class GetUserRatingService {
-  static async getUserRating(userId: string): Promise<GetUserRatingResponse> {
+  static async getUserRating(userId: string | undefined): Promise<GetUserRatingResponse> {
     try {
       const resposne = await ecoTruekeApi.get<GetUserRatingDataResponse>(
         `userRating/${userId}`

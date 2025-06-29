@@ -4,7 +4,7 @@ import { useStore } from "@/stores/useStore";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-export const useGetProductPerson = (userId: string) => {
+export const useGetProductPerson = (userId: string | undefined) => {
   const setProductPerson = useStore((state) => state.setProductPerson);
 
   // tanstack

@@ -16,6 +16,7 @@ const HomeLayout = () => {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/details" element={<ProductDetailPage />} />
           <Route path="/profile" element={<UserProfilePage />} />
+          <Route path="/profile/me" element={<UserProfilePage />} />
         </Route>
       </Routes>
     </>

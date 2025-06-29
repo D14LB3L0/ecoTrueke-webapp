@@ -9,7 +9,7 @@ export const dropDownItems = ({ handleLogout }: IDropdownItem): IDropdown[] => [
   {
     key: "profile",
     name: "Mi Perfil",
-    href: "/al perfil del usuario",
+    href: "/home/profile/me",
     icon: <User size={16} />,
   },
   {

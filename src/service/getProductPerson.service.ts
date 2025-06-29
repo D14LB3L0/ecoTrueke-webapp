@@ -12,7 +12,7 @@ interface GetProductPersonDataResponse {
 
 export class GetProductPersonService {
   static async getProductPerson(
-    userId: string
+    userId: string | undefined
   ): Promise<GetProductPersonResponse> {
     try {
       const response = await ecoTruekeApi.get<GetProductPersonDataResponse>(

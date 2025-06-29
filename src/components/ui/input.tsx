@@ -14,11 +14,6 @@ function Input({ className, type, iconPrefix, onBeforeInput, ...props }: InputPr
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
 
   const handleBeforeInput = (e: React.FormEvent<HTMLInputElement>) => {
-    const input = (e.nativeEvent as InputEvent).data
-    if (input && !/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ@._-]$/.test(input)) {
-      e.preventDefault()
-    }
-
     // Llamar al onBeforeInput externo si lo pasan
     onBeforeInput?.(e)
   }

@@ -1,18 +1,22 @@
 import StarRating from "@/components/ui/star-rating";
 import { useGetProductPerson } from "@/hooks/useGetProductPerson";
-import { useGetUserRating } from "@/hooks/useGetUserRating";
 import { useStore } from "@/stores/useStore";
 import { CalendarDays, MapPin, User } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 export const UserProfilePage = () => {
   const productPersonId = useStore((state) => state.productPersonId);
-  useGetProductPerson(productPersonId);
+  const location = useLocation();
 
-  useGetUserRating(productPersonId);
+  const isMe = location.pathname.endsWith("/me");
 
+  const person = useStore((state) => state.person);
   const productPerson = useStore((state) => state.productPerson);
-
   const averageStars = useStore((state) => state.userStars);
+
+  useGetProductPerson(!isMe ? productPersonId : undefined);
+
+  const data = isMe ? person : productPerson;
 
   return (
     <div className="p-4">
@@ -21,13 +25,13 @@ export const UserProfilePage = () => {
         <div className="md:w-1/3 bg-gray-100 flex justify-center items-center p-4">
           <img
             src={
-              productPerson.profilePicture
+              data.profilePicture
                 ? `${import.meta.env.VITE_API_ECOTRUEKE}EcoTrueke/${
-                    productPerson.profilePicture
+                    data.profilePicture
                   }`
                 : "/placeholder/placeholder.jpg"
             }
-            alt={`${productPerson.name}`}
+            alt={`${data.name}`}
             className="h-[240px] w-full max-w-[280px] object-cover rounded-lg"
           />
         </div>
@@ -36,33 +40,37 @@ export const UserProfilePage = () => {
         <div className="md:w-2/3 p-6 flex flex-col justify-between gap-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
-              {productPerson.name} {productPerson.paternalSurname}{" "}
-              {productPerson.maternalSurname}
+              {data.name} {data.paternalSurname} {data.maternalSurname}
             </h1>
 
             <div className="mt-4 space-y-2 text-gray-700 text-sm">
-              {productPerson.gender && (
+              {data.gender && (
                 <p className="flex items-center gap-2">
                   <User className="w-4 h-4 text-primary" />
-                  <span className="font-medium">Género:</span>{" "}
-                  {productPerson.gender}
+                  <span className="font-medium">Género:</span> {data.gender}
                 </p>
               )}
-              {productPerson.address && (
+              {data.address && (
                 <p className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-primary" />
-                  <span className="font-medium">Dirección:</span>{" "}
-                  {productPerson.address}
+                  <span className="font-medium">Dirección:</span> {data.address}
                 </p>
               )}
               <p className="flex items-center gap-2">
-                <CalendarDays className="w-4 h-4 text-primary" />
-                <span className="font-medium">Miembro desde:</span>{" "}
-                {new Date(productPerson.createdAt).toLocaleDateString("es-PE", {
-                  year: "numeric",
-                  month: "long",
-                  day: "2-digit",
-                })}
+                {!isMe && productPerson.createdAt && (
+                  <p className="flex items-center gap-2">
+                    <CalendarDays className="w-4 h-4 text-primary" />
+                    <span className="font-medium">Miembro desde:</span>{" "}
+                    {new Date(productPerson.createdAt).toLocaleDateString(
+                      "es-PE",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "2-digit",
+                      }
+                    )}
+                  </p>
+                )}
               </p>
             </div>
           </div>

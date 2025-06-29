@@ -4,7 +4,7 @@ import { useStore } from "@/stores/useStore";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-export const useGetUserRating = (userId: string) => {
+export const useGetUserRating = (userId?: string) => {
   const setAverageStars = useStore((state) => state.setUserStars);
 
   const query = useQuery({
